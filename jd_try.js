@@ -2,9 +2,17 @@
 自用脚本
 基于原作者 ZCY01 基础上改了 通知方式
 原每个账户通知一次 => 全部执行完通知一次
+
+变量设置参考：https://www.cnblogs.com/zdz8207/p/nodejs-process-env.html
+
 变量:
+
 JD_TRY_MIN_PRICE 最小价格单位
-京东价格保护：脚本更新地址 https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js
+JD_TRY_GOOD_FILTERS 过滤该关键词 | 书写方式：小靓美@脚气
+JD_TRY_CIDS_KEYS 选择分区 | 书写方式：家用电器@手机数码@电脑办公@家居家装@美妆护肤@母婴玩具@服饰鞋包@母婴玩具@生鲜美食@图书音像@钟表奢品@个人护理@家庭清洁@食品饮料
+
+
+原作者脚本地址 https://github.com/ZCY01/daily_scripts/
 脚本兼容: QuantumultX, Node.js
 ⚠️ 非常耗时的脚本。最多可能执行半小时！
 每天最多关注300个商店，但用户商店关注上限为500个。
@@ -14,7 +22,7 @@ JD_TRY_MIN_PRICE 最小价格单位
 # 取关京东店铺商品，请在 boxjs 修改取消关注店铺数量
 5 10 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_unsubscribe.js, tag=取关京东店铺商品, enabled=true
 # 京东价格保护
-30 10 * * * https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js, tag=京东试用, img-url=https://raw.githubusercontent.com/ZCY01/img/master/jdtryv1.png, enabled=true
+0 7,10 * * * https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js, tag=京东试用, img-url=https://raw.githubusercontent.com/ZCY01/img/master/jdtryv1.png, enabled=true
  */
 const $ = new Env("京东试用");
 let cookiesArr = [],
@@ -32,9 +40,9 @@ $.pageSize = 12;
 let cidsList = ["家用电器", "手机数码", "电脑办公", "家居家装","美妆护肤","母婴玩具","服饰鞋包","母婴玩具","生鲜美食","图书音像","钟表奢品","个人护理","家庭清洁","食品饮料"];
 let typeList = ["普通试用", "闪电试用"];
 //过滤含有该关键词的商品
-let goodFilters = "小靓美,脚气,文胸,卷尺,种子,档案袋,癣,中年,老太太,妇女,私处,孕妇,卫生,课,培训,阴道,生殖器,肛门,狐臭,胸罩,洋娃娃,玩具,益智,少女,内衣,女孩,鱼饵,钓鱼,童装,吊带,黑丝,钢圈,玩具,幼儿,娃娃,网课,网校,电商,手机壳,钢化膜,车载充电器,网络课程,裤,美少女,教程,软件,英语,俄语,四级,六级,四六级,在线,宫颈,糜烂,手机膜,狗,情趣,软件,系统盘,延时,手机壳,看房,补水,保湿,化妆品,面膜,口红,卸妆水,吊坠,和田玉,施华洛世奇,冰淇淋,互动网课,周卡,泡腾片,肾宝,药品,早教,伴手礼,紫檀木,燃油宝,汽油,手机支架,电话手表,洗发液,玻尿酸,记事本子,茶,葡萄酒,洋酒,大米,地板蜡,冰王,足浴,单肩包,足链,斜挎包,创意礼品,定制,代餐,短袖,卫衣,T恤,眼镜,机油,驾照,自慰".split(",");
+let goodFilters = "小靓美@脚气@文胸@卷尺@种子@档案袋@癣@中年@老太太@妇女@私处@孕妇@卫生@课@培训@阴道@生殖器@肛门@狐臭@胸罩@洋娃娃@玩具@益智@少女@内衣@女孩@鱼饵@钓鱼@童装@吊带@黑丝@钢圈@玩具@幼儿@娃娃@网课@网校@电商@手机壳@钢化膜@车载充电器@网络课程@裤@美少女@教程@软件@英语@俄语@四级@六级@四六级@在线@宫颈@糜烂@手机膜@狗@情趣@软件@系统盘@延时@手机壳@看房@补水@保湿@化妆品@面膜@口红@卸妆水@吊坠@和田玉@施华洛世奇@冰淇淋@互动网课@周卡@泡腾片@肾宝@药品@早教@伴手礼@紫檀木@燃油宝@汽油@手机支架@电话手表@洗发液@玻尿酸@记事本子@茶@葡萄酒@洋酒@大米@地板蜡@冰王@足浴@单肩包@足链@斜挎包@创意礼品@定制@代餐@短袖@卫衣@T恤@眼镜@机油@驾照@自慰".split("@");
 //过滤低于该价格的商品
-let minPrice = 0;
+let minPrice = 50;
 
 const cidsMap = {
   全部商品: "0",
