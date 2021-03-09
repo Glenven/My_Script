@@ -56,7 +56,7 @@ function Git_PullShell() {
   cd ${ShellDir}
   git fetch --all
   ExitStatusShell=$?
-  git reset --hard origin/source
+  git reset --hard origin/Docker
 }
 
 ## 克隆scripts
