@@ -43,8 +43,8 @@ http-request ^https:\/\/draw\.jdfcloud\.com(\/mirror)?\/\/api\/user\/user\/detai
 const isRequest = typeof $request != "undefined"
 const $ = new Env('宠汪汪赛跑');
 const JD_BASE_API = `https://draw.jdfcloud.com//pet`;
-let invite_pins = ["jd_6cd93e613b0e5,被折叠的记忆33,jd_704a2e5e28a66,jd_45a6b5953b15b,zooooo58,jd_66f5cecc1efcd,jd_41345a6f96aa5"];
-let run_pins = ["被折叠的记忆33,jd_6cd93e613b0e5,jd_66f5cecc1efcd,jd_sIhNpDXJehOr,jd_41345a6f96aa5,jd_704a2e5e28a66,zooooo58"];
+let invite_pins = ["jd_6cd93e613b0e5,被折叠的记忆33,jd_739348311ab29,jd_70554c71d5427,225472166-520348,jd_704a2e5e28a66,jd_45a6b5953b15b,zooooo58,jd_66f5cecc1efcd,jd_41345a6f96aa5"];
+let run_pins = ["被折叠的记忆33,jd_6cd93e613b0e5,jd_739348311ab29,,jd_70554c71d5427,225472166-520348,jd_66f5cecc1efcd,jd_sIhNpDXJehOr,jd_41345a6f96aa5,jd_704a2e5e28a66,zooooo58"];
 let temp = run_pins[0].split(',')
 let fixPins = temp.splice(temp.indexOf("jd_6cd93e613b0e5"), 1);
 fixPins.push(...temp.splice(temp.indexOf("被折叠的记忆33"), 1));
