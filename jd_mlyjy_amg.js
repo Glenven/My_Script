@@ -18,12 +18,12 @@ const $ = new Env('美丽颜究院');
 const WebSocket = require("ws");
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
-const needNotify = true;
+const needNotify = false;
 const productMachinel = {};
 const materialWaitForProduce = { "base": [], "high": [], "special": [] };
 const hasProducePosition = {}
 let cookiesArr = [], cookie = '', originCookie = '';
-let helpAuthor = true;//为作者助力的开关
+let helpAuthor = false;//为作者助力的开关
 let msg = {
     //初始化 请求
     init: { "msg": { "type": "action", "args": { "source": 1 }, "action": "_init_" } },
