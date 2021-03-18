@@ -31,13 +31,13 @@ jobs:
       # 我自己同步到gitee使用，其他人可忽略
       - name: sync github -> gitee 从Github同步内容到Gitee上
         uses: Yikun/hub-mirror-action@master
-        if: env.dst_key
+        # if: env.dst_key
         with:
           src: github/h455257166
           dst: gitee/h455257166
-          static_list: "My_Script"
           dst_key: ${{ secrets.GITEE_PRIVATE_KEY }}
           dst_token: ${{ secrets.GITEE_TOKEN }}
+          static_list: "My_Script"
 
           #黑/白名单
           #动态获取原端github/Yikun的repos，但仅同步名为hub-mirror-action，不同步hashes这个repo到Gittee
