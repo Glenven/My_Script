@@ -86,3 +86,8 @@ done
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
 sed -i "s|bash jd jd_joy_run_amg||bash ${ShellDir}/jd.sh jd_joy_run_amg|g" ${ListCron}
 sed -i "s|bash jd jd_try_amg||bash ${ShellDir}/jd.sh  jd_try_amg|g" ${ListCron}
+sed -i "s|bash jd jd_mlyjy_amg||bash ${ShellDir}/jd.sh jd_mlyjy_amg|g" ${ListCron}
+sed -i "s|bash jd jd_fanslove_amg||bash ${ShellDir}/jd.sh jd_fanslove_amg|g" ${ListCron}
+sed -i "s|bash jd jd_unionPoster_amg||bash ${ShellDir}/jd.sh jd_unionPoster_amg|g" ${ListCron}
+sed -i "s|bash jd jd_lenovo_amg||bash ${ShellDir}/jd.sh jd_lenovo_amg|g" ${ListCron}
+sed -i "s|bash jd jd_wish_amg||bash ${ShellDir}/jd.sh jd_wish_amg|g" ${ListCron}
