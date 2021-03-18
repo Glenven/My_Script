@@ -4,7 +4,7 @@
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="i-chenzhe JDMyself whyour h455257166"
+author_list="h455257166"
 
 ## 添加更多作者昵称（必填）示例：author_list="i-chenzhe whyour testuser"  直接追加，不要新定义变量
 
@@ -13,24 +13,17 @@ author_list="i-chenzhe JDMyself whyour h455257166"
 #获取的脚本来自github加速下载：https://raw.sevencdn.com
 # 1.从作者库中随意挑选一个脚本地址，每个作者的地址添加一个即可，无须重复添加
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
-scripts_base_url_1=https://raw.sevencdn.com/i-chenzhe/qx/main/
-scripts_base_url_2=https://raw.sevencdn.com/573462273/JDMyself/main/scripts/
-scripts_base_url_3=https://raw.sevencdn.com/whyour/hundun/master/quanx/
-scripts_base_url_4=https://raw.sevencdn.com/h455257166/My_Script/JD/
+scripts_base_url_1=https://raw.sevencdn.com/h455257166/My_Script/JD/
+scripts_base_url_2=https://raw.sevencdn.com/h455257166/My_Script/JD/
 
 ## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_entertainment.js jd_shake.js jd_shakeBean.js"
-my_scripts_list_2="jd_axc.js jd_xxl_gh.js"
-my_scripts_list_3="jx_factory_component.js"
-my_scripts_list_4="jd_joy_run_amg.js jd_try_amg.js"
-
-## 活动脚本名称1：百变大咖秀、摇一摇、摇京豆
-## 活动脚本名称2：东东爱消除、个护爱消除
-## 活动脚本名称3：京喜工厂Plus
-## 活动脚本名称4：宠汪汪互助 京东试用
+my_scripts_list_1="jd_joy_run_amg.js jd_try_amg.js jd_mlyjy_amg"
+my_scripts_list_2="jd_fanslove_amg.js jd_try_amg.js"
+## 长期脚本名称： 宠汪汪互助 京东试用 美丽研究院
+## 短期活动脚本： 粉丝互动 京东试用
 
 ## 添加更多脚本名称示例：my_scripts_list_3="jd_test1.js jd_test2.js jd_test3.js ......"
 
@@ -91,11 +84,5 @@ done
 ## 注意两边修改内容区别在于中间内容"jd"、"${ShellDir}/jd.sh"
 ## 修正定时任务示例：sed -i "s|bash jd jd_test|bash ${ShellDir}/jd.sh test|g" ${ListCron}
 ##                 sed -i "s|bash jd jd_ceshi|bash ${ShellDir}/jd.sh ceshi|g" ${ListCron}
-sed -i "s|bash jd jd_entertainment|bash ${ShellDir}/jd.sh jd_entertainment|g" ${ListCron}
-sed -i "s|bash jd jd_shake|bash ${ShellDir}/jd.sh jd_shake|g" ${ListCron}
-sed -i "s|bash jd jd_shakeBean|bash ${ShellDir}/jd.sh jd_shakeBean|g" ${ListCron}
-sed -i "s|bash jd jd_axc|bash ${ShellDir}/jd.sh jd_axc|g" ${ListCron}
-sed -i "s|bash jd jd_xxl_gh|bash ${ShellDir}/jd.sh jd_xxl_gh|g" ${ListCron}
-sed -i "s|bash jd jx_factory_component||bash ${ShellDir}/jd.sh jx_factory_component|g" ${ListCron}
 sed -i "s|bash jd jd_joy_run_amg||bash ${ShellDir}/jd.sh jd_joy_run_amg|g" ${ListCron}
 sed -i "s|bash jd jd_try_amg||bash ${ShellDir}/jd.sh  jd_try_amg|g" ${ListCron}
