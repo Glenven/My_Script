@@ -26,7 +26,7 @@ const $ = new Env('粉丝互动');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 let cookiesArr = [], cookie = '', originCookie = '', message = '';
-let helpAuthor = true;//为作者助力的开关
+let helpAuthor = false;//为作者助力的开关
 const ACT_ID_List = ['97f5a0166216461b81b5e9d5232f927c', 'b90060243fe14fe28cc6653216dd9c32', '8194c0e37a5543da94be8fe5c4caee74'];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
