@@ -4,7 +4,7 @@
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="h455257166"
+author_list="h455257166 dq"
 
 ## 添加更多作者昵称（必填）示例：author_list="i-chenzhe whyour testuser"  直接追加，不要新定义变量
 
@@ -20,10 +20,10 @@ scripts_base_url_2=https://raw.sevencdn.com/h455257166/My_Script/JD/
 
 ##############################  作  者  脚  本  名  称  （必填）  ##############################
 # 将相应作者的脚本填写到以下变量中
-my_scripts_list_1="jd_joy_run_amg.js jd_try_amg.js jd_mlyjy_amg"
-my_scripts_list_2="jd_fanslove_amg.js jd_try_amg.js"
+my_scripts_list_1="jd_joy_run_amg.js jd_try_amg.js jd_mlyjy_amg.js"
+my_scripts_list_2="jd_fanslove_amg.js jd_unionPoster_amg.js jd_lenovo_amg.js jd_wish_amg.js"
 ## 长期脚本名称： 宠汪汪互助 京东试用 美丽研究院
-## 短期活动脚本： 粉丝互动 京东试用
+## 短期活动脚本： 粉丝互动 美的家电节[2021-03-31] 联想集卡活动[2021-03-29] 众筹许愿池
 
 ## 添加更多脚本名称示例：my_scripts_list_3="jd_test1.js jd_test2.js jd_test3.js ......"
 

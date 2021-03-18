@@ -1,5 +1,5 @@
 /*
-2021-03-12 h455257166 修改申请天数为五天内的商品
+2021-03-12 h455257166 修改申请页数问题
 自用脚本
 基于原作者 ZCY01 基础上改了 通知方式
 原每个账户通知一次 => 全部执行完通知一次
@@ -23,7 +23,7 @@ JD_TRY_CIDS_KEYS 选择分区 | 书写方式：家用电器@手机数码@电脑�
 # 取关京东店铺商品，请在 boxjs 修改取消关注店铺数量
 5 10 * * * https://raw.githubusercontent.com/lxk0301/jd_scripts/master/jd_unsubscribe.js, tag=取关京东店铺商品, enabled=true
 # 京东价格保护
-1 3,20 * * * https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js, tag=京东试用, img-url=https://raw.githubusercontent.com/ZCY01/img/master/jdtryv1.png, enabled=true
+0 7,10 * * * https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_try.js, tag=京东试用, img-url=https://raw.githubusercontent.com/ZCY01/img/master/jdtryv1.png, enabled=true
  */
 const $ = new Env("京东试用");
 let cookiesArr = [],
@@ -272,12 +272,12 @@ async function getGoodList() {
 async function filterGoodList() {
   console.log(`⏰ 过滤商品列表，当前共有${allGoodList.length}个商品`);
   const now = Date.now();
-  const oneMoreDay = now + 120 * 60 * 60 * 1000;
+  const oneMoreDay = now + 72 * 60 * 60 * 1000;
   $.goodList = allGoodList.filter((good) => {
     // 筛选掉符合以下要求的
     // 1. good 有问题
     // 2. good 距离结束不到10min
-    // 3. good 的结束时间大于五天
+    // 3. good 的结束时间大于三天
     // 4. good 的价格小于最小的限制
     if (
       !good ||
