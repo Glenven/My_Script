@@ -136,6 +136,11 @@ function ck_check(){
                             console.log(`========================================\n开始 [ ${tasklist[i]["name"]} ] 任务 ||\n`)
                             await meal()
                         }
+                        //睡觉赚金币
+                        else if(tasklist[i]["task_id"] == '145') {
+                            console.log(`========================================\n开始 [ ${tasklist[i]["name"]} ] 任务 ||\n`)
+                            await sleep()
+                        }
                     }
                 }
                 else{
@@ -264,7 +269,7 @@ function meal(){
                 }
             }
             catch(e) {
-                $.log("[签到失败]\n" + e + $.toStr(error, null, 2))
+                $.log("[吃饭补贴失败]\n" + e + $.toStr(error, null, 2))
             } 
             finally {
                 resolve()
@@ -278,59 +283,110 @@ function meal(){
 // # 去睡觉 | POST /luckycat/aweme/v1/task/done/sleep  {"done_type":"start_sleep"}#晚上：20:00-凌晨：02：00
 // # 睡醒了 | POST /luckycat/aweme/v1/task/done/sleep  {"done_type":"end_sleep"}          
 // # 领取奖励 | POST /luckycat/aweme/v1/task/done/sleep  {"amount":7,"done_type":"receive_awards"}  amount的value来自“睡醒后”的data-income_info-amount
-
 function sleep(){
     return new Promise((resolve,reject) =>{
         nowhours = $.time('HH')
         // console.log(`------------------------\n[nowhours]  ${nowhours}\n`) 
         if ( nowhours >= 20 ) {
             datacode = {"done_type":"start_sleep"}  
-            console.log(`\n执行[5-9]早餐补贴${$.toStr(datacode)}\n`) 
+            console.log(`\n执行睡觉赚金币 —> 去睡觉${$.toStr(datacode)}\n`) 
+        	$.post(PostamemvHost('done/sleep','_request_from=web&',$.toStr(datacode)),async(error,resp,data) =>{
+        	    let central = JSON.parse(data);
+        	    var test =$.toStr(data)
+        	    // console.log(`${test}`)
+        	    try{
+        	        if(central.err_no == 0){
+        	            console.log(`\n[睡觉赚金币]—>[start_sleep]  ${central["data"]["page_texts"]}'\n`) 
+        	        }
+        	        if(central.err_no == 10002){
+        	            console.log(`\n[[睡觉赚金币]—>[start_sleep]  参数错误：${test}\n`) 
+        	        }               
+        	        if(central.err_no == 10006){
+        	            console.log(`\n[睡觉赚金币]—>[start_sleep]  ${central.err_tips}\n`) 
+        	        }
+        	        if(central.err_no == 10007){
+        	            console.log(`\n[睡觉赚金币]—>[start_sleep]  领取时间未到：${test}\n`) 
+        	        }
+        	        else{
+        	            console.log(`\n[睡觉赚金币]—>[start_sleep]  未知反馈：${test}\n`) 
+        	        }
+        	    }
+        	    catch(e) {
+        	        $.log("[睡觉赚金币]—>[start_sleep]\n" + e + $.toStr(error, null, 2))
+        	    } 
+        	    finally {
+        	        resolve()
+        	    }
+        	})
         }
-        else if (nowhours >= 11 && nowhours <= 14) {
-            datacode = {"meal_type":1}
-            console.log(`\n执行[11-14]午餐补贴${$.toStr(datacode)}\n`) 
-        }
-        else if (nowhours >= 17 && nowhours <= 20) {
-            datacode = {'meal_type':2}
-            console.log(`\n执行[17-20]晚餐补贴${$.toStr(datacode)}\n`) 
-        }
-        else if (nowhours >= 21 && nowhours <= 24) {
-            datacode = {"meal_type":3}
-            console.log(`\n执行[21-24]夜宵补贴${$.toStr(datacode)}\n`) 
+        else if (nowhours >= 8 && nowhours <= 9) {
+            datacode = {"done_type":"end_sleep"}
+            console.log(`\n执行睡觉赚金币 —> 睡醒了${$.toStr(datacode)}\n`) 
+            //已睡醒
+            $.post(PostamemvHost('done/sleep','_request_from=web&',$.toStr(datacode)),async(error,resp,data) =>{
+        	    let central = JSON.parse(data);
+        	    var test =$.toStr(data)
+        	    // console.log(`${test}`)
+        	    try{
+        	        if(central.err_no == 0){
+        	            console.log(`\n[睡觉赚金币]—>[end_sleep]  ${central["data"]}'\n`) 
+        	        }
+        	        if(central.err_no == 10002){
+        	            console.log(`\n[[睡觉赚金币]—>[end_sleep]  参数错误：${test}\n`) 
+        	        }               
+        	        if(central.err_no == 10006){
+        	            console.log(`\n[睡觉赚金币]—>[end_sleep]  ${central.err_tips}\n`) 
+        	        }
+        	        if(central.err_no == 10007){
+        	            console.log(`\n[睡觉赚金币]—>[end_sleep]  领取时间未到：${test}\n`) 
+        	        }
+        	        else{
+        	            console.log(`\n[睡觉赚金币]—>[end_sleep]  未知反馈：${test}\n`) 
+        	        }
+        	    }
+        	    catch(e) {
+        	        $.log("[睡觉赚金币]—>[start_sleep]\n" + e + $.toStr(error, null, 2))
+        	    } 
+        	    finally {
+        	        resolve()
+        	    }
+        	})
+
+            //领取奖励
+        	$.post(PostamemvHost('done/sleep','_request_from=web&','{"amount":7,"done_type":"receive_awards"}'),async(error,resp,data) =>{
+        	    let central = JSON.parse(data);
+        	    var test =$.toStr(data)
+        	    // console.log(`${test}`)
+        	    try{
+        	        if(central.err_no == 0){
+        	            console.log(`\n[睡觉赚金币]—>[receive_awards]  ${central["data"]}'\n`) 
+        	        }
+        	        if(central.err_no == 10002){
+        	            console.log(`\n[[睡觉赚金币]—>[receive_awards]  参数错误：${test}\n`) 
+        	        }               
+        	        if(central.err_no == 10006){
+        	            console.log(`\n[睡觉赚金币]—>[receive_awards]  ${central.err_tips}\n`) 
+        	        }
+        	        if(central.err_no == 10007){
+        	            console.log(`\n[睡觉赚金币]—>[receive_awards]  领取时间未到：${test}\n`) 
+        	        }
+        	        else{
+        	            console.log(`\n[睡觉赚金币]—>[receive_awards]  未知反馈：${test}\n`) 
+        	        }
+        	    }
+        	    catch(e) {
+        	        $.log("[睡觉赚金币]—>[start_sleep]\n" + e + $.toStr(error, null, 2))
+        	    } 
+        	    finally {
+        	        resolve()
+        	    }
+        	})
         }
         else {
             console.log(`\n[不在时间段内]，跳出任务\n`) 
             return
         }
-        $.post(PostamemvHost('done/meal','',$.toStr(datacode)),async(error,resp,data) =>{
-            let central = JSON.parse(data);
-            var test =$.toStr(data)
-            // console.log(`${test}`)
-            try{
-                if(central.err_no == 0){
-                    console.log(`\n[吃饭补贴]  ${central.err_tips} 已领取吃饭补贴${central["data"]["amount"]}金币'\n`) 
-                }
-                if(central.err_no == 10002){
-                    console.log(`\n[吃饭补贴]  参数错误：${test}\n`) 
-                }               
-                if(central.err_no == 10006){
-                    console.log(`\n[吃饭补贴]  ${central.err_tips}\n`) 
-                }
-                if(central.err_no == 10007){
-                    console.log(`\n[吃饭补贴]  领取时间未到：${test}\n`) 
-                }
-                else{
-                    console.log(`\n[吃饭补贴]  未知反馈：${test}\n`) 
-                }
-            }
-            catch(e) {
-                $.log("[签到失败]\n" + e + $.toStr(error, null, 2))
-            } 
-            finally {
-                resolve()
-            }
-        })
+        
     })
 }
 
