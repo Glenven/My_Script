@@ -22,6 +22,8 @@ jobs:
       - name: npm install
         run: |
             npm install
+        run: |
+            npm start
       - name: '运行 【抖音极速版】'
         run: |
           node JSActionsScripts/douyin.js
