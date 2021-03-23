@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: 安装最新版ubantu系统
+    name: 抖音极速版_ubuntu系统
     runs-on: ubuntu-latest
 
     steps:
