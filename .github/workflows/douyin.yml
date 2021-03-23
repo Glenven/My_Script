@@ -20,7 +20,6 @@ jobs:
     - name: Install
       run: |
         npm install
-      run: |
         npm test
     - name: "运行抖音极速版"
       run: |
