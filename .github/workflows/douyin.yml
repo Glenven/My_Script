@@ -22,7 +22,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      -name: 运行【抖音极速版】
+      - name: 运行【抖音极速版】
         run: |
           node https://github.com/h455257166/My_Script/JSActionsScripts/douyin.js
         env:
