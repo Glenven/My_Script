@@ -26,4 +26,4 @@ jobs:
         run: |
           node https://github.com/h455257166/My_Script/JSActionsScripts/douyin.js
         env:
-          DYJSB_COOKIE:${{ secrets.DYJSB_COOKIE }}
+          DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
