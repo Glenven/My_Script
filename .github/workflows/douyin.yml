@@ -13,8 +13,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Install dependencies
+    - name: Install
       run: |
-        yarn --frozen-lockfile
+        npm install
+    - name: "运行抖音极速版"
       run: |
         node douyin.js
+      env:
+        DYJSB_COOKIE: ${{ secrets.JD_COOKIE }}
