@@ -20,12 +20,13 @@ jobs:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: '12.x'
       - name: npm install
-        run: |
-          npm install
-      - name: 运行【抖音极速版】
-        run: |
-          node douyin.js
+        run: npm install
+          
+      - name: 测试
+        run: npm ci
+        run: npm run build --if-present
+        run: npm test
         env:
           DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
