@@ -6,9 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
-    env:
-      DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
+    # if: github.event.repository.owner.id == github.event.sender.id
+    # env:
+    #   DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
 
 
     steps:
@@ -21,8 +21,7 @@ jobs:
       run: |
         npm install
     - name: "运行抖音极速版"
-      if: env.DYJSB_COOKIE
       run: |
         node douyin.js
-      # env:
-      #   DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
+      env:
+        DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
