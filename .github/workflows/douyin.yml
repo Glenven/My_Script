@@ -24,6 +24,6 @@ jobs:
             npm install
       - name: '运行 【抖音极速版】'
         run: |
-          node douyin.js
+          node JSActionsScripts/douyin.js
         env:
           DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }} #必须 cookie 多账号
