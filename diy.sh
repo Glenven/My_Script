@@ -4,7 +4,7 @@
 
 ##############################  作  者  昵  称  （必填）  ##############################
 # 使用空格隔开
-author_list="h455257166 dq"
+author_list="h455257166 dq JSActionsScripts"
 
 ## 添加更多作者昵称（必填）示例：author_list="i-chenzhe whyour testuser"  直接追加，不要新定义变量
 
@@ -15,6 +15,7 @@ author_list="h455257166 dq"
 # 2.将地址最后的 “脚本名称+后缀” 剪切到下一个变量里（my_scripts_list_xxx）
 scripts_base_url_1=https://gitee.com/h455257166/My_Script/raw/JD/
 scripts_base_url_2=https://gitee.com/h455257166/My_Script/raw/JD/
+scripts_base_url_3=https://gitee.com/h455257166/My_Script/raw/JSActionsScripts/
 
 ## 添加更多脚本地址URL示例：scripts_base_url_3=https://raw.sevencdn.com/SuperManito/JD-FreeFuck/main/
 
@@ -22,8 +23,10 @@ scripts_base_url_2=https://gitee.com/h455257166/My_Script/raw/JD/
 # 将相应作者的脚本填写到以下变量中
 my_scripts_list_1="jd_joy_run_amg.js jd_try_amg.js jd_mlyjy_amg.js"
 my_scripts_list_2="jd_fanslove_amg.js jd_unionPoster_amg.js jd_lenovo_amg.js jd_wish_amg.js"
-## 长期脚本名称： 宠汪汪互助 京东试用 美丽研究院
-## 短期活动脚本： 粉丝互动 美的家电节[2021-03-31] 联想集卡活动[2021-03-29] 众筹许愿池
+my_scripts_list_3="douyin.js"
+## 长期脚本名称： 宠汪汪互助 | 京东试用 | 美丽研究院
+## 短期活动脚本： 粉丝互动 | 美的家电节[2021-03-31] | 联想集卡活动[2021-03-29] | 众筹许愿池
+## 其他APP活动脚本： 抖音极速版 |
 
 ## 添加更多脚本名称示例：my_scripts_list_3="jd_test1.js jd_test2.js jd_test3.js ......"
 
@@ -91,3 +94,5 @@ sed -i "s|bash jd jd_fanslove_amg||bash ${ShellDir}/jd.sh jd_fanslove_amg|g" ${L
 sed -i "s|bash jd jd_unionPoster_amg||bash ${ShellDir}/jd.sh jd_unionPoster_amg|g" ${ListCron}
 sed -i "s|bash jd jd_lenovo_amg||bash ${ShellDir}/jd.sh jd_lenovo_amg|g" ${ListCron}
 sed -i "s|bash jd jd_wish_amg||bash ${ShellDir}/jd.sh jd_wish_amg|g" ${ListCron}
+##抖音极速版
+sed -i "s|bash jd douyin||bash ${ShellDir}/jd.sh douyin|g" ${ListCron}
