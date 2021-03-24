@@ -14,7 +14,7 @@ async function changeFiele() {
 async function start() {
     console.log(`北京时间 (UTC+08)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}}`);
     if (process.env.DYJSB_COOKIE) {
-        console.log(`当前共${process.env.DYJSB_COOKIE.split("&").length}个账号需要签到`);
+        console.log(`当前共${process.env.DYJSB_COOKIE.split("@").length}个账号需要签到`);
     } else {
         console.log("请填写 DYJSB_COOKIE 后在继续");
     }
