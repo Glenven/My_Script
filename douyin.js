@@ -12,6 +12,9 @@ Cookie取两个值即可：sessionid=xxxxxxxxxxxxxx;install_id=xxxxxxxxxxxxxx;
 //不会使用github action运行该脚本 (T T)
 
 //走路赚金币  id:1091 未完成，小菜鸡还没抓到包
+=====================================Loon================================
+[Script]
+cron "3 0-23/1 * * *" script-path=https://raw.githubusercontent.com/h455257166/My_Script/JSActionsScripts/douyin.js,tag=抖音极速版
 
 */
 
