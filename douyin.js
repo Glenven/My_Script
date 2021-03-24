@@ -444,6 +444,12 @@ const invite = async() =>{
                     console.log(`\n[📣接受邀请]  [邀请失败] 未知反馈：${test}\n`)
                 }
             }
+            catch(e){
+                $.log("[📣开宝箱]\n" + e + $.toStr(error, null, 2))
+            }
+            finally{
+                resolve()
+            }
         })
     })
 }
