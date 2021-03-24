@@ -3,10 +3,10 @@
 
 name: 抖音极速版
 
-on: [push]
+on: 
   workflow_dispatch:
-  #schedule:
-    #- cron: '*/5 * * * *'
+  schedule:
+    - cron: '0 */5 * * *'
   watch:
     types: started
   repository_dispatch:
