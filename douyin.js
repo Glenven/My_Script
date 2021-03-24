@@ -9,6 +9,8 @@ JavaScript自学中……
 兼容Nodejs,把获取的Cookie填入[DYJSB_COOKIE]，多账号用"@"分开
 Cookie取两个值即可：sessionid=xxxxxxxxxxxxxx;install_id=xxxxxxxxxxxxxx; 
 
+//不会使用github action运行该脚本 (T T)
+
 //走路赚金币  id:1091 未完成，小菜鸡还没抓到包
 
 */
@@ -146,10 +148,10 @@ function ck_check(){
                             console.log(`========================================\n\n开始 【 ${tasklist[i]["name"]} 】 任务 🔔\n`)
                             await sleep()
                         }
-                        // else if(tasklist[i]["task_id"] == '1091') {
-                        //     console.log(`========================================\n\n开始 [ ${tasklist[i]["name"]} ] 任务 🔔\n`)
-                        //     await step_submit()
-                        // }
+                        else if(tasklist[i]["task_id"] == '1075') {
+                            console.log(`========================================\n\n开始 [ ${tasklist[i]["name"]} ] 任务 🔔\n`)
+                            await invite()
+                        }
                     }
                 }
                 else{
@@ -423,6 +425,24 @@ const treasure_task = async() => {
     }
 }
 
+//邀请 id：1075
+// # 作者邀请码： hqm：{"invite_code":"8944686211"} | yu：{"invite_code":"849222498"}
+// # https://api3-normal-c-hl.amemv.com/luckycat/aweme/v1/task/done/post_invite_code
+const invite = async() =>{
+    return new Promise((resolve,reject) =>{
+        $.post(PostamemvHost('done/post_invite_code','','{"invite_code":"8944686211"}'),async(error,resp,data) =>{
+            var result = $.toObj(data);
+            var test = $.toStr(data);
+            try {
+                if(result.err_no == 0){
+                    console.log(`\n[📣接受邀请]  [成功提交] 获得：${test}\n`) 
+                }else{
+                    console.log(`\n[📣接受邀请]  [邀请失败] 未知反馈：${test}\n`)
+                }
+            }
+        })
+    })
+}
 
 
 //走路赚金币  id:1091 未完成，抓不到包
