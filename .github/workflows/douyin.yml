@@ -10,7 +10,7 @@ on:
   watch:
     types: started
   repository_dispatch:
-    types: douyin
+    types: kuaishou
 jobs:
   build:
 
@@ -37,7 +37,7 @@ jobs:
           npm install
       - name: '运行 【抖音极速版】'
         run: |
-          node douyin.js
+          node kuaishou.js
         env:
           DYJSB_COOKIE: ${{ secrets.DYJSB_COOKIE }}
 
