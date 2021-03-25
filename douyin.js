@@ -26,12 +26,6 @@ var nowhours = $.time('HH')
 const notify = $.isNode() ? require('./sendNotify') : '';
 
 
-// let isGetCookie = typeof $request !== 'undefined'
-// if (isGetCookie) {
-//    GetCookie();
-//    $.done()
-// } 
-
 // 定义cookie环境变量：DYJSB_COOKIE
 if (!$.isNode() && cookie.indexOf('&') == -1){
     dycookiesArr.push(cookie)
@@ -53,24 +47,13 @@ if ($.isNode()) {
 
 
 
-
-if ($.isNode()) {
-   hour = new Date( new Date().getTime() + 8 * 60 * 60 * 1000 ).getHours();
-   minute = new Date( new Date().getTime() + 8 * 60 * 60 * 1000 ).getMinutes();
-}else{
-   hour = (new Date()).getHours();
-   minute = (new Date()).getMinutes();
-}
-   
-// console.log(`============ 共 ${dycookiesArr.length}个 账号 ============ `)
-
 !(async() => {
     if (!dycookiesArr[0]) {
         $.msg($.name, '【提示】请先抓取抖音极速版的cookie')
         return
     }
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date().toLocaleString()}  =============\n`)
-    console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}}  =============\n`)
+    console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
     console.log(`============ 共 ${dycookiesArr.length}个 账号 ============ `)
     for (let i = 0; i < dycookiesArr.length; i++){
         if (dycookiesArr[i]) {
@@ -238,7 +221,6 @@ function Newbie_big_reward_7(){
 // #午餐：11:00-14:00 | data = {"meal_type":1}  
 // #晚餐：17:00-20:00 | data = {"meal_type":2} 
 // #夜宵：21:00-24:00 | data = {"meal_type":3} 
-
 const meal = async() =>{
     if ( nowhours >= 5 && nowhours <= 9) {
         datacode = {'meal_type':0}
@@ -452,7 +434,7 @@ const invite = async() =>{
                 }
             }
             catch(e){
-                $.log("[📣开宝箱]\n" + e + $.toStr(error, null, 2))
+                $.log("[📣接受邀请]\n" + e + $.toStr(error, null, 2))
             }
             finally{
                 resolve()
