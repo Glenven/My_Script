@@ -69,14 +69,14 @@ if ($.isNode()) {
         $.msg($.name, '【提示】请先抓取抖音极速版的cookie')
         return
     }
-    console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
-    console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}}  =============\n`)
+    console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date().toLocaleString()}  =============\n`)
+    console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}}  =============\n`)
     console.log(`============ 共 ${dycookiesArr.length}个 账号 ============ `)
     for (let i = 0; i < dycookiesArr.length; i++){
         if (dycookiesArr[i]) {
             cookie = dycookiesArr[i];
             $.index = i + 1;
-        console.log(`\n============ 开始【抖音极速版 [账号 ${$.index}] 的任务】 ============ \n`)
+        console.log(`\n======================== 开始【抖音极速版 [账号 ${$.index}] 的任务】 ======================== \n`)
         await ck_check();
         }
       }
@@ -238,30 +238,37 @@ function Newbie_big_reward_7(){
 // #午餐：11:00-14:00 | data = {"meal_type":1}  
 // #晚餐：17:00-20:00 | data = {"meal_type":2} 
 // #夜宵：21:00-24:00 | data = {"meal_type":3} 
-function meal(){
+
+const meal = async() =>{
+    if ( nowhours >= 5 && nowhours <= 9) {
+        datacode = {'meal_type':0}
+        console.log(`\n执行[5-9]早餐补贴${$.toStr(datacode)}\n`)
+        //去睡觉
+        await do_meal(datacode)
+    }
+    else if (nowhours >= 11 && nowhours <= 14) {
+        datacode = {"meal_type":1}
+        console.log(`\n执行[11-14]午餐补贴${$.toStr(datacode)}\n`) 
+        await do_meal(datacode)
+    }
+    else if (nowhours >= 17 && nowhours <= 20) {
+        datacode = {'meal_type':2}
+        console.log(`\n执行[17-20]晚餐补贴${$.toStr(datacode)}\n`)
+        await do_meal(datacode)
+    }
+    else if (nowhours >= 21 && nowhours <= 24) {
+        datacode = {"meal_type":3}
+        console.log(`\n执行[21-24]夜宵补贴${$.toStr(datacode)}\n`) 
+        await do_meal(datacode)
+    }
+    else {
+        console.log(`\n[吃饭补贴]，不在时间段内，跳出任务\n`) 
+        return
+    }
+}
+
+function do_meal(datacode){
     return new Promise((resolve,reject) =>{
-        // nowhours = $.time('HH')
-        // console.log(`------------------------\n[nowhours]  ${nowhours}\n`) 
-        if ( nowhours >= 5 && nowhours <= 9) {
-            datacode = {'meal_type':0}
-            console.log(`\n执行[5-9]早餐补贴${$.toStr(datacode)}\n`) 
-        }
-        else if (nowhours >= 11 && nowhours <= 14) {
-            datacode = {"meal_type":1}
-            console.log(`\n执行[11-14]午餐补贴${$.toStr(datacode)}\n`) 
-        }
-        else if (nowhours >= 17 && nowhours <= 20) {
-            datacode = {'meal_type':2}
-            console.log(`\n执行[17-20]晚餐补贴${$.toStr(datacode)}\n`) 
-        }
-        else if (nowhours >= 21 && nowhours <= 24) {
-            datacode = {"meal_type":3}
-            console.log(`\n执行[21-24]夜宵补贴${$.toStr(datacode)}\n`) 
-        }
-        else {
-            console.log(`\n[吃饭补贴]，不在时间段内，跳出任务\n`) 
-            return
-        }
         $.post(PostamemvHost('done/meal','',$.toStr(datacode)),async(error,resp,data) =>{
             let central = JSON.parse(data);
             var test =$.toStr(data)
@@ -331,7 +338,7 @@ function do_sleep(datacode){
             // console.log(`${test}`)
                 try{
                     if(central.err_no == 0){
-                        console.log(`\n[睡觉赚金币]—>${$.toStr(datacode)}  ${central["data"]}'\n`) 
+                        console.log(`\n[睡觉赚金币]—>${$.toStr(datacode)}  ${$.toStr(central["data"])}'\n`) 
                     }
                     else if(central.err_no == 10002){
                         console.log(`\n[睡觉赚金币]—>${$.toStr(datacode)}  参数错误：${test}\n`) 
