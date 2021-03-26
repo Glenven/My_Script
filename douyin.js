@@ -245,7 +245,6 @@ const meal = async() =>{
     }
     else {
         console.log(`\n[吃饭补贴]，不在时间段内，跳出任务\n`) 
-        return
     }
 }
 
@@ -306,7 +305,6 @@ const sleep = async() => {
     }
     else {
         console.log(`\n[睡觉赚金币]，不在时间段内，跳出任务\n`) 
-        return
     }
 }
 
@@ -414,7 +412,6 @@ const treasure_task = async() => {
     }
     else{
         console.log(`\n[📣开宝箱]，不在时间段内，跳出任务\n`) 
-        return
     }
 }
 
