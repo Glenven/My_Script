@@ -23,10 +23,10 @@ scripts_base_url_3=https://gitee.com/h455257166/My_Script/raw/JSActionsScripts/
 # 将相应作者的脚本填写到以下变量中
 my_scripts_list_1="jd_joy_run_amg.js jd_try_amg.js jd_mlyjy_amg.js"
 my_scripts_list_2="jd_fanslove_amg.js jd_unionPoster_amg.js jd_lenovo_amg.js jd_wish_amg.js"
-my_scripts_list_3="douyin.js"
+my_scripts_list_3="douyin.js jf2345.js"
 ## 长期脚本名称： 宠汪汪互助 | 京东试用 | 美丽研究院
 ## 短期活动脚本： 粉丝互动 | 美的家电节[2021-03-31] | 联想集卡活动[2021-03-29] | 众筹许愿池
-## 其他APP活动脚本： 抖音极速版 |
+## 其他APP活动脚本： 抖音极速版 | 2345签到
 
 ## 添加更多脚本名称示例：my_scripts_list_3="jd_test1.js jd_test2.js jd_test3.js ......"
 
@@ -96,3 +96,5 @@ sed -i "s|bash jd jd_lenovo_amg||bash ${ShellDir}/jd.sh jd_lenovo_amg|g" ${ListC
 sed -i "s|bash jd jd_wish_amg||bash ${ShellDir}/jd.sh jd_wish_amg|g" ${ListCron}
 ##抖音极速版
 sed -i "s|bash jd douyin||bash ${ShellDir}/jd.sh douyin|g" ${ListCron}
+##抖音极速版
+sed -i "s|bash jd jf2345||bash ${ShellDir}/jd.sh jf2345|g" ${ListCron}
