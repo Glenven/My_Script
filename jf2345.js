@@ -5,17 +5,16 @@ JavaScript自学中……
 作者:h455257166;
 脚本地址:
 更新时间:
-赞赏:2345王牌联盟邀请码"8944686211";
 本脚本仅适用于[2345王牌联盟]签到;
 兼容Nodejs,把获取的Cookie填入[WPLM_COOKIE]，多账号用"@"分开
-Cookie取两个值即可：sessionid=xxxxxxxxxxxxxx;install_id=xxxxxxxxxxxxxx; 
+
 
 //不会使用github action运行该脚本 (T T)
 
-//走路赚金币  id:1091 未完成，小菜鸡还没抓到包
+
 =====================================Loon================================
 [Script]
-cron "3 0-23/1 * * *" script-path=https://raw.githubusercontent.com/h455257166/My_Script/JSActionsScripts/douyin.js,tag=2345王牌联盟
+cron "3 10 * * *" script-path=https://raw.githubusercontent.com/h455257166/My_Script/JSActionsScripts/jf2345.js,tag=2345王牌联盟
 
 */
 
@@ -65,6 +64,7 @@ if ($.isNode()) {
             message = '';
             $.index = i + 1;
             console.log(`\n======================== 开始【2345王牌联盟 [账号 ${$.index}] 的任务】 ======================== \n`)
+            message += `2345王牌联盟 [账号${$.index}] \n `
             await CheckIn();
             await TaskList();
             await ProfitReport();
@@ -72,6 +72,9 @@ if ($.isNode()) {
             await showMsg();
         }
       }
+    if ($.isNode() && message) {
+    await notify.sendNotify(`${$.name}`, `${message}`,)
+  }
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
@@ -79,7 +82,7 @@ if ($.isNode()) {
 
 async function showMsg() {
   return new Promise(resolve => {
-    $.msg($.name, '', `【2345王牌联盟 账号${$.index}】\n${message}`);
+    $.msg($.name, '', `${message}`);
     resolve()
   })
 }
@@ -163,7 +166,7 @@ async function CheckIn() {
             if(data.status == "200"){
                 console.log(`\n[每日签到] 请求信息：${data.message} `)
                 console.log(`[每日签到] 签到日期：${data.data.currDate} | 已连续签到：${data.data.continueCheckIn}天  获得积分：${data.data.awardScore}  获得经验值：${data.data.awardExp}`)
-                message += `[每日签到] ${data.data.currDate} | 已连续签到：${data.data.continueCheckIn}天  获得积分：${data.data.awardScore}  获得经验值：${data.data.awardExp}\n`
+                message += `[每日签到] ${data.data.currDate}  \n[每日签到] 已连续签到：${data.data.continueCheckIn}天  获得积分：${data.data.awardScore}  获得经验值：${data.data.awardExp}\n`
             }
         }
       } catch (e) {
@@ -198,7 +201,7 @@ async function TaskList() {
                     }
                 }
             }
-            //十周年抽奖，活动到4月结束
+            //十周年抽奖，活动到4月18日结束
             if (test.indexOf('goldInfo') > -1){
                 console.log(`\n[周年任务] 请求信息：${data.message} `)
                 goldvalue = data.data.goldInfo//金币数据页面
@@ -337,9 +340,9 @@ async function entry() {
             depositsrmb = data.data.userScore.deposits.yuan//已存人民币
             Scorermb = uscorermb + depositsrmb
             console.log(`\n[积分统计] 请求信息：${data.message} `)
-            console.log(`[积分统计] 当前账户，可用积分：${uscorejf} 已存积分：${depositsjf}`)
+            console.log(`[积分统计] 当前账户，可用积分：${uscorejf}，已存积分：${depositsjf}`)
             console.log(`[积分统计] 当前账户，可提现金额：${Scorermb}`)
-            message += `[积分统计] 当前账户，可用积分：${uscorejf} 已存积分：${depositsjf}\n`
+            message += `[积分统计] 当前账户，可用积分：${uscorejf}，已存积分：${depositsjf}\n`
             message += `[积分统计] 当前账户，可提现金额：${Scorermb}\n`
             // if(data.status == "200"){
             //     console.log(`请求信息：${data.message} 签到日期：${data.data.currDate} | 已连续签到：${data.data.continueCheckIn}天  获得积分：${data.data.awardScore}  获得经验值：${data.data.awardExp}`)
