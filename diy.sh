@@ -96,5 +96,5 @@ sed -i "s|bash jd jd_lenovo_amg||bash ${ShellDir}/jd.sh jd_lenovo_amg|g" ${ListC
 sed -i "s|bash jd jd_wish_amg||bash ${ShellDir}/jd.sh jd_wish_amg|g" ${ListCron}
 ##抖音极速版
 sed -i "s|bash jd douyin||bash ${ShellDir}/jd.sh douyin|g" ${ListCron}
-##抖音极速版
+##2345签到
 sed -i "s|bash jd jf2345||bash ${ShellDir}/jd.sh jf2345|g" ${ListCron}
