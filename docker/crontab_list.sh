@@ -3,6 +3,14 @@
 #收集助力码
 30 * * * * sh +x /scripts/docker/auto_help.sh collect >> /scripts/logs/auto_help_collect.log 2>&1
 
+##############其他APP活动##############
+
+#2345王牌联盟签到打卡
+15 9 * * * node /scripts/js_2345.js >> /scripts/logs/js_2345.log 2>&1
+#抖音极速版日常任务
+15 */1 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
+
+
 ##############短期活动##############
 
 #京东极速版红包(活动时间：2021-3-8至2021-3-25)
@@ -18,7 +26,9 @@
 #手机尚学季 活动时间：2021年3月15日 00:00:00-2021年3月19日 23:59:59
 0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
 
+
 ##############长期活动##############
+
 # 签到
 3 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 东东超市兑换奖品
