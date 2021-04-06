@@ -1,4 +1,6 @@
 /*
+2021-4-6
+更新：注释互助作者部分"helpAuthor"
 京东赚赚
 可以做随机互助
 活动入口：京东赚赚小程序
@@ -24,7 +26,7 @@ const $ = new Env('京东赚赚');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
-let helpAuthor=true; // 帮助作者
+// let helpAuthor=true; // 帮助作者
 const randomCount = $.isNode() ? 20 : 5;
 let jdNotify = true; // 是否关闭通知，false打开通知推送，true关闭通知推送
 //IOS等用户直接用NobyDa的jd cookie
@@ -40,15 +42,15 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  `ATGEC3-fsrn13aiaEqiM@AUWE5maSSnzFeDmH4iH0elA@ATGEC3-fsrn13aiaEqiM@AUWE5m6WUmDdZC2mr1XhJlQ@AUWE5m_jEzjJZDTKr3nwfkg@A06fNSRc4GIqY38pMBeLKQE2InZA@AUWE5mf7ExDZdDmH7j3wfkA@AUWE5m6jBy2cNAWX7j31Pxw@AUWE5mK2UnDddDTX61S1Mkw@AUWE5mavGyGZdWzP5iCoZwQ`,
-  `ATGEC3-fsrn13aiaEqiM@AUWE5maSSnzFeDmH4iH0elA@ATGEC3-fsrn13aiaEqiM@AUWE5m6WUmDdZC2mr1XhJlQ@AUWE5m_jEzjJZDTKr3nwfkg@A06fNSRc4GIqY38pMBeLKQE2InZA@AUWE5m6_BmTUPAGH42SpOkg@AUWE53NTIs3V8YBqthQMI@AUWE5m6yVxTJcWjWr3nRIlw`
+  `S5KkcRx0Q9lDfIxv1xaUIfQ@S5KkcRx4c8FCEJxugkfMIcw@SvP92RBkb9FLRPR_2lPQOfA@S5KkcJU1egw22cWae9KFX@S5KkcNFxGpyyoVUS8_LJb@S5KkcA2hPrCyJVHOS8rJI`,
+  `S5KkcRx0Q9lDfIxv1xaUIfQ@S5KkcRx4c8FCEJxugkfMIcw@SvP92RBkb9FLRPR_2lPQOfA@S5KkcJU1egw22cWae9KFX@S5KkcNFxGpyyoVUS8_LJb@S5KkcA2hPrCyJVHOS8rJI`
 ]
 let nowTimes = new Date(new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000);
 !(async () => {
-  $.tuanList = []
+  $.tuanList = [`S5KkcRx0Q9lDfIxv1xaUIfQ@S5KkcRx4c8FCEJxugkfMIcw@SvP92RBkb9FLRPR_2lPQOfA@S5KkcJU1egw22cWae9KFX@S5KkcNFxGpyyoVUS8_LJb@S5KkcA2hPrCyJVHOS8rJI`]
   await requireConfig();
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
-  if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/shareCodes/jd_zz.json');
+  // if (helpAuthor) await getAuthorShareCode('https://gitee.com/shylocks/updateTeam/raw/main/jd_zz.json');
+  // if (helpAuthor) await getAuthorShareCode('https://gitee.com/lxk0301/updateTeam/raw/master/shareCodes/jd_zz.json');
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
@@ -149,26 +151,26 @@ function showMsg() {
     resolve();
   })
 }
-function getAuthorShareCode(url) {
-  return new Promise(resolve => {
-    $.get({url: `${url}?${new Date()}`,
-      headers:{
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-      }}, async (err, resp, data) => {
-      try {
-        if (err) {
-        } else {
-          $.tuanList = $.tuanList.concat(JSON.parse(data))
-          console.log(`作者助力码获取成功`)
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
-    })
-  })
-}
+// function getAuthorShareCode(url) {
+//   return new Promise(resolve => {
+//     $.get({url: `${url}?${new Date()}`,
+//       headers:{
+//         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+//       }}, async (err, resp, data) => {
+//       try {
+//         if (err) {
+//         } else {
+//           $.tuanList = $.tuanList.concat(JSON.parse(data))
+//           console.log(`作者助力码获取成功`)
+//         }
+//       } catch (e) {
+//         $.logErr(e, resp)
+//       } finally {
+//         resolve();
+//       }
+//     })
+//   })
+// }
 function helpFriendTuan(body) {
   return new Promise(resolve => {
     $.get(taskTuanUrl("vvipclub_distributeBean_assist", body), async (err, resp, data) => {
