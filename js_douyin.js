@@ -20,7 +20,7 @@ cron "3 0-23/1 * * *" script-path=https://raw.githubusercontent.com/h455257166/M
 */
 
 const $ = new Env('抖音极速版');
-let dycookiesArr = [], cookie = '';//用户cookie值
+let dycookiesArr = [], cookie = '', message = '';//用户cookie值,消息
 let host = 'https://api5-normal-c-hl.amemv.com';
 var nowhours = $.time('HH')
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -61,11 +61,24 @@ if ($.isNode()) {
             $.index = i + 1;
         console.log(`\n======================== 开始【抖音极速版 [账号 ${$.index}] 的任务】 ======================== \n`)
         await ck_check();
-        }
       }
+    }
+    await showMsg(); 
+    if ($.isNode() && message) {
+    await notify.sendNotify(`${$.name}`, `${message}`,)
+    }
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
+
+
+
+async function showMsg() {
+  return new Promise(resolve => {
+    $.msg($.name, '', `${message}`);
+    resolve()
+  })
+}
 
 
 function PostamemvHost(api,params,body){
@@ -140,6 +153,10 @@ function ck_check(){
                             await invite()
                         }
                     }
+                }
+                else if(ck_check_data["data"]["is_login"] == false){
+                    console.log(`-------------------------------- \n抖音极速版 账号 [${$.index}] Cookie 已过期，请重新登陆 \n-------------------------------- `)
+                    message += `账号 [${$.index}] Cookie 已过期，请重新登陆 \n`
                 }
                 else{
                     console.log(`------------------------\n账号 ${ck_check_test} 账号未登录，cookies已过期 \n`) 
