@@ -7,9 +7,14 @@
 
 #2345王牌联盟签到打卡
 15 9 * * * node /scripts/js_2345.js >> /scripts/logs/js_2345.log 2>&1
+# 咪咕爱看签到
+15 */3 * * * node /scripts/js_migu.js >> /scripts/logs/js_migu.log 2>&1
 #抖音极速版日常任务
 15 */1 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
-
+# 吾爱破解签到
+15 8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
+# 包图网签到
+15 */8 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
 
@@ -129,3 +134,5 @@
 10-20/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1
 #京小兑
 23 5,23 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
+#京东试用
+1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1

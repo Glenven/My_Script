@@ -19,7 +19,7 @@ cron "3 10 * * *" script-path=https://raw.githubusercontent.com/h455257166/My_Sc
 */
 
 const $ = new Env('2345王牌联盟');
-let cookiesArr = [], cookie = '', message;//用户cookie值
+let cookiesArr = [], cookie = '', message = '';//用户cookie值
 var nowhours = $.time('HH')
 var todayDate = $.time('yyyy-MM-dd')
 const notify = $.isNode() ? require('./sendNotify') : '';
