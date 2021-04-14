@@ -87,6 +87,7 @@ function signInfo() {
             data = JSON.parse(data);
             if (data.data.signInfo.signStatus == "1"){
               console.log(`今日已签到，无需重复签到 \n积分总额：${JSON.stringify(data["data"]["totalNum"])}`)
+              console.log(`=================================================================`)
             }else{
               sign();
             }
@@ -113,6 +114,7 @@ function sign() {
             data = JSON.parse(data);
             if (data.data.signInfo){
               console.log(`签到结果： 获得积分：${JSON.stringify(data["data"]["signInfo"]["extScore"])}, \n积分总额：${JSON.stringify(data["data"]["totalNum"])}`)
+              console.log(`=================================================================`)
             }
           }
         }
