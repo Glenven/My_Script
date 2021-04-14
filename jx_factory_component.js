@@ -24,6 +24,18 @@
 const $ = new Env('京喜工厂plus');
 const JD_API_HOST = 'https://wq.jd.com/';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+
+//IOS等用户直接用NobyDa的jd cookie
+let cookiesArr = [], cookie = '';
+if ($.isNode()) {
+  Object.keys(jdCookieNode).forEach((item) => {
+    cookiesArr.push(jdCookieNode[item])
+  })
+  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+} else {
+  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+}
+
 $.authExecute = $.getdata('gc_authExecute') ? $.getdata('gc_authExecute') === 'true' : true;
 $.showLog = $.getdata('gc_plusShowLog') ? $.getdata('gc_plusShowLog') === 'true' : false;
 $.autoUpgrade = $.getdata('cz_autoUpgrade') ? $.getdata('cz_autoUpgrade') === 'true' : false;
@@ -39,8 +51,8 @@ $.waitTime = 1000;
 !(async () => {
   if (!getCookies()) return;
   for (let i = 0; i < $.cookieArr.length; i++) {
-    $.currentCookie = $.cookieArr[i];
-    if ($.currentCookie) {
+    if (cookiesArr[i]) {
+      $.currentCookie = $.cookieArr[i];
       const userName = decodeURIComponent(
         $.currentCookie.match(/pt_pin=(.+?);/) && $.currentCookie.match(/pt_pin=(.+?);/)[1],
       );

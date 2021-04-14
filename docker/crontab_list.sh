@@ -138,3 +138,5 @@
 23 5,23 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
 #京东试用
 1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+#京东领积分
+1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
