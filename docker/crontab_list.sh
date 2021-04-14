@@ -12,15 +12,15 @@
 #抖音极速版日常任务
 15 */1 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
 # 吾爱破解签到
-15 8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
+15 */8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
 # 包图网签到
 15 */8 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
 
-#京东极速版红包(活动时间：2021-3-8至2021-3-25)
+#京东极速版红包(活动时间：2021-3-8至2021-5-5)
 15 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
-#女装盲盒 活动时间：2021-3-8至2021-3-20
+#女装盲盒 活动时间：2021-4-1至2021-04-31
 5 1,23 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 #超级直播间红包雨(未知，出现异常提示请忽略。红包雨期间会正常)
 30,31 20-23/1 * * * node /scripts/jd_live_redrain.js >> /scripts/logs/jd_live_redrain.log 2>&1
@@ -30,6 +30,8 @@
 35 6,22 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 #手机尚学季 活动时间：2021年3月15日 00:00:00-2021年3月19日 23:59:59
 0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
+#京东手机狂欢城活动，每日可获得30+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）活动时间: 2021-4-1至2021-4-20
+0 0-18/6,19-23/1 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
 
 ##############长期活动##############
@@ -39,7 +41,7 @@
 # 东东超市兑换奖品
 0,30 0 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
 # 摇京豆
-0 0 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
+0 0,23 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
 # 东东农场
 5 6-18/6 * * * node /scripts/jd_fruit.js >> /scripts/logs/jd_fruit.log 2>&1
 # 宠汪汪
@@ -82,6 +84,8 @@
 20 0,20 * * * node /scripts/jd_necklace.js >> /scripts/logs/jd_necklace.log 2>&1
 # 京喜工厂
 20 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
+#京喜工厂自动收取道具
+50 * * * * node /scripts/jx_factory_component.js >> /scripts/logs/jx_factory_component.log 2>&1
 # 东东小窝
 16 6,23 * * * node /scripts/jd_small_home.js >> /scripts/logs/jd_small_home.log 2>&1
 # 东东工厂
@@ -110,8 +114,6 @@
 27 */4 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 # 京喜app签到
 39 7 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
-# 京东家庭号(暂不知最佳cron)
-# */20 * * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
 # 闪购盲盒
 27 8 * * * node /scripts/jd_sgmh.js >> /scripts/logs/jd_sgmh.log 2>&1
 # 京东秒秒币
@@ -129,7 +131,7 @@
 # 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
 #20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
 #家庭号
-20 6,7 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
+20 */6 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
 #京东直播（又回来了）
 10-20/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1
 #京小兑
