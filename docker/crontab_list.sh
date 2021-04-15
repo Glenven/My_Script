@@ -18,6 +18,13 @@
 
 ##############短期活动##############
 
+# 京东店铺关注有礼(活动时间：2021-3-8至2021-5-5)
+15 15 * * * node /scripts/jd_shop_follow_sku.js >> /scripts/logs/jd_shop_follow_sku.log 2>&1
+# 京东店铺大转盘(活动时间：2021-3-8至2021-5-5)
+3 0,10,23 * * * node /scripts/jd_shop_lottery.js >> /scripts/logs/jd_shop_lottery.log 2>&1
+# 京东interCenter渠道店铺签到(活动时间：2021-3-8至2021-5-5)
+0 0 * * * node /scripts/jd__inter_shop_sign.js >> /scripts/logs/jd__inter_shop_sign.log 2>&1
+
 #京东极速版红包(活动时间：2021-3-8至2021-5-5)
 15 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 #女装盲盒 活动时间：2021-4-1至2021-04-31
