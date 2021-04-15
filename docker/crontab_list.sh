@@ -118,25 +118,27 @@
 27 8 * * * node /scripts/jd_sgmh.js >> /scripts/logs/jd_sgmh.log 2>&1
 # 京东秒秒币
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
-#美丽研究院
+# 美丽研究院
 1 7,12,19 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
-#京东保价
+# 京东保价
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
-#京东极速版签到+赚现金任务
+# 京东极速版签到+赚现金任务
 1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
-#监控crazyJoy分红
+# 监控crazyJoy分红
 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
-#京喜财富岛
+# 京喜财富岛
 15 */2 * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
+# 京喜财富岛提现
+0 0 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 # 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
 #20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
-#家庭号
+# 家庭号
 20 */6 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
-#京东直播（又回来了）
+# 京东直播（又回来了）
 10-20/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1
-#京小兑
+# 京小兑
 23 5,23 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
-#京东试用
+# 京东试用
 1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
-#京东领积分
+# 京东领积分
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
