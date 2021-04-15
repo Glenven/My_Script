@@ -2,6 +2,9 @@
 name: 自动同步到Gitee分支🔄
 on:
   push:
+    baranches:
+      - JSScript
+
   schedule:
     - cron: '0 1 * * *'
   workflow_dispatch:
