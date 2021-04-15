@@ -112,6 +112,8 @@
 0 9,12,18 * * * node /scripts/jd_jxnc.js >> /scripts/logs/jd_jxnc.log 2>&1
 # 签到领现金
 27 */4 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
+# 签到领现金红包兑换
+# 0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
 # 京喜app签到
 39 7 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 闪购盲盒
@@ -142,3 +144,16 @@
 1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东领积分
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
+
+
+# Cron解释
+# 
+# * * * * * *
+# ┬ ┬ ┬ ┬ ┬ ┬
+# │ │ │ │ │ |
+# │ │ │ │ │ └ day of week (0 - 7) (0 or 7 is Sun)
+# │ │ │ │ └───── month (1 - 12)
+# │ │ │ └────────── day of month (1 - 31)
+# │ │ └─────────────── hour (0 - 23)
+# │ └──────────────────── minute (0 - 59)
+# └───────────────────────── second (0 - 59, OPTIONAL)
