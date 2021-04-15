@@ -33,7 +33,7 @@ cron "10 * * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd
 
 const $ = new Env('京东京喜工厂');
 const JD_API_HOST = 'https://m.jingxi.com';
-const helpAu = true; //帮作者助力 免费拿活动
+const helpAu = false; //帮作者助力 免费拿活动
 const notify = $.isNode() ? require('./sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 const randomCount = $.isNode() ? 20 : 5;
@@ -1061,7 +1061,7 @@ function CreateTuan() {
 }
 async function joinLeaderTuan() {
   $.tuanIdS = null;
-  if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/h455257166/MyUpdateTeam/raw/master/shareCodes/jd_updateFactoryTuanId.json');
+  if (!$.tuanIdS) await updateTuanIdsCDN('https://gitee.com/h455257166/MyUpdateTeam/raw/main/shareCodes/jd_updateFactoryTuanId.json');
   if ($.tuanIdS && $.tuanIdS.tuanIds) {
     for (let tuanId of $.tuanIdS.tuanIds) {
       if (!tuanId) continue
@@ -1374,7 +1374,7 @@ function shareCodesFormat() {
 }
 function requireConfig() {
   return new Promise(async resolve => {
-    await updateTuanIdsCDN('https://gitee.com/h455257166/MyUpdateTeam/raw/master/shareCodes/jd_updateFactoryTuanId.json');
+    await updateTuanIdsCDN('https://gitee.com/h455257166/MyUpdateTeam/raw/main/shareCodes/jd_updateFactoryTuanId.json');
     if ($.tuanIdS && $.tuanIdS.tuanActiveId) {
       tuanActiveId = $.tuanIdS.tuanActiveId;
     }
