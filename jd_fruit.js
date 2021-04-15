@@ -81,6 +81,7 @@ const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%2
     .finally(() => {
       $.done();
     })
+    
 async function jdFruit() {
   subTitle = `【京东账号${$.index}】${$.nickName}`;
   try {
@@ -98,7 +99,7 @@ async function jdFruit() {
         if ($.isNode()) {
           await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP或微信小程序查看`);
         }
-        return
+        // return
       } else if ($.farmInfo.treeState === 1) {
         console.log(`\n${$.farmInfo.farmUserPro.name}种植中...\n`)
       } else if ($.farmInfo.treeState === 0) {
@@ -108,7 +109,7 @@ async function jdFruit() {
         if ($.isNode()) {
           await notify.sendNotify(`${$.name} - 您忘了种植新的水果`, `京东账号${$.index} ${$.nickName}\n【提醒⏰】您忘了种植新的水果\n请去京东APP或微信小程序选购并种植新的水果`);
         }
-        return
+        // return
       }
       await doDailyTask();
       await doTenWater();//浇水十次
