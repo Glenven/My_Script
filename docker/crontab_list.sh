@@ -151,7 +151,8 @@
 1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东领积分
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
-
+# 京东砍价
+10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
 
 # Cron解释
 # 
