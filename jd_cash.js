@@ -49,7 +49,7 @@ let allMessage = '';
   }
   await requireConfig()
   await getAuthorShareCode();
-  await getAuthorShareCode2();
+  // await getAuthorShareCode2();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -370,8 +370,8 @@ function taskUrl(functionId, body = {}) {
     }
   }
 }
-
-function getAuthorShareCode(url = "https://gitee.com/shylocks/updateTeam/raw/main/jd_cash.json") {
+// 通过cdn(https://www.jsdelivr.com/)进行文件加速
+function getAuthorShareCode(url = "https://cdn.jsdelivr.net/gh/h455257166/MyUpdateTeam@main/shareCodes/jd_cash.json") {
   return new Promise(resolve => {
     $.get({url, headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -390,7 +390,7 @@ function getAuthorShareCode(url = "https://gitee.com/shylocks/updateTeam/raw/mai
     })
   })
 }
-function getAuthorShareCode2(url = "https://gitee.com/lxk0301/updateTeam/raw/master/shareCodes/jd_updateCash.json") {
+function getAuthorShareCode2(url = "https://cdn.jsdelivr.net/gh/h455257166/MyUpdateTeam@main/shareCodes/jd_cash.json") {
   return new Promise(resolve => {
     $.get({url, headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
