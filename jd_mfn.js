@@ -53,13 +53,15 @@ const JD_API_HOST = 'https://dwapp.jd.com/user/';
         cookie = cookiesArr[i];
         $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
         $.index = i + 1;
-        console.log(`京东账号${$.index} ${$.UserName}`)
+        console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`)
         $.isLogin = true;
         $.nickName = '';
         message = '';
         await helpAuthor();
+        await showMsg();
       }
     }
+
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -80,7 +82,7 @@ function showMsg() {
 async function helpAuthor() {
   console.log(`获取列表`)
   let item = await readShareCode();
-  console.log(item)
+  console.log(item.inBargaining)
   console.log(`去帮作者砍价`)
   for (let i =0 ; i < item.inBargaining.length ; i++){
     let activityId = item.inBargaining[i].activityId
@@ -93,7 +95,21 @@ async function helpAuthor() {
             console.log(`${$.name} API请求失败，请检查网路重试`)
           } else {
             data = JSON.parse(data);
-            console.log(data)
+            if (data.status == '0') {
+              console.log(`砍价成功，帮砍掉(${data.cutPrice})元`)
+              message += `砍价成功，帮砍掉(${data.cutPrice})元`
+            }else if (data.status == '2') {
+              console.log(`该账号为黑号，无法帮砍价`)
+              message += `该账号为黑号，无法帮砍价`
+            }else if (data.status == '5') {
+              console.log(`不能帮自己砍价`)
+              message += `不能帮自己砍价`
+            }else if (data.status == '1') {
+              console.log(`已帮砍过价格，无法重复砍价`)
+              message += `已帮砍过价格，无法重复砍价`
+            }else{
+              console.log(data)
+            }
           }
         } catch (e) {
           $.logErr(e, resp)
