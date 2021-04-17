@@ -153,6 +153,11 @@
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
 # 京东砍价
 10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
+#京东会员-摇一摇(每月17号运行一次即可)
+59 12 17 * * node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
+#京东摇一摇
+3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
+
 
 # Cron解释
 # 
