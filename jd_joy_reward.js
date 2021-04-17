@@ -128,7 +128,12 @@ async function joyReward() {
       console.log(`\ndebug场次:${giftSaleInfos}\n`)
       for (let item of data[giftSaleInfos]) {
         console.log(`${item['giftName']}当前库存:${item['leftStock']}`)
-        if (item.giftType === 'jd_bean' && item['giftValue'] === rewardNum) {
+        if (item.giftType === 'jd_bean' && item['giftValue'] && item['leftStock'] > 0) {
+          saleInfoId = item.id;
+          leftStock = item.leftStock;
+          salePrice = item.salePrice;
+          giftValue = item.giftValue;
+        }else if(item.giftType === 'jd_bean' && item['giftValue'] === rewardNum) {
           saleInfoId = item.id;
           leftStock = item.leftStock;
           salePrice = item.salePrice;
