@@ -120,7 +120,7 @@
 # 签到领现金
 27 */4 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 # 签到领现金红包兑换
-# 0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
+0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
 # 京喜app签到
 39 7 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 闪购盲盒
