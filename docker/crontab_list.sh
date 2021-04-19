@@ -25,6 +25,9 @@
 # 京东interCenter渠道店铺签到(活动时间：2021-3-8至2021-5-5)
 0 0 * * * node /scripts/jd__inter_shop_sign.js >> /scripts/logs/jd__inter_shop_sign.log 2>&1
 
+#5G超级盲盒 活动时间：2021-03-19到2021-04-30
+10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
+
 #京东极速版红包(活动时间：2021-3-8至2021-5-5)
 15 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 #女装盲盒 活动时间：2021-4-1至2021-04-31

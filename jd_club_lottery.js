@@ -47,7 +47,7 @@ let superShakeBeanConfig = {
   "taskVipName": "",
 }
 $.assigFirends = [];
-$.brandActivityId = '2f707380-ebc9-4b4f-bc39-cc2c7702ca0e';//超级品牌日活动ID
+$.brandActivityId = 'd629534c-5276-4b59-953f-ba101df525e5';//超级品牌日活动ID
 $.brandActivityId2 = '2vSNXCeVuBy8mXTL2hhG3mwSysoL';//超级品牌日活动ID2
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 !(async () => {
@@ -76,9 +76,9 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
-        // if ($.isNode()) {
-        //   await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        // }
+        if ($.isNode()) {
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        }
         continue
       }
       await clubLottery();
