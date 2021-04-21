@@ -8,13 +8,13 @@
 #2345王牌联盟签到打卡
 15 9 * * * node /scripts/js_2345.js >> /scripts/logs/js_2345.log 2>&1
 # 咪咕爱看签到
-15 */3 * * * node /scripts/js_migu.js >> /scripts/logs/js_migu.log 2>&1
+15 */8 * * * node /scripts/js_migu.js >> /scripts/logs/js_migu.log 2>&1
 #抖音极速版日常任务
 15 */1 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
 # 吾爱破解签到
 15 */8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
 # 包图网签到
-15 */8 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
+20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
 
@@ -41,7 +41,7 @@
 #手机尚学季 活动时间：2021年3月15日 00:00:00-2021年3月19日 23:59:59
 0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
 #京东手机狂欢城活动，每日可获得30+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）活动时间: 2021-4-1至2021-4-20
-0 0-18/6,19-23/1 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
+# 0 0-18/6,19-23/1 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
 
 ##############长期活动##############
@@ -74,8 +74,8 @@
 1 1 * * * node /scripts/jd_redPacket.js >> /scripts/logs/jd_redPacket.log 2>&1
 # 进店领豆
 10 0 * * * node /scripts/jd_shop.js >> /scripts/logs/jd_shop.log 2>&1
-# 京东天天加速
-8 */3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
+# 京东天天加速(活动下线)
+# 8 */3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
 # 东东超市
 11 1-23/5 * * * node /scripts/jd_superMarket.js >> /scripts/logs/jd_superMarket.log 2>&1
 # 取关京东店铺商品
