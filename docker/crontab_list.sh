@@ -160,7 +160,8 @@
 59 12 17 * * node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
 #京东摇一摇
 3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
-
+#京东健康社区
+30 0-23/3 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
 
 # Cron解释
 # 
