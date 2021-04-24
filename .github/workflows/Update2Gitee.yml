@@ -3,7 +3,7 @@ name: 自动同步到Gitee分支🔄
 on:
   push:
   schedule:
-    - cron: '0 1 * * *'
+    - cron: '0 */7 * * *'
   workflow_dispatch:
   watch:
     types: started
