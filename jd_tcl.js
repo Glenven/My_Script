@@ -28,8 +28,8 @@ let cookiesArr = [],
   cookie = "",
   message;
 let shareUUID= [
-  '4C8602ED441A318612CD57B4A16EB59EE8AF00C05E1043CAA3E9C10B6DA615700C9463CE3D33670238160230F84D490EE29440149504E2EB1EAD11840F8E2980DDDA672BF446E2FCC0D1D6B4E52826D1',
-  '262AD0499F3DBB829A73A2D6A7C9B4F32616D531C3528AC13306F568F805BCBC98C78860AD2DDA6EACB606811A93B977D5541778D6BA2AAA3F72022FEF371B086688517369194A1C9489E6861B365E9DCC404E4905CE4ACDDDB48F49F13BFF8E'
+  'C7E3372ABCF52A8FCB57C4B605788C4FEC18DEAC3A0681C9F51F128223B4961E49336DE54E26AA8F2834B248E6398CB7A755DF4FDAE585EC3E1ABE26F3DD3CFFC956D12974FF00A045D8E31A84FE84C18A8357DE96A1F617B8AC4D64BC24B689',
+  'C7E3372ABCF52A8FCB57C4B605788C4FEC18DEAC3A0681C9F51F128223B4961E49336DE54E26AA8F2834B248E6398CB7A755DF4FDAE585EC3E1ABE26F3DD3CFFC956D12974FF00A045D8E31A84FE84C18A8357DE96A1F617B8AC4D64BC24B689'
 ]
 let isPurchaseShops = false
 isPurchaseShops = $.isNode() ? (process.env.PURCHASE_SHOPS ? process.env.PURCHASE_SHOPS : isPurchaseShops) : ($.getdata("isPurchaseShops") ? $.getdata("isPurchaseShops") : isPurchaseShops);
@@ -72,6 +72,7 @@ const JD_API_HOST = "https://api.m.jd.com/client.action";
       await main()
     }
   }
+  if ($.isNode()) await notify.sendNotify(`${$.name}`, `${message}\n\n如需做注册店铺会员任务，请点击下方链接手动完成\nhttps%3A%2F%2Fmpdz-isv.isvjcloud.com%2Fql%2Ffront%2Ftcl002%2FloadTclAct%3Fid%3DtclTeamAct002%26user_id%3D10299171\n\nhttps://mpdz-isv.isvjcloud.com/ql/front/tcl002/loadTclAct?id=tclTeamAct002&user_id=10299171`);
 })()
   .catch((e) => {
     $.log("", `❌ ${$.name}, 失败! 原因: ${e}!`, "");
@@ -88,7 +89,7 @@ function showMsg() {
 }
 async function main() {
   await loadAct()
-  await helpFriend(shareUUID[Math.floor(Math.random() * 1)])
+  await helpFriend(shareUUID[Math.floor(Math.random() * 2)])
   await sign()
   await $.wait(1000)
   await getShopList()
@@ -100,7 +101,7 @@ async function main() {
   await draw()
 }
 
-function helpFriend(inviterNickAes = '4C8602ED441A318612CD57B4A16EB59EE8AF00C05E1043CAA3E9C10B6DA615700C9463CE3D33670238160230F84D490EE29440149504E2EB1EAD11840F8E2980DDDA672BF446E2FCC0D1D6B4E52826D1') {
+function helpFriend(inviterNickAes = 'C7E3372ABCF52A8FCB57C4B605788C4FEC18DEAC3A0681C9F51F128223B4961E49336DE54E26AA8F2834B248E6398CB7A755DF4FDAE585EC3E1ABE26F3DD3CFFC956D12974FF00A045D8E31A84FE84C18A8357DE96A1F617B8AC4D64BC24B689') {
   return new Promise((resolve) => {
     $.post(taskUrl('/ql/front/tcl002/helpFriend', `inviterNickAes=${inviterNickAes}`), async (err, resp, data) => {
       try {
@@ -130,7 +131,7 @@ function loadAct() {
         } else {
           //console.log(data)
           let id = data.match(/<input type="hidden" id="buyer_nick_code" name="buyer_nick_code" value="(.*)">/)
-          console.log('好友助力码' + id[1])
+          //console.log('好友助力码' + id[1])
           if (data.indexOf('<div class="yourChoice">') === -1) {
             console.log(`未选择球队，去选择`)
             await chooseTeam()
