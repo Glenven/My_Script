@@ -45,6 +45,8 @@
 #TCL 活动时间：4.21-5.3日
 10 0,23 * * * node /scripts/jd_tcl.js >> /scripts/logs/jd_tcl.log 2>&1
 
+#每日抽奖(活动时间：2021-05-01至2021-05-31)
+13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
 ##############长期活动##############
 
 # 签到
