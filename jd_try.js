@@ -649,6 +649,7 @@ function TotalBean() {
       }
     })
   })
+}
 
 function jsonParse(str) {
   if (typeof str == "string") {
