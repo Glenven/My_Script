@@ -20,8 +20,10 @@
 
 # 京东店铺关注有礼(活动时间：2021-3-8至2021-5-5)
 15 15 * * * node /scripts/jd_shop_follow_sku.js >> /scripts/logs/jd_shop_follow_sku.log 2>&1
+
 # 京东店铺大转盘(活动时间：2021-3-8至2021-5-5)
 3 0,10,23 * * * node /scripts/jd_shop_lottery.js >> /scripts/logs/jd_shop_lottery.log 2>&1
+
 # 京东interCenter渠道店铺签到(活动时间：2021-3-8至2021-5-5)
 0 0 * * * node /scripts/jd__inter_shop_sign.js >> /scripts/logs/jd__inter_shop_sign.log 2>&1
 
@@ -30,23 +32,36 @@
 
 #京东极速版红包(活动时间：2021-3-8至2021-5-5)
 15 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
+
 #女装盲盒 活动时间：2021-4-1至2021-04-31
 5 1,23 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
+
 #超级直播间红包雨(活动时间不定期，出现异常提示请忽略。红包雨期间会正常)
 1,31 0-23/1 * * * node /scripts/jd_live_redrain.js >> /scripts/logs/jd_live_redrain.log 2>&1
+
 #京东国际盲盒活动时间】2021年02月23日 起至 2021年03月31日 18:00:00
 5 7,12,23 * * * node /scripts/jd_global_mh.js >> /scripts/logs/jd_global_mh.log 2>&1
+
 #环球挑战赛 第二季(活动时间：2021-03-08 至 2021-03-31)
 35 6,22 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
+
 #手机尚学季 活动时间：2021年3月15日 00:00:00-2021年3月19日 23:59:59
 0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
-#京东手机狂欢城活动，每日可获得30+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）活动时间: 2021-4-1至2021-4-20
-# 0 0-18/6,19-23/1 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
+
 #TCL 活动时间：4.21-5.3日
 10 0,23 * * * node /scripts/jd_tcl.js >> /scripts/logs/jd_tcl.log 2>&1
 
 #每日抽奖(活动时间：2021-05-01至2021-05-31)
 13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
+
+#城城领现金
+33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
+
+#手机狂欢城
+0 0,12,18,21 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
+
+
+
 ##############长期活动##############
 
 # 签到
@@ -172,7 +187,7 @@
 # 领金贴
 5 0 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
 # 跳跳乐瓜分京豆
-15 0-23/2 node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
+15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
 
 # Cron解释
 # 
