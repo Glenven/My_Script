@@ -61,7 +61,7 @@
 0 0,12,18,21 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
 # 动物联萌 618活动
-5 * * * node /scripts/jd_zoo.js >> /scripts/logs/jd_zoo.log 2>&1
+5 * * * * node /scripts/jd_zoo.js >> /scripts/logs/jd_zoo.log 2>&1
 
 ##############长期活动##############
 
