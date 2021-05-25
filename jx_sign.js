@@ -54,9 +54,9 @@ const JD_API_HOST = 'https://m.jingxi.com/';
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        }
+        // if ($.isNode()) {
+        //   await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        // }
         continue
       }
       await jdCash()
@@ -118,6 +118,7 @@ function getTaskList() {
           if (safeGet(data)) {
             data = JSON.parse(data);
             if(data.retCode ===0){
+              console.log(data)
               for (task of data.data.tasks) {
                 if(task.taskState===1){
                   console.log(`去做${task.taskName}任务`)
