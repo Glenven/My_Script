@@ -189,6 +189,15 @@
 5 0 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
 # 跳跳乐瓜分京豆
 15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
+# 天天优惠大乐透
+0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
+# 金榜创造营，最高瓜分7亿京豆！
+0 8 * * * node /scripts/jd_jbczy.js >> /scripts/logs/jd_jbczy.log 2>&1
+# 金贴小程序（每天大概可得0.07金贴）
+10 0 * * * node /scripts/jd_jintie_wx.js >> /scripts/logs/jd_jintie_wx.log 2>&1
+
+
+
 
 # Cron解释
 # 
