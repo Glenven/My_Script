@@ -84,7 +84,7 @@ let allMessage = '';
 async function jdCash() {
   await index()
   //await shareCodesFormat()
-  //await helpFriends()
+  await helpFriends()
   await getReward()
   await getReward('2');
   $.exchangeBeanNum = 0;
@@ -130,7 +130,7 @@ function index(info=false) {
                 return
               }
               // console.log(`您的助力码为${data.data.result.inviteCode}`)
-              //console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data.result.inviteCode}\n`);
+              console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.data.result.inviteCode}\n`);
               let helpInfo = {
                 'inviteCode': data.data.result.inviteCode,
                 'shareDate': data.data.result.shareDate
