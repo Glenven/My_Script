@@ -32,7 +32,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '', message;
+let cookiesArr = [], cookie = '', message, notifyMsg;
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -70,6 +70,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       await jdMs()
     }
   }
+  if ($.isNode() && ) {}
   notify.sendNotify(`${$.name}`, notifyMsg);
 })()
   .catch((e) => {
@@ -89,6 +90,8 @@ async function jdMs() {
   }
   await getUserInfo(false)
   await showMsg()
+  var scoreNum = $.score
+  notifyMsg += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
 }
 
 function getActInfo() {
@@ -240,9 +243,6 @@ function showMsg() {
     var scoreNum = $.score
     message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
     $.msg(`${message}`);
-    if ($.isNode()) {
-      notifyMsg += `${message}\n\n`;
-    }
     resolve()
   })
 }
