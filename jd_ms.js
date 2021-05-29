@@ -57,6 +57,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.isLogin = true;
       $.nickName = '';
       message = '';
+      notifyMsg = '';
       await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
@@ -236,7 +237,8 @@ function doTask(body) {
 
 function showMsg() {
   return new Promise(resolve => {
-    message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${$.score}枚，可兑换 ${$.score}/1000 元`;
+    // var scoreNum = $.score
+    message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${$.score}枚，可兑换 ${${$.score}/1000} 元`;
     $.msg(`${message}`);
     if ($.isNode()) {
       notifyMsg += `${message}\n\n`;
