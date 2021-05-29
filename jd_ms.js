@@ -57,7 +57,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       $.isLogin = true;
       $.nickName = '';
       message = '';
-      notifyMsg = '';
+      // notifyMsg += '';
       await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
@@ -68,6 +68,8 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         continue
       }
       await jdMs()
+      var scoreNum = $.score
+      notifyMsg += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
     }
   }
   if ($.isNode() && notifyMsg) {
@@ -91,8 +93,6 @@ async function jdMs() {
   }
   await getUserInfo(false)
   await showMsg()
-  var scoreNum = $.score
-  notifyMsg += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
 }
 
 function getActInfo() {
