@@ -69,6 +69,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       await jdMs()
     }
   }
+  notify.sendNotify(`${$.name}`, notifyMsg);
 })()
   .catch((e) => {
     $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
@@ -235,9 +236,11 @@ function doTask(body) {
 
 function showMsg() {
   return new Promise(resolve => {
-    message += `本次运行获得秒秒币${$.score-$.cur}枚，共${$.score}枚`;
-    $.msg(`【京东账号${$.index}】${$.nickName}\n${message}`);
-    await notify.sendNotify(`${$.name}`, `【京东账号${$.index}】${$.nickName}\n${message}`)
+    message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${$.score}枚，可兑换 ${$.score}/1000 元`;
+    $.msg(`${message}`);
+    if ($.isNode()) {
+      notifyMsg += `${message}\n\n`;
+    }
     resolve()
   })
 }
