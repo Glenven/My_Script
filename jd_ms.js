@@ -237,8 +237,8 @@ function doTask(body) {
 
 function showMsg() {
   return new Promise(resolve => {
-    // var scoreNum = $.score
-    message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${$.score}枚，可兑换 ${${$.score}/1000} 元`;
+    var scoreNum = $.score
+    message += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
     $.msg(`${message}`);
     if ($.isNode()) {
       notifyMsg += `${message}\n\n`;
