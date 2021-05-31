@@ -69,11 +69,11 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       }
       await jdMs()
       var scoreNum = $.score
-      notifyMsg += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元`;
+      notifyMsg += `【京东账号${$.index}】 ${$.nickName || $.UserName}\n拥有秒秒币共${scoreNum}枚，可兑换 ${scoreNum / 1000} 元\n`;
     }
   }
   if ($.isNode() && notifyMsg) {
-    await notify.sendNotify(`${$.name}`, `${notifyMsg}`);
+    await notify.sendNotify(`${notifyMsg} \n\n 兑换地址：京东APP搜索 “秒杀” 页面查找`);
   }
 })()
   .catch((e) => {
