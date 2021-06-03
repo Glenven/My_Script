@@ -82,6 +82,9 @@
 
 #京东星店长
 5 9 * * * node /scripts/jd_starStore.js >> /scripts/logs/jd_starStore.log 2>&1
+
+#明星小店(星店长，2021-06-10)
+0 1,21 * * * node /scripts/jd_star_shop.js >> /scripts/logs/jd_star_shop.log 2>&1
 ##############长期活动##############
 
 # 签到
