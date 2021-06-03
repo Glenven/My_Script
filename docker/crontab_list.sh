@@ -79,6 +79,9 @@
 
 #京东沸腾之夜(5.31日有效)
 0 15-19/1 * * * node /scripts/jd_party_night.js >> /scripts/logs/jd_party_night.log 2>&1
+
+#京东星店长
+5 9 * * * node /scripts/jd_starStore.js >> /scripts/logs/jd_starStore.log 2>&1
 ##############长期活动##############
 
 # 签到
