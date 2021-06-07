@@ -63,7 +63,7 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
   $.temp = [];
   if (nowTime > new Date(activeEndTime).getTime()) {
     //活动结束后弹窗提醒
-    $.msg($.name, '活动已结束', `该活动累计获得京豆：${$.jingBeanNum}个\n请删除此脚本\n咱江湖再见`);
+    // $.msg($.name, '活动已结束', `该活动累计获得京豆：${$.jingBeanNum}个\n请删除此脚本\n咱江湖再见`);
     // if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `请删除此脚本\n咱江湖再见`);
     return
   }
@@ -122,13 +122,13 @@ let nowTime = new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*
     }
   }
   // console.log(JSON.stringify($.temp))
-  if (allMessage) {
-    //NODE端,默认每月一日运行进行推送通知一次
-    if ($.isNode()) {
-      await notify.sendNotify($.name, allMessage, { url: JD_API_HOST });
-      $.msg($.name, '', allMessage);
-    }
-  }
+  // if (allMessage) {
+  //   //NODE端,默认每月一日运行进行推送通知一次
+  //   if ($.isNode()) {
+  //     await notify.sendNotify($.name, allMessage, { url: JD_API_HOST });
+  //     $.msg($.name, '', allMessage);
+  //   }
+  // }
 })()
     .catch((e) => {
       $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
