@@ -60,11 +60,8 @@
 #手机狂欢城
 0 0,12,18,21 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
-# 动物联萌 618活动
-5 * * * * node /scripts/jd_zoo.js >> /scripts/logs/jd_zoo.log 2>&1
-
-# 动物联萌 618活动
-5 * * * * node /scripts/jd_zoo1.js >> /scripts/logs/jd_zoo1.log 2>&1
+#618动物联萌
+33 0,6-23/2 * * * node /scripts/jd_zoo.js >> /scripts/logs/jd_zoo.log 2>&1
 
 #618动物联萌专门收集金币(每小时的第30分运行一次)
 0-59/30 * * * * node /scripts/jd_zooCollect.js >> /scripts/logs/jd_zooCollect.log 2>&1
