@@ -91,6 +91,10 @@
 
 #省钱大赢家之翻翻乐
 10,40 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
+
+#源头好物红包
+0 0 * * * node /scripts/jd_coupon.js >> /scripts/logs/jd_coupon.log 2>&1
+
 ##############长期活动##############
 
 # 签到
