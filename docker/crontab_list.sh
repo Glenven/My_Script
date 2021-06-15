@@ -100,6 +100,9 @@
 
 #京喜故事
 10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
+
+#京享值PK
+15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1
 ##############长期活动##############
 
 # 签到
