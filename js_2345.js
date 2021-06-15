@@ -66,7 +66,7 @@ if ($.isNode()) {
             console.log(`\n======================== 开始【2345王牌联盟 [账号 ${$.index}] 的任务】 ======================== \n`)
             message += `2345王牌联盟 [账号${$.index}] \n `
             await CheckIn();
-            await TaskList();
+            // await TaskList();
             await ProfitReport();
             await entry();
             await showMsg();
