@@ -96,7 +96,7 @@
 0 0 * * * node /scripts/jd_coupon.js >> /scripts/logs/jd_coupon.log 2>&1
 
 #618手机竞猜
-23 0 * * * node /scripts/zy_618jc.js >> /scripts/logs/zy_618jc.log 2>&1
+23 0 * * * node /scripts/jd_618jc.js >> /scripts/logs/jd_618jc.log 2>&1
 
 #京喜故事
 10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
