@@ -770,7 +770,7 @@ function takeGetRequest(){
         'Accept' : `*/*`,
         'Referer' : `https://prodev.m.jd.com`,
         'Host' : `ms.jr.jd.com`,
-        'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.5(0x18000528) NetType/WIFI Language/zh_CN',
+        'User-Agent':'jdapp;iPhone;9.2.0;14.1;',
         'Accept-Encoding' : `gzip, deflate, br`,
         'Accept-Language' : `zh-cn`
       }
@@ -800,7 +800,7 @@ function callbackResult(info) {
         'Connection': `keep-alive`,
         'Accept': `*/*`,
         'Host': `api.m.jd.com`,
-        'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.5(0x18000528) NetType/WIFI Language/zh_CN',
+        'User-Agent':'jdapp;iPhone;9.2.0;14.1;',
         'Accept-Encoding': `gzip, deflate, br`,
         'Accept-Language': `zh-cn`,
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -835,7 +835,7 @@ async function getPostRequest(type, body) {
     'Content-Type': `application/x-www-form-urlencoded`,
     'Host': `api.m.jd.com`,
     'Connection': `keep-alive`,
-    'User-Agent':'Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.5(0x18000528) NetType/WIFI Language/zh_CN',
+    'User-Agent':'jdapp;iPhone;9.2.0;14.1;',
     'Referer': `https://wbbny.m.jd.com`,
     'Accept-Language': `zh-cn`
   };
@@ -923,7 +923,7 @@ function TotalBean() {
         Accept: "*/*",
         Connection: "keep-alive",
         Cookie: $.cookie,
-        "User-Agent":'Mozilla/5.0 (iPhone; CPU iPhone OS 13_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.5(0x18000528) NetType/WIFI Language/zh_CN',
+        "User-Agent":'jdapp;iPhone;9.2.0;14.1;',
         "Accept-Language": "zh-cn",
         "Referer": "https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&",
         "Accept-Encoding": "gzip, deflate, br"
