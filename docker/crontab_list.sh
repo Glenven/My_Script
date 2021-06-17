@@ -102,7 +102,13 @@
 10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
 
 #京享值PK
-15 0,6,13,19,21 
+15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
+
+#618动物联萌，只做图鉴里的店铺任务
+10 10 * * * node /scripts/jd_zooMap.js >> /scripts/logs/jd_zooMap.log 2>&1
+
+#柠檬推一推
+0 0 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
 
 #柠檬拆红包
 0 0 * * * node /scripts/jd_chb.js >> /scripts/logs/jd_chb.log 2>&1
