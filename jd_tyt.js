@@ -50,7 +50,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
         continue
       }
      
-      await $.wait(3000)
+      await $.wait(10000)
       await tythelp()
      
       
