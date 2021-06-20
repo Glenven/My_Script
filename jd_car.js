@@ -324,7 +324,7 @@ function TotalBean() {
               return
             }
             if (data['retcode'] === 0) {
-              $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+              $.nickName = $.cookiename ? $.cookiename : (data['base'] && data['base'].nickname);
             } else {
               $.nickName = $.cookiename ? $.cookiename : $.UserName ;
             }
