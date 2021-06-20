@@ -59,7 +59,7 @@ const JD_API_HOST = 'https://car-member.jd.com/api/';
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       cookiename = cookienameArr[i];
-      console.log(`cookiename:${cookiename}`)
+      // console.log(`cookiename:${cookiename}`)
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
       $.isLogin = true;
@@ -68,6 +68,7 @@ const JD_API_HOST = 'https://car-member.jd.com/api/';
       await TotalBean();
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
+        $.nickName = cookiename ? cookiename : $.UserName ;
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
         continue
       }
