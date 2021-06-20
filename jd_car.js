@@ -61,6 +61,7 @@ const JD_API_HOST = 'https://car-member.jd.com/api/';
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
       cookiename = cookienameArr[i];
+      console.log(`cookiename:${cookiename}`)
       $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
       $.isLogin = true;
@@ -324,9 +325,11 @@ function TotalBean() {
               return
             }
             if (data['retcode'] === 0) {
-              $.nickName = $.cookiename ? $.cookiename : (data['base'] && data['base'].nickname);
+              $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+              console.log(`${$.nickName}`)
             } else {
-              $.nickName = $.cookiename ? $.cookiename : $.UserName ;
+              $.nickName = cookiename ? cookiename : $.UserName ;
+              console.log(`else ${$.nickName}`)
             }
           } else {
             console.log(`京东服务器返回空数据`)
