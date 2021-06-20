@@ -45,8 +45,6 @@ if ($.isNode()) {
   Object.keys(jdCookieName).forEach((item) => {
     cookienameArr.push(jdCookieName[item])
   })
-  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
-  };
 } else {
   cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
 }
