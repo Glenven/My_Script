@@ -6,6 +6,7 @@ let CookieJDs = [
   '',//账号一ck,例:pt_key=XXX;pt_pin=XXX;
   '',//账号二ck,例:pt_key=XXX;pt_pin=XXX;如有更多,依次类推
 ]
+
 // 判断环境变量里面是否有京东ck
 if (process.env.JD_COOKIE) {
   if (process.env.JD_COOKIE.indexOf('&') > -1) {
@@ -16,15 +17,7 @@ if (process.env.JD_COOKIE) {
     CookieJDs = [process.env.JD_COOKIE];
   }
 }
-if (process.env.JD_COOKIENAME) {
-  if (process.env.JD_COOKIENAME.indexOf('&') > -1) {
-    CookieNameJDs = process.env.JD_COOKIENAME.split('&');
-  } else if (process.env.JD_COOKIENAME.indexOf('\n') > -1) {
-    CookieNameJDs = process.env.JD_COOKIENAME.split('\n');
-  } else {
-    CookieNameJDs = [process.env.JD_COOKIENAME];
-  }
-}
+
 if (JSON.stringify(process.env).indexOf('GITHUB')>-1) {
   console.log(`请勿使用github action运行此脚本,无论你是从你自己的私库还是其他哪里拉取的源代码，都会导致我被封号\n`);
   !(async () => {
@@ -41,8 +34,4 @@ for (let i = 0; i < CookieJDs.length; i++) {
   const index = (i + 1 === 1) ? '' : (i + 1);
   exports['CookieJD' + index] = CookieJDs[i].trim();
 }
-// for (let i = 0; i < CookieNameJDs.length; i++) {
-//   if (!CookieNameJDs[i].match(/pt_pin=(.+?);/) || !CookieNameJDs[i].match(/pt_key=(.+?);/)) console.log(`\n提示:京东cookie 【${CookieNameJDs[i]}】填写不规范,可能会影响部分脚本正常使用。正确格式为: pt_key=xxx;pt_pin=xxx;（分号;不可少）\n`);
-//   const index = (i + 1 === 1) ? '' : (i + 1);
-//   exports['CookieNameJD' + index] = CookieNameJDs[i].trim();
-// }
+
