@@ -1,5 +1,6 @@
 /*
 省钱大赢家之翻翻乐
+更新时间：2021-06-21
 一天可翻多次，但有上限
 运气好每次可得0.3元以上的微信现金(需京东账号绑定到微信)
 脚本兼容: QuantumultX, Surge,Loon, JSBox, Node.js
@@ -19,24 +20,9 @@ cron "20 * * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd
 省钱大赢家之翻翻乐 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_big_winner.js, cronexpr="20 * * * *", timeout=3600, enable=true
  */
 const $ = new Env('省钱大赢家之翻翻乐');
-// const notify = $.isNode() ? require('./sendNotify') : '';
-//Node.js用户请在jdCookie.js处填写京东ck;
-// const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '', message = '', linkId = 'DA4SkG7NXupA9sksI00L0g', fflLinkId = 'YhCkrVusBVa_O2K-7xE6hA';
 const JD_API_HOST = 'https://api.m.jd.com/api';
-// if ($.isNode()) {
-//   Object.keys(jdCookieNode).forEach((item) => {
-//     cookiesArr.push(jdCookieNode[item])
-//   })
-//   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
-// } else {
-//   cookiesArr = [
-//     $.getdata("CookieJD"),
-//     $.getdata("CookieJD2"),
-//     ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
-// }
-// const len = cookiesArr.length;
 
 !(async () => {
   await requireConfig();

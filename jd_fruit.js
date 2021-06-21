@@ -106,6 +106,7 @@ async function jdFruit() {
         //已下单购买, 但未开始种植新的水果
         option['open-url'] = urlSchema;
         $.msg($.name, ``, `【京东账号${$.index}】 ${$.nickName || $.UserName}\n【提醒⏰】您忘了种植新的水果\n请去京东APP或微信小程序选购并种植新的水果\n点击弹窗即达`, option);
+        message += `【京东账号${$.index}】${$.nickName || $.UserName}\n提醒⏰】您忘了种植新的水果\n请去京东APP—>东东农场(0元水果)选购并种植新的水果\n`;
         // if ($.isNode()) {
         //   await notify.sendNotify(`${$.name} - 您忘了种植新的水果`, `京东账号${$.index} ${$.nickName}\n【提醒⏰】您忘了种植新的水果\n请去京东APP或微信小程序选购并种植新的水果`);
         // }
