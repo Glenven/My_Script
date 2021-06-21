@@ -128,7 +128,7 @@ function gambleHomePage() {
               } else {
                 $.time = (data.data.leftTime / (60 * 1000)).toFixed(2);
               }
-              console.log(`\n查询下次翻翻乐剩余时间成功：\n京东账号【${$.UserName}】距开始剩 ${$.time} 分钟`);
+              console.log(`\n查询下次翻翻乐剩余时间成功：\n京东账号【${$.nickName || $.UserName}】距开始剩 ${$.time} 分钟`);
             } else {
               console.log(`查询下次翻翻乐剩余时间失败：${JSON.stringify(data)}\n`);
             }
