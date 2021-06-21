@@ -22,13 +22,13 @@ if (JSON.stringify(process.env).indexOf('GITHUB')>-1) {
     await process.exit(0);
   })()
 }
-CookieNameJDs = [...new Set(CookieNameJDs.filter(item => ""+item))]
+CookieNameJDs = [...new Set(CookieNameJDs.filter(item => !!item))]
 console.log(`\n====================共${CookieNameJDs.length}个京东账号Cookie填写了备注=========\n`);
 console.log(`==================脚本执行- 北京时间(UTC+8)：${new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000).toLocaleString()}=====================\n`)
 
 for (let j = 0; j < CookieNameJDs.length; j++) {
   // if (!CookieNameJDs[i].match(/pt_pin=(.+?);/) || !CookieNameJDs[i].match(/pt_key=(.+?);/)) console.log(`\n提示:京东cookie 【${CookieNameJDs[i]}】填写不规范,可能会影响部分脚本正常使用。正确格式为: pt_key=xxx;pt_pin=xxx;（分号;不可少）\n`);
   const index = (j + 1 === 1) ? '' : (j + 1);
-  // exports['CookieNameJD' + index] = CookieNameJDs[j].trim();
-  exports['CookieNameJD' + index] = CookieNameJDs[j];
+  exports['CookieNameJD' + index] = CookieNameJDs[j].trim();
+  // exports['CookieNameJD' + index] = CookieNameJDs[j];
 }
