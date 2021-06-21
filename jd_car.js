@@ -325,10 +325,10 @@ function TotalBean() {
             }
             if (data['retcode'] === 0) {
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
-              console.log(`${$.nickName}`)
+              // console.log(`${$.nickName}`)
             } else {
               $.nickName = cookiename ? cookiename : $.UserName ;
-              console.log(`else ${$.nickName}`)
+              // console.log(`else ${$.nickName}`)
             }
           } else {
             console.log(`京东服务器返回空数据`)

@@ -1,12 +1,13 @@
 /*
 东东水果:脚本更新地址 https://gitee.com/lxk0301/jd_scripts/raw/master/jd_fruit.js
-更新时间：2021-4-9
+更新时间：2021-6-20
 活动入口：京东APP我的-更多工具-东东农场
 东东农场活动链接：https://h5.m.jd.com/babelDiy/Zeus/3KSjXqQabiTuD1cJ28QskrpWoBKT/index.html
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 互助码shareCode请先手动运行脚本查看打印可看到
 一天只能帮助3个人。多出的助力码无效
+修改为水果成熟后继续收集水滴。继续任务。
 ==========================Quantumultx=========================
 [task_local]
 #jd免费水果
@@ -36,7 +37,7 @@ let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
 ]
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
-let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
+let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
 let jdFruitBeanCard = false;//农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
 let randomCount = $.isNode() ? 20 : 5;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
@@ -94,9 +95,10 @@ async function jdFruit() {
       if ($.farmInfo.treeState === 2 || $.farmInfo.treeState === 3) {
         option['open-url'] = urlSchema;
         $.msg($.name, ``, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP或微信小程序查看\n点击弹窗即达`, option);
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP或微信小程序查看`);
-        }
+        message += `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP—>东东农场(0元水果)查看\n`;
+        // if ($.isNode()) {
+        //   await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `【京东账号${$.index}】${$.nickName || $.UserName}\n【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取\n请去京东APP或微信小程序查看`);
+        // }
         // return
       } else if ($.farmInfo.treeState === 1) {
         console.log(`\n${$.farmInfo.farmUserPro.name}种植中...\n`)
@@ -235,13 +237,13 @@ async function predictionFruit() {
   await initForFarm();
   await taskInitForFarm();
   let waterEveryDayT = $.farmTask.totalWaterTaskInit.totalWaterTaskTimes;//今天到到目前为止，浇了多少次水
-  message += `【今日共浇水】${waterEveryDayT}次\n`;
-  message += `【剩余 水滴】${$.farmInfo.farmUserPro.totalEnergy}g💧\n`;
-  message += `【水果🍉进度】${(($.farmInfo.farmUserPro.treeEnergy / $.farmInfo.farmUserPro.treeTotalEnergy) * 100).toFixed(2)}%，已浇水${$.farmInfo.farmUserPro.treeEnergy / 10}次,还需${($.farmInfo.farmUserPro.treeTotalEnergy - $.farmInfo.farmUserPro.treeEnergy) / 10}次\n`
+  // message += `【今日共浇水】${waterEveryDayT}次\n`;
+  // message += `【剩余 水滴】${$.farmInfo.farmUserPro.totalEnergy}g💧\n`;
+  // message += `【水果🍉进度】${(($.farmInfo.farmUserPro.treeEnergy / $.farmInfo.farmUserPro.treeTotalEnergy) * 100).toFixed(2)}%，已浇水${$.farmInfo.farmUserPro.treeEnergy / 10}次,还需${($.farmInfo.farmUserPro.treeTotalEnergy - $.farmInfo.farmUserPro.treeEnergy) / 10}次\n`
   if ($.farmInfo.toFlowTimes > ($.farmInfo.farmUserPro.treeEnergy / 10)) {
-    message += `【开花进度】再浇水${$.farmInfo.toFlowTimes - $.farmInfo.farmUserPro.treeEnergy / 10}次开花\n`
+    // message += `【开花进度】再浇水${$.farmInfo.toFlowTimes - $.farmInfo.farmUserPro.treeEnergy / 10}次开花\n`
   } else if ($.farmInfo.toFruitTimes > ($.farmInfo.farmUserPro.treeEnergy / 10)) {
-    message += `【结果进度】再浇水${$.farmInfo.toFruitTimes - $.farmInfo.farmUserPro.treeEnergy / 10}次结果\n`
+    // message += `【结果进度】再浇水${$.farmInfo.toFruitTimes - $.farmInfo.farmUserPro.treeEnergy / 10}次结果\n`
   }
   // 预测n天后水果课可兑换功能
   let waterTotalT = ($.farmInfo.farmUserPro.treeTotalEnergy - $.farmInfo.farmUserPro.treeEnergy - $.farmInfo.farmUserPro.totalEnergy) / 10;//一共还需浇多少次水
@@ -373,7 +375,7 @@ async function doTenWaterAgain() {
       await userMyCardForFarm('beanCard');
       console.log(`使用水滴换豆卡结果:${JSON.stringify($.userMyCardRes)}`);
       if ($.userMyCardRes.code === '0') {
-        message += `【水滴换豆卡】获得${$.userMyCardRes.beanCount}个京豆\n`;
+        // message += `【水滴换豆卡】获得${$.userMyCardRes.beanCount}个京豆\n`;
         return
       }
     } else {
@@ -588,15 +590,15 @@ async function getExtraAward() {
         await masterGotFinishedTaskForFarm();
         if ($.masterGotFinished.code === '0') {
           console.log(`已成功领取好友助力奖励：【${$.masterGotFinished.amount}】g水`);
-          message += `【额外奖励】${$.masterGotFinished.amount}g水领取成功\n`;
+          // message += `【额外奖励】${$.masterGotFinished.amount}g水领取成功\n`;
         }
       } else {
         console.log("已经领取过5好友助力额外奖励");
-        message += `【额外奖励】已被领取过\n`;
+        // message += `【额外奖励】已被领取过\n`;
       }
     } else {
       console.log("助力好友未达到5个");
-      message += `【额外奖励】领取失败,原因：给您助力的人未达5个\n`;
+      // message += `【额外奖励】领取失败,原因：给您助力的人未达5个\n`;
     }
     if ($.masterHelpResult.masterHelpPeoples && $.masterHelpResult.masterHelpPeoples.length > 0) {
       let str = '';
@@ -610,7 +612,7 @@ async function getExtraAward() {
         let time = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':' + date.getMinutes();
         console.log(`\n京东昵称【${item.nickName || "匿名用户"}】 在 ${time} 给您助过力\n`);
       })
-      message += `【助力您的好友】${str}\n`;
+      // message += `【助力您的好友】${str}\n`;
     }
     console.log('领取额外奖励水滴结束\n');
   }
@@ -674,13 +676,13 @@ async function masterHelpShare() {
     helpSuccessPeoples = $.getdata(helpSuccessPeoplesKey);
   }
   if (helpSuccessPeoples && helpSuccessPeoples.length > 0) {
-    message += `【您助力的好友👬】${helpSuccessPeoples.substr(0, helpSuccessPeoples.length - 1)}\n`;
+    // message += `【您助力的好友👬】${helpSuccessPeoples.substr(0, helpSuccessPeoples.length - 1)}\n`;
   }
   if (salveHelpAddWater > 0) {
     // message += `【助力好友👬】获得${salveHelpAddWater}g💧\n`;
     console.log(`【助力好友👬】获得${salveHelpAddWater}g💧\n`);
   }
-  message += `【今日剩余助力👬】${remainTimes}次\n`;
+  // message += `【今日剩余助力👬】${remainTimes}次\n`;
   console.log('助力好友结束，即将开始领取额外水滴奖励\n');
 }
 //水滴雨
@@ -1368,10 +1370,10 @@ function TotalBean() {
             }
             if (data['retcode'] === 0) {
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
-              console.log(`${$.nickName}`)
+              // console.log(`${$.nickName}`)
             } else {
               $.nickName = cookiename ? cookiename : $.UserName ;
-              console.log(`else ${$.nickName}`)
+              // console.log(`else ${$.nickName}`)
             }
           } else {
             console.log(`京东服务器返回空数据`)
