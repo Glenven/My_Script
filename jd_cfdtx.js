@@ -16,11 +16,9 @@
 
 const $ = new Env("京东京喜财富岛提现");
 const JD_API_HOST = "https://m.jingxi.com/";
-const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
-const jdTokenNode = $.isNode() ? require('./jdJxncTokens.js') : '';
+// const jdCookieNode = $.isNode() ? require("./jdCookie.js") : "";
+let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '';
 $.result = [];
-$.cookieArr = [];
-$.currentCookie = '';
 $.tokenArr = [];
 $.currentToken = {};
 $.strPhoneID = '';
@@ -28,17 +26,35 @@ $.strPgUUNum = '';
 $.userName = '';
 
 !(async () => {
-  if (!getCookies()) return;
-  if (!getTokens()) return;
-  for (let i = 0; i < $.cookieArr.length; i++) {
-    $.currentCookie = $.cookieArr[i];
-    $.currentToken = $.tokenArr[i];
-    if ($.currentCookie) {
-      $.userName =  decodeURIComponent($.currentCookie.match(/pt_pin=(.+?);/) && $.currentCookie.match(/pt_pin=(.+?);/)[1]);
-      $.log(`\n开始【京东账号${i + 1}】${$.userName}`);
-      
+  // if (!getCookies()) return;
+  // if (!getTokens()) return;
+  await requireConfig();
+  for (let i = 0; i < $.cookiesArr.length; i++) {
+    if (cookiesArr[i]) {
+      $.cookie = $.cookiesArr[i];
+      $.currentToken = $.tokenArr[i];
+      cookie = cookiesArr[i];
+      cookiename = cookienameArr[i];
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.index = i + 1;
+      $.isLogin = true;
+      $.nickName = '';
+      await TotalBean();
+      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
+      if (!$.isLogin) {
+        $.nickName = cookiename ? cookiename : $.UserName ;
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
+        continue
+      }
       await cashOut();
     }
+
+    // if ($.cookie) {
+    //   $.userName =  decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]);
+    //   $.log(`\n开始【京东账号${i + 1}】${$.userName}`);
+      
+    //   await cashOut();
+    // }
   }
   await showMsg();
 })()
@@ -73,7 +89,7 @@ function taskUrl(function_path, body) {
   return {
     url: `${JD_API_HOST}jxcfd/${function_path}?strZone=jxcfd&bizCode=jxcfd&source=jxcfd&dwEnv=7&_cfd_t=${Date.now()}&ptag=&${body}&_stk=_cfd_t%2CbizCode%2CddwMinPaperMoney%2CddwMoney%2CdwEnv%2CdwIsCreateToken%2Cptag%2Csource%2CstrPgUUNum%2CstrPgtimestamp%2CstrPhoneID%2CstrZone&_ste=1&_=${Date.now()}&sceneval=2&g_login_type=1&g_ty=ls`,
     headers: {
-      Cookie: $.currentCookie,
+      Cookie: $.cookie,
       Accept: "*/*",
       Connection: "keep-alive",
       Referer:"https://st.jingxi.com/fortune_island/cash.html?jxsid=16115391812299482601&_f_i_jxapp=1",
@@ -87,12 +103,12 @@ function taskUrl(function_path, body) {
 
 function getCookies() {
   if ($.isNode()) {
-    $.cookieArr = Object.values(jdCookieNode);
+    $.cookiesArr = Object.values(jdCookieNode);
   } else {
     const CookiesJd = JSON.parse($.getdata("CookiesJD") || "[]").filter(x => !!x).map(x => x.cookie);
-    $.cookieArr = [$.getdata("CookieJD") || "", $.getdata("CookieJD2") || "", ...CookiesJd];
+    $.cookiesArr = [$.getdata("CookieJD") || "", $.getdata("CookieJD2") || "", ...CookiesJd];
   }
-  if (!$.cookieArr[0]) {
+  if (!$.cookiesArr[0]) {
     $.msg(
       $.name,
       "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取",
@@ -141,6 +157,93 @@ function showMsg() {
     }
     resolve();
   });
+}
+
+function requireConfig() {
+  return new Promise(resolve => {
+    console.log('开始获取配置文件\n')
+    notify = $.isNode() ? require('./sendNotify') : '';
+    //Node.js用户请在jdCookie.js处填写京东ck;
+    const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+    const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
+    const jdTokenNode = $.isNode() ? require('./jdJxncTokens.js') : '';
+    //IOS等用户直接用NobyDa的jd cookie
+    //jdCookieNode
+    if ($.isNode()) {
+      Object.keys(jdCookieNode).forEach((item) => {
+        cookiesArr.push(jdCookieNode[item])
+      })
+      if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+      };
+    } else {
+      cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+    }
+    //jdCookieName
+    if ($.isNode()) {
+      Object.keys(jdCookieName).forEach((item) => {
+        cookienameArr.push(jdCookieName[item])
+      })
+    } else {
+      cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+    }
+    console.log(`共${cookiesArr.length}个京东账号\n`)
+    //获取token
+    if ($.isNode()) {
+    Object.keys(jdTokenNode).forEach((item) => {
+      $.tokenArr.push(jdTokenNode[item] ? JSON.parse(jdTokenNode[item]) : '{}');
+    })
+  } else {
+    $.tokenArr = JSON.parse($.getdata('jx_tokens') || '[]');
+  }
+    resolve()
+  })
+}
+
+function TotalBean() {
+  return new Promise(async resolve => {
+    const options = {
+      "url": `https://wq.jd.com/user/info/QueryJDUserInfo?sceneval=2`,
+      "headers": {
+        "Accept": "application/json,text/plain, */*",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "zh-cn",
+        "Connection": "keep-alive",
+        "Cookie": cookie,
+        "Referer": "https://wqs.jd.com/my/jingdou/my.shtml?sceneval=2",
+        "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.2.2;14.2;%E4%BA%AC%E4%B8%9C/9.2.2 CFNetwork/1206 Darwin/20.1.0")
+      }
+    }
+    $.post(options, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (data) {
+            data = JSON.parse(data);
+            if (data['retcode'] === 13) {
+              $.isLogin = false; //cookie过期
+              return
+            }
+            if (data['retcode'] === 0) {
+              $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+              // console.log(`${$.nickName}`)
+            } else {
+              $.nickName = cookiename ? cookiename : $.UserName ;
+              // console.log(`else ${$.nickName}`)
+            }
+          } else {
+            console.log(`京东服务器返回空数据`)
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve();
+      }
+    })
+  })
 }
 
 // prettier-ignore
