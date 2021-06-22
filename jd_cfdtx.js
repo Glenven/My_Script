@@ -23,38 +23,30 @@ $.tokenArr = [];
 $.currentToken = {};
 $.strPhoneID = '';
 $.strPgUUNum = '';
-$.userName = '';
 
 !(async () => {
   // if (!getCookies()) return;
   // if (!getTokens()) return;
   await requireConfig();
-  for (let i = 0; i < $.cookiesArr.length; i++) {
+  for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
-      $.cookie = $.cookiesArr[i];
+      cookie = cookiesArr[i];
       $.currentToken = $.tokenArr[i];
       cookie = cookiesArr[i];
       cookiename = cookienameArr[i];
-      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
+      $.nickName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
       $.index = i + 1;
       $.isLogin = true;
       $.nickName = '';
       await TotalBean();
-      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
+      console.log(`\n开始【京东账号${$.index}】${$.nickName || $.nickName}\n`);
       if (!$.isLogin) {
-        $.nickName = cookiename ? cookiename : $.UserName ;
-        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
+        $.nickName = cookiename ? cookiename : $.nickName ;
+        $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.nickName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
         continue
       }
       await cashOut();
     }
-
-    // if ($.cookie) {
-    //   $.userName =  decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1]);
-    //   $.log(`\n开始【京东账号${i + 1}】${$.userName}`);
-      
-    //   await cashOut();
-    // }
   }
   await showMsg();
 })()
@@ -73,7 +65,7 @@ function cashOut() {
           $.log(data);
           const { iRet, sErrMsg } = JSON.parse(data);
           $.log(sErrMsg);
-          $.result.push(`【${$.userName}】\n ${sErrMsg == "" ? sErrMsg="今天手气太棒了" : sErrMsg}`);
+          $.result.push(`【${$.nickName}】\n ${sErrMsg == "" ? sErrMsg="今天手气太棒了" : sErrMsg}`);
           resolve(sErrMsg);
         } catch (e) {
           $.logErr(e, resp);
@@ -89,7 +81,7 @@ function taskUrl(function_path, body) {
   return {
     url: `${JD_API_HOST}jxcfd/${function_path}?strZone=jxcfd&bizCode=jxcfd&source=jxcfd&dwEnv=7&_cfd_t=${Date.now()}&ptag=&${body}&_stk=_cfd_t%2CbizCode%2CddwMinPaperMoney%2CddwMoney%2CdwEnv%2CdwIsCreateToken%2Cptag%2Csource%2CstrPgUUNum%2CstrPgtimestamp%2CstrPhoneID%2CstrZone&_ste=1&_=${Date.now()}&sceneval=2&g_login_type=1&g_ty=ls`,
     headers: {
-      Cookie: $.cookie,
+      Cookie: cookie,
       Accept: "*/*",
       Connection: "keep-alive",
       Referer:"https://st.jingxi.com/fortune_island/cash.html?jxsid=16115391812299482601&_f_i_jxapp=1",
@@ -101,26 +93,6 @@ function taskUrl(function_path, body) {
   };
 }
 
-function getCookies() {
-  if ($.isNode()) {
-    $.cookiesArr = Object.values(jdCookieNode);
-  } else {
-    const CookiesJd = JSON.parse($.getdata("CookiesJD") || "[]").filter(x => !!x).map(x => x.cookie);
-    $.cookiesArr = [$.getdata("CookieJD") || "", $.getdata("CookieJD2") || "", ...CookiesJd];
-  }
-  if (!$.cookiesArr[0]) {
-    $.msg(
-      $.name,
-      "【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取",
-      "https://bean.m.jd.com/",
-      {
-        "open-url": "https://bean.m.jd.com/",
-      }
-    );
-    return false;
-  }
-  return true;
-}
 
 function getTokens() {
   if ($.isNode()) {
@@ -230,7 +202,7 @@ function TotalBean() {
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
               // console.log(`${$.nickName}`)
             } else {
-              $.nickName = cookiename ? cookiename : $.UserName ;
+              $.nickName = cookiename ? cookiename : $.nickName ;
               // console.log(`else ${$.nickName}`)
             }
           } else {
