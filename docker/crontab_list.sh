@@ -251,9 +251,11 @@
 #京喜牧场
 15 0,12,22 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
 #东东电竞经理
-15 10,20 * * *  node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
+15 10,20 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
 #全民挖现金
-0 10 * * *  node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
+0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
+#极速版赚金币
+0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 
 
 
