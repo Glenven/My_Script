@@ -36,7 +36,7 @@ cron "5 8,13,19 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/mast
   $.notifyTime = $.getdata("cfd_notifyTime");
   $.result = [];
   $.shareCodes = [];
-  let cookiesArr = [], cookie = '', token;
+  let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '', token;
   
   const randomCount = $.isNode() ? 3 : 3;
   $.appId = 10009;
