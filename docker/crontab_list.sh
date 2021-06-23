@@ -250,7 +250,10 @@
 10 0 * * * node /scripts/jd_jintie_wx.js >> /scripts/logs/jd_jintie_wx.log 2>&1
 #京喜牧场
 15 0,12,22 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
-
+#东东电竞经理
+15 10,20 * * *  node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
+#全民挖现金
+0 10 * * *  node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
 
 
 
