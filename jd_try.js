@@ -570,7 +570,7 @@ async function showMsg() {
     $.totalTry
   }/${$.totalGoods}个商品🛒\n🎉 ${
     $.successList.length
-  }个商品待领取🤩\n🎉${$.successGoodsName} 🎉 结束原因：${$.stopMsg}`;
+  }个商品待领取🤩\n🎉 ${$.successGoodsName}🎉 结束原因：${$.stopMsg}`;
   if (!jdNotify || jdNotify === "false") {
     $.msg($.name, ``, message, {
       "open-url": "https://try.m.jd.com/user",
