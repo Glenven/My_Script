@@ -558,7 +558,7 @@ async function getSuccessList() {
 async function showMsg() {
   if($.successList.length){
     $.successGoodsName = '';
-    for (var i = 0; i < successList.length; i++) {
+    for (var i = 0; i < $.successList.length; i++) {
       $.successGoodsName += `${$.successList[i].trialName}\n`
     }
   }
