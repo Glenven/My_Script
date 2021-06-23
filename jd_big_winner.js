@@ -25,8 +25,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '', linkId = 'DA4SkG7NXupA9sksI00L0g', fflLinkId = 'YhCkrVusBVa_O2K-7xE6hA';
-let redEnvelopeId = '';
-let inviter = '';
+let redEnvelopeId = '315490742bf04977857cfe768ae9625b41441624425312129';
+let inviter = 'ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I';
 //兼容elecV2P
 redEnvelopeId = $.getdata('redEnvelopeId') ? $.getdata('redEnvelopeId') : redEnvelopeId;
 if ($.isNode() && process.env.DYJ_PACKETID) {
@@ -349,7 +349,8 @@ function help() {
     $.get(options, async (err, resp, data) => {
       try {
         data = JSON.parse(data);
-        console.log(data.data.helpResult.errMsg)
+        // console.log(data.data.helpResult.errMsg)
+        console.log(data.data)
         if (data.data.helpResult.code == 16005) {
           await help2()
         }
