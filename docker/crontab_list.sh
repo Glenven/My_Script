@@ -113,6 +113,9 @@
 #柠檬拆红包
 0 0 * * * node /scripts/jd_chb.js >> /scripts/logs/jd_chb.log 2>&1
 
+##天天加速
+8 0-23/3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
+
 ##############长期活动##############
 
 # 签到
