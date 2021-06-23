@@ -556,11 +556,21 @@ async function getSuccessList() {
 }
 
 async function showMsg() {
+  if($.successList.length){
+    $.successGoodsName = '';
+    for (var i = 0; i < successList.length; i++) {
+      $.successGoodsName += `${$.successList[i].trialName}\n`
+    }
+  }
+  else{
+    $.successGoodsName = '暂无试用商品可以领取。再接再厉\n'
+  }
+  // ${JSON.stringify($.successList[0].trialName)}
   let message = `京东账号${$.index} ${$.nickName || $.UserName}\n🎉 本次申请：${
     $.totalTry
   }/${$.totalGoods}个商品🛒\n🎉 ${
     $.successList.length
-  }个商品待领取🤩\n🎉${JSON.stringify($.successList)} \n🎉 结束原因：${$.stopMsg}`;
+  }个商品待领取🤩\n🎉${$.successGoodsName} 🎉 结束原因：${$.stopMsg}`;
   if (!jdNotify || jdNotify === "false") {
     $.msg($.name, ``, message, {
       "open-url": "https://try.m.jd.com/user",
