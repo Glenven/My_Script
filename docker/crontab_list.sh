@@ -122,6 +122,8 @@
 ##东东乐园
 30 14 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
 
+##京喜签到
+30 14 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
 ##############长期活动##############
 
 # 签到
