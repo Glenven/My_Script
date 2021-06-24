@@ -166,7 +166,7 @@ async function showMsg() {
   let nowTime = new Date().getTime() + new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000;
   if (nowTime > new Date(activeEndTime).getTime()) {
     $.msg($.name, 'xtg', `请删除或禁用此脚本\n咱江湖再见`);
-    if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `请删除此脚本\n咱江湖再见`)
+    // if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `请删除此脚本\n咱江湖再见`)
   } else {
     if ($.beanCount) {
       $.msg($.name, ``, `京东账号${$.index} ${$.nickName || $.UserName}\n星推官活动获得：${$.beanCount}京豆`);

@@ -73,7 +73,7 @@ $.shareId = [];
     }
   }
   if (allMessage) {
-    if ($.isNode()) await notify.sendNotify($.name, allMessage);
+    // if ($.isNode()) await notify.sendNotify($.name, allMessage);
     $.msg($.name, '', allMessage, {"open-url": "https://isp5g.m.jd.com"})
   }
   await $.http.get({url: `https://code.c-hiang.cn//api/v1/jd/mohe/read/20`, timeout: 10000}).then(async (resp) => {
