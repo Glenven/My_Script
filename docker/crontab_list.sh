@@ -99,7 +99,7 @@
 23 0 * * * node /scripts/jd_618jc.js >> /scripts/logs/jd_618jc.log 2>&1
 
 #京喜故事
-10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
+# 10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
 
 #京享值PK
 15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
@@ -229,9 +229,9 @@
 #京东直播（又回来了）
 30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1    
 #京小兑
-13 8,16,20 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
+# 13 8,16,20 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
 # 京东试用
-1 3,20 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+1 3 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
 # 京东领积分
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
 # 京东砍价
