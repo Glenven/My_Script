@@ -9,17 +9,17 @@
 ============Quantumultx===============
 [task_local]
 #京喜故事
-10 7 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxstory.js, tag=京喜故事, enabled=true
+10 7 * * * jd_jxstory.js, tag=京喜故事, enabled=true
 
 ================Loon==============
 [Script]
-cron "10 7 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxstory.js,tag=京喜故事
+cron "10 7 * * *" script-path=jd_jxstory.js,tag=京喜故事
 
 ===============Surge=================
-京喜故事 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxstory.js
+京喜故事 = type=cron,cronexp="10 * * * *",wake-system=1,timeout=3600,script-path=https://raw.githubusercontent.com/mcd-ai/surge-/main/jd_jxstory.js
 
 ============小火箭=========
-京喜故事 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_jxstory.js, cronexpr="10 * * * *", timeout=3600, enable=true
+京喜故事 = type=cron,script-path=jd_jxstory.js, cronexpr="10 * * * *", timeout=3600, enable=true
 
  */
 
@@ -31,7 +31,7 @@ const notify = $.isNode() ? require('../sendNotify') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
 const randomCount = 3;
 let cookiesArr = [], cookie = '', message = '';
-const inviteCodes = ['qSDHMwUOz7onHcMyaju4KmdSXWf0dlv7LVnTt1Wzemo=@iuGNoGYvk9YdEImUAz25Wyzm7oeggrm0JSIYgZdHJGI=', 'iuGNoGYvk9YdEImUAz25Wyzm7oeggrm0JSIYgZdHJGI='];
+const inviteCodes = [];
 const jdCookieNode = $.isNode() ? require('../jdCookie.js') : '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
@@ -51,7 +51,7 @@ if ($.isNode()) {
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
-      $.UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
+      $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
       $.index = i + 1;
       $.isLogin = true;
       $.nickName = '';
@@ -61,10 +61,6 @@ if ($.isNode()) {
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
-
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        }
         continue
       }
       await shareCodesFormat();

@@ -18,15 +18,6 @@
 
 ##############短期活动##############
 
-# 京东店铺关注有礼(活动时间：2021-3-8至2021-5-5)
-15 15 * * * node /scripts/jd_shop_follow_sku.js >> /scripts/logs/jd_shop_follow_sku.log 2>&1
-
-# 京东店铺大转盘(活动时间：2021-3-8至2021-5-5)
-3 0,10,23 * * * node /scripts/jd_shop_lottery.js >> /scripts/logs/jd_shop_lottery.log 2>&1
-
-# 京东interCenter渠道店铺签到(活动时间：2021-3-8至2021-5-5)
-0 0 * * * node /scripts/jd__inter_shop_sign.js >> /scripts/logs/jd__inter_shop_sign.log 2>&1
-
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
 10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
 
@@ -45,12 +36,6 @@
 #环球挑战赛 第二季(活动时间：2021-03-08 至 2021-03-31)
 35 6,22 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 
-#手机尚学季 活动时间：2021年3月15日 00:00:00-2021年3月19日 23:59:59
-0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
-
-#TCL 活动时间：4.21-5.3日
-10 0,23 * * * node /scripts/jd_tcl.js >> /scripts/logs/jd_tcl.log 2>&1
-
 #每日抽奖(活动时间：2021-05-01至2021-05-31)
 13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
 
@@ -60,28 +45,11 @@
 #手机狂欢城
 0 0,12,18,21 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
-#618动物联萌
-33 0,6-23/2 * * * node /scripts/jd_zoo.js >> /scripts/logs/jd_zoo.log 2>&1
-
-#618动物联萌专门收集金币(每小时的第30分运行一次)
-0-59/30 * * * * node /scripts/jd_zooCollect.js >> /scripts/logs/jd_zooCollect.log 2>&1
-
-#家电星推官 活动时间：2021年5月27日 00:00:00-2021年6月18日 23:59:59
-0 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
-
-0 0 * * * node /scripts/jd_xtg_help.js >> /scripts/logs/jd_xtg_help.log 2>&1
-
 #金榜创造营 活动时间：2021-05-21至2021-12-31
 0 1,22 * * * node /scripts/jd_gold_creator.js >> /scripts/logs/jd_gold_creator.log 2>&1
 
-#京东沸腾之夜(5.31日有效)
-0 15-19/1 * * * node /scripts/jd_party_night.js >> /scripts/logs/jd_party_night.log 2>&1
-
 #京东星店长
 5 9 * * * node /scripts/jd_starStore.js >> /scripts/logs/jd_starStore.log 2>&1
-
-#明星小店(星店长，2021-06-10)
-0 1,21 * * * node /scripts/jd_star_shop.js >> /scripts/logs/jd_star_shop.log 2>&1
 
 #新潮品牌狂欢（6.18过期）
 20 1,21 * * * node /scripts/jd_mcxhd.js >> /scripts/logs/jd_mcxhd.log 2>&1
@@ -89,32 +57,14 @@
 #京喜领88元红包(6.31到期)
 30 1,6,12,21 * * * node /scripts/jd_jxlhb.js >> /scripts/logs/jd_jxlhb.log 2>&1
 
-#省钱大赢家之翻翻乐
-10,40 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
-
 #源头好物红包
 0 0 * * * node /scripts/jd_coupon.js >> /scripts/logs/jd_coupon.log 2>&1
 
 #618手机竞猜
 23 0 * * * node /scripts/jd_618jc.js >> /scripts/logs/jd_618jc.log 2>&1
 
-#京喜故事
-# 10 2,20 * * * node /scripts/jd_jxstory.js >> /scripts/logs/jd_jxstory.log 2>&1
-
 #京享值PK
 15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
-
-#618动物联萌，只做图鉴里的店铺任务
-10 10 * * * node /scripts/jd_zooMap.js >> /scripts/logs/jd_zooMap.log 2>&1
-
-#柠檬推一推
-0 0 * * * node /scripts/jd_tyt.js >> /scripts/logs/jd_tyt.log 2>&1
-
-#柠檬拆红包
-0 0 * * * node /scripts/jd_chb.js >> /scripts/logs/jd_chb.log 2>&1
-
-##天天加速
-8 0-23/3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
 
 ##天降红包
 30 7 * * * node /scripts/jd_SplitRedPacket.js >> /scripts/logs/jd_SplitRedPacket.log 2>&1
@@ -154,8 +104,8 @@
 1 1 * * * node /scripts/jd_redPacket.js >> /scripts/logs/jd_redPacket.log 2>&1
 # 进店领豆
 10 0 * * * node /scripts/jd_shop.js >> /scripts/logs/jd_shop.log 2>&1
-# 京东天天加速(活动下线)
-# 8 */3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
+#京东天天加速(活动下线)
+8 */3 * * * node /scripts/jd_speed.js >> /scripts/logs/jd_speed.log 2>&1
 # 东东超市
 11 1-23/5 * * * node /scripts/jd_superMarket.js >> /scripts/logs/jd_superMarket.log 2>&1
 # 取关京东店铺商品
@@ -196,8 +146,6 @@
 0 0 * * * node /scripts/jd_car_exchange.js >> /scripts/logs/jd_car_exchange.log 2>&1
 # 导到所有互助码
 47 7 * * * node /scripts/jd_get_share_code.js >> /scripts/logs/jd_get_share_code.log 2>&1
-# 口袋书店
-7 8,12,18 * * * node /scripts/jd_bookshop.js >> /scripts/logs/jd_bookshop.log 2>&1
 # 京喜农场
 0 9,12,18 * * * node /scripts/jd_jxnc.js >> /scripts/logs/jd_jxnc.log 2>&1
 # 签到领现金
@@ -211,7 +159,7 @@
 # 京东秒秒币
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 美丽研究院
-1 7,12,19 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
+1 7,10,20 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 京东保价
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 京东极速版签到+赚现金任务
