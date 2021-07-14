@@ -65,6 +65,7 @@ if (typeof $request !== 'undefined') {
   for (let i = 0; i < BodyArr.length; i++) {
     if (BodyArr[i]) {
       bodyval = BodyArr[i]
+      $.log(`${bodyval}`)
       ID =  decodeURIComponent(bodyval).match(/"openid" : "(\w+)"/)[1]
       apptoken = decodeURIComponent(bodyval).match(/"apptoken" : "(\w+)"/)[1]
       appVersion = decodeURIComponent(bodyval).match(/"appversion" : "(.*)"/)[1]
