@@ -27,9 +27,6 @@
 #女装盲盒 活动时间：2021-4-1至2021-04-31
 5 1,23 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 
-#超级直播间红包雨(活动时间不定期，出现异常提示请忽略。红包雨期间会正常)
-1,31 0-23/1 * * * node /scripts/jd_live_redrain.js >> /scripts/logs/jd_live_redrain.log 2>&1
-
 #京东国际盲盒活动时间】2021年02月23日 起至 2021年03月31日 18:00:00
 5 7,12,23 * * * node /scripts/jd_global_mh.js >> /scripts/logs/jd_global_mh.log 2>&1
 
@@ -48,26 +45,8 @@
 #金榜创造营 活动时间：2021-05-21至2021-12-31
 0 1,22 * * * node /scripts/jd_gold_creator.js >> /scripts/logs/jd_gold_creator.log 2>&1
 
-#京东星店长
-5 9 * * * node /scripts/jd_starStore.js >> /scripts/logs/jd_starStore.log 2>&1
-
-#新潮品牌狂欢（6.18过期）
-20 1,21 * * * node /scripts/jd_mcxhd.js >> /scripts/logs/jd_mcxhd.log 2>&1
-
-#京喜领88元红包(6.31到期)
-30 1,6,12,21 * * * node /scripts/jd_jxlhb.js >> /scripts/logs/jd_jxlhb.log 2>&1
-
-#源头好物红包
-0 0 * * * node /scripts/jd_coupon.js >> /scripts/logs/jd_coupon.log 2>&1
-
-#618手机竞猜
-23 0 * * * node /scripts/jd_618jc.js >> /scripts/logs/jd_618jc.log 2>&1
-
 #京享值PK
 15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
-
-##天降红包
-30 7 * * * node /scripts/jd_SplitRedPacket.js >> /scripts/logs/jd_SplitRedPacket.log 2>&1
 
 ##东东乐园
 30 14 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
@@ -112,8 +91,6 @@
 55 23 * * * node /scripts/jd_unsubscribe.js >> /scripts/logs/jd_unsubscribe.log 2>&1
 # 京豆变动通知
 0 10 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
-# 京东抽奖机
-11 1 * * * node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
 # 京东排行榜
 11 9 * * * node /scripts/jd_rankingList.js >> /scripts/logs/jd_rankingList.log 2>&1
 # 天天提鹅
@@ -186,8 +163,6 @@
 10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
 #京东会员-摇一摇(每月17号运行一次即可)
 59 12 17 * * node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
-#京东摇一摇
-3 20 * * * node /scripts/jd_shake.js >> /scripts/logs/jd_shake.log 2>&1
 #京东健康社区
 13 1,6,22 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
 #京东健康社区收集健康能量
