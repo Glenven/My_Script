@@ -17,7 +17,8 @@ let CookieArr=[],BodyArr=[];
 let bodys = $.getdata('jukan_body')
 let signtimes = $.getdata('jukan_times')
 let cashout = $.getdata('jukan_out')|| false
-let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
+// let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
+let UA = 'Dalvik/2.1.0 (Linux; U; Android 6.0.1; MI NOTE LTE MIUI/V10MXECNDE)'
 let taskresult = "",sumnotify ="";
 let calendarpic = "";
 if ($.isNode()) {
