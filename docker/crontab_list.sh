@@ -35,9 +35,6 @@
 #环球挑战赛 第二季(活动时间：2021-03-08 至 2021-03-31)
 35 6,22 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 
-#每日抽奖(活动时间：2021-05-01至2021-05-31)
-13 1,22,23 * * * node /scripts/jd_daily_lottery.js >> /scripts/logs/jd_daily_lottery.log 2>&1
-
 #城城领现金
 33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
 
@@ -65,8 +62,6 @@
 0 0,23 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
 # 东东农场
 5 6-18/6 * * * node /scripts/jd_fruit.js >> /scripts/logs/jd_fruit.log 2>&1
-# 宠汪汪邀请助力
-10 13-20/1 * * * node /scripts/jd_joy_run.js >> /scripts/logs/jd_joy_run.log 2>&1
 # 摇钱树
 0 */2 * * * node /scripts/jd_moneyTree.js >> /scripts/logs/jd_moneyTree.log 2>&1
 # 东东萌宠
@@ -157,8 +152,6 @@
 1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
 # 京东砍价
 10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
-#京东会员-摇一摇(每月17号运行一次即可)
-59 12 17 * * node /scripts/jd_shakeBean.js >> /scripts/logs/jd_shakeBean.log 2>&1
 #京东健康社区
 13 1,6,22 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
 #京东健康社区收集健康能量
@@ -173,14 +166,12 @@
 0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
 # 金榜创造营，最高瓜分7亿京豆！
 0 8 * * * node /scripts/jd_jbczy.js >> /scripts/logs/jd_jbczy.log 2>&1
-# 金贴小程序（每天大概可得0.07金贴）
-10 0 * * * node /scripts/jd_jintie_wx.js >> /scripts/logs/jd_jintie_wx.log 2>&1
 #京喜牧场
 15 0,12,22 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
 #东东电竞经理
 15 10,20 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
 #全民挖现金
-0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
+# 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
 #极速版赚金币
 0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 
