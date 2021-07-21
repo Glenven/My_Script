@@ -176,6 +176,10 @@
 0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 #送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
+#天天优惠大乐透
+10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
+#早起福利
+35 6 * * * node /scripts/jd_goodMorning.js >> /scripts/logs/jd_goodMorning.log 2>&1
 
 
 # Cron解释
