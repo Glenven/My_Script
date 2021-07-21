@@ -52,6 +52,9 @@
 
 ##京喜签到
 30 14 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
+
+##京东极速版-我的-发财大赢家
+10 6-22/3 * * * node /scripts/jd_fcdyj.js >> /scripts/logs/jd_fcdyj.log 2>&1
 ##############长期活动##############
 
 # 签到
