@@ -14,7 +14,7 @@
 # 吾爱破解签到
 15 */8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
 # 聚看点
-25 */8 * * * node /scripts/jukandian.js >> /scripts/logs/jukandian.log 2>&1
+25 */8 * * * node /scripts/js_jukandian.js >> /scripts/logs/js_jukandian.log 2>&1
 # 包图网签到
 20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
