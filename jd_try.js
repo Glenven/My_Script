@@ -245,6 +245,7 @@ async function getGoodList() {
       console.log(`⏰ 获取 ${cidsKey} ${typeKey} 商品列表`);
       $.totalPages = 1;
       for (let page = 1; page <= $.totalPages; page++) {
+        await $.wait(200);
         await getGoodListByCond(
           cidsMap[cidsKey],
           page,
