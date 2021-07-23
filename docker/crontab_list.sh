@@ -55,6 +55,9 @@
 
 ##京东极速版-我的-发财大赢家
 10 6-22/3 * * * node /scripts/jd_fcdyj.js >> /scripts/logs/jd_fcdyj.log 2>&1
+
+##翻翻乐大赢家
+20 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
 ##############长期活动##############
 
 # 签到
