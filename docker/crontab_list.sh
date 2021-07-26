@@ -122,6 +122,8 @@
 0 9,12,18 * * * node /scripts/jd_jxnc.js >> /scripts/logs/jd_jxnc.log 2>&1
 # 签到领现金
 27 */4 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
+# 愤怒的现金
+0 0,1 * * * node /scripts/jd_angryCash.js >> /scripts/logs/jd_angryCash.log 2>&1
 # 签到领现金红包兑换
 0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
 # 京喜app签到
