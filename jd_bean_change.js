@@ -40,6 +40,15 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
+
+if ($.isNode()) {
+  Object.keys(jdCookieName).forEach((item) => {
+    cookienameArr.push(jdCookieName[item])
+  })
+} else {
+  cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+}
+
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -183,17 +192,22 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return;
             }
-            if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
-              // $.nickName = data.data.userInfo.baseInfo.nickname;
-              $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
-            }
+            // if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
+            //   // $.nickName = data.data.userInfo.baseInfo.nickname;
+            //   $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+            // }else {
+            //   $.nickName = cookiename ? cookiename : $.UserName ;
+            //   // console.log(`else ${$.nickName}`)
+            // }
             if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
+            }else {
+              $.nickName = cookiename ? cookiename : $.UserName ;
+              // console.log(`else ${$.nickName}`)
             }
           } else {
             $.log('京东服务器返回空数据');
-            $.nickName = cookiename ? cookiename : $.UserName ;
           }
         }
       } catch (e) {
