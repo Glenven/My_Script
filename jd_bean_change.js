@@ -188,6 +188,7 @@ function TotalBean() {
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
             }
             if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
+              $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
             }
           } else {
