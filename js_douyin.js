@@ -83,14 +83,14 @@ async function showMsg() {
 
 function PostamemvHost(api,params,body){
     return {
-        url:host +'/luckycat/aweme/v1/task/'+ api + '?' + params + 'aid=2329&device_platform=android&update_version_code=12800201',
+        url:host +'/luckycat/aweme/v1/task/'+ api + '?' + params + 'aid=2329&device_platform=android&update_version_code=14709900',
         headers:{
             'Cookie': cookie,
             'Accept-Encoding': 'gzip, deflate',
             'Content-Type': 'application/json; charset=utf-8',
             'Host': 'api5-normal-c-hl.amemv.com',
             'Connection': 'Keep-Alive',
-            'User-Agent': 'com.ss.android.ugc.aweme.lite/120600 (Linux; U; Android 4.4.2; zh_CN; vivo Y28L; Build/KTU84P; Cronet/TTNetVersion:a87ab8c7 2020-11-24 QuicVersion:47946d2a 2020-10-14)',    
+            'User-Agent': 'com.ss.android.ugc.aweme.lite/140700 (Linux; U; Android 5.1.1; zh_CN; ZTE N939Sc; Build/VED23; Cronet/TTNetVersion:0033c51e 2021-01-18 QuicVersion:47946d2a 2020-10-14)',    
         },
         body:body
     }
@@ -98,14 +98,14 @@ function PostamemvHost(api,params,body){
 
 function GetamemvHost(api,params,body){
     return {
-        url: host +'/luckycat/aweme/v1/task/'+ api + '?' + params + 'aid=2329&device_platform=android&update_version_code=12800201',
+        url: host +'/luckycat/aweme/v1/task/'+ api + '?' + params + 'aid=2329&device_platform=android&update_version_code=14709900',
         headers:{
             'Cookie': cookie,
             'Accept-Encoding': 'gzip, deflate',
             'Content-Type': 'application/json; charset=utf-8',
             'Host': 'api5-normal-c-hl.amemv.com',
             'Connection': 'Keep-Alive',
-            'User-Agent': 'com.ss.android.ugc.aweme.lite/120600 (Linux; U; Android 4.4.2; zh_CN; vivo Y28L; Build/KTU84P; Cronet/TTNetVersion:a87ab8c7 2020-11-24 QuicVersion:47946d2a 2020-10-14)',    
+            'User-Agent': 'com.ss.android.ugc.aweme.lite/140700 (Linux; U; Android 5.1.1; zh_CN; vivo Y28L; Build/KTU84P; Cronet/TTNetVersion:0033c51e 2021-01-18 QuicVersion:47946d2a 2020-10-14)',    
         }
     }
 }
