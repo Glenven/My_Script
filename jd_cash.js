@@ -47,8 +47,8 @@ let allMessage = '';
     return;
   }
   await requireConfig()
-  await getAuthorShareCode();
-  await getAuthorShareCode2();
+  // await getAuthorShareCode();
+  // await getAuthorShareCode2();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -63,6 +63,7 @@ let allMessage = '';
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
         continue
       }
+      await JingDongGetCash(0)
       await jdCash()
     }
   }
@@ -493,6 +494,54 @@ function getAuthorShareCode2(url = "https://cdn.jsdelivr.net/gh/gitupdate/update
     })
   })
 }
+
+function JingDongGetCash(s) {
+  merge.JDGetCash = {};
+  return new Promise(resolve => {
+    if (disable("JDGetCash")) return resolve()
+    setTimeout(() => {
+      const GetCashUrl = {
+        url: 'https://api.m.jd.com/client.action?functionId=cash_sign&body=%7B%22remind%22%3A0%2C%22inviteCode%22%3A%22%22%2C%22type%22%3A0%2C%22breakReward%22%3A0%7D&client=apple&clientVersion=9.0.8&openudid=1fce88cd05c42fe2b054e846f11bdf33f016d676&sign=7e2f8bcec13978a691567257af4fdce9&st=1596954745073&sv=111',
+        headers: {
+          Cookie: KEY,
+        }
+      };
+      $nobyda.get(GetCashUrl, function(error, response, data) {
+        try {
+          if (error) {
+            throw new Error(error)
+          } else {
+            const cc = JSON.parse(data);
+            const Details = LogDetails ? "response:\n" + data : '';
+            if (cc.data.success && cc.data.result) {
+              console.log("\n" + "京东商城-现金签到成功 " + Details)
+              merge.JDGetCash.success = 1
+              merge.JDGetCash.Money = cc.data.result.signCash || 0
+              merge.JDGetCash.notify = `京东商城-现金: 成功, 明细: ${cc.data.result.signCash||`无`}现金 💰`
+            } else {
+              console.log("\n" + "京东商城-现金签到失败 " + Details)
+              merge.JDGetCash.fail = 1
+              if (data.match(/\"bizCode\":201|已经签过/)) {
+                merge.JDGetCash.notify = "京东商城-现金: 失败, 原因: 已签过 ⚠️"
+              } else if (data.match(/\"code\":300|退出登录/)) {
+                merge.JDGetCash.notify = "京东商城-现金: 失败, 原因: Cookie失效‼️"
+              } else {
+                merge.JDGetCash.notify = "京东商城-现金: 失败, 原因: 未知 ⚠️"
+              }
+            }
+          }
+        } catch (eor) {
+          $nobyda.AnError("京东商城-现金", "JDGetCash", eor, response, data)
+        } finally {
+          resolve()
+        }
+      })
+    }, s)
+    if (out) setTimeout(resolve, out + s)
+  });
+}
+
+
 function TotalBean() {
   return new Promise(async resolve => {
     const options = {
