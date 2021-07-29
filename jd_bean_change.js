@@ -32,6 +32,7 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let allMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '';
+
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -73,11 +74,9 @@ if ($.isNode()) {
       await TotalBean();
       console.log(`\n********开始【京东账号${$.index}】${$.nickName || $.UserName}******\n`);
       if (!$.isLogin) {
-        $.nickName = cookiename ? cookiename : $.UserName ;
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
         if ($.isNode()) {
-          $.nickName = cookiename ? cookiename : $.UserName ;
           await notify.sendNotify(`${$.name}cookie已失效 - ${$.nickName}`, `京东账号${$.index} ${$.nickName}\n请重新登录获取cookie`);
         }
         continue
@@ -187,16 +186,17 @@ function TotalBean() {
         if (err) {
           $.logErr(err)
         } else {
+          console.log(data);
           if (data) {
             data = JSON.parse(data);
             if (data['retcode'] === "1001") {
               $.isLogin = false; //cookie过期
               return;
             }
-            if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
-              // $.nickName = data.data.userInfo.baseInfo.nickname;
-              $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
-            }
+            // if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
+            //   // $.nickName = data.data.userInfo.baseInfo.nickname;
+            //   $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+            // }
             if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
             }
