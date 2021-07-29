@@ -77,7 +77,8 @@ if ($.isNode()) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
         if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+          $.nickName = cookiename ? cookiename : $.UserName ;
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.nickName}`, `京东账号${$.index} ${$.nickName}\n请重新登录获取cookie`);
         }
         continue
       }
@@ -192,15 +193,10 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return;
             }
-            // if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
-            //   // $.nickName = data.data.userInfo.baseInfo.nickname;
-            //   $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
-            // }else {
-            //   $.nickName = cookiename ? cookiename : $.UserName ;
-            //   // console.log(`else ${$.nickName}`)
-            // }
-            if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
+            if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
+              // $.nickName = data.data.userInfo.baseInfo.nickname;
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+            if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
             }else {
               $.nickName = cookiename ? cookiename : $.UserName ;
