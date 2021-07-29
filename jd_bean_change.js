@@ -66,7 +66,7 @@ if ($.isNode()) {
       $.todayIncomeBean = 0;
       $.errorMsg = '';
       $.isLogin = true;
-      $.nickName = '';
+      $.nickName = cookiename ? cookiename : $.UserName ;
       $.message = '';
       $.balance = 0;
       $.expiredBalance = 0;
@@ -196,11 +196,9 @@ function TotalBean() {
             if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
               // $.nickName = data.data.userInfo.baseInfo.nickname;
               $.nickName = cookiename ? cookiename : (data['base'] && data['base'].nickname);
+            }
             if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
-            }else {
-              $.nickName = cookiename ? cookiename : $.UserName ;
-              // console.log(`else ${$.nickName}`)
             }
           } else {
             $.log('京东服务器返回空数据');
