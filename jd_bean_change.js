@@ -26,31 +26,32 @@ cron "2 9 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_
 京东资产变动通知 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_bean_change.js, cronexpr="2 9 * * *", timeout=3600, enable=true
  */
 const $ = new Env('京东资产变动通知');
-const notify = $.isNode() ? require('./sendNotify') : '';
+// const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
-const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+// const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let allMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '';
 
-if ($.isNode()) {
-  Object.keys(jdCookieNode).forEach((item) => {
-    cookiesArr.push(jdCookieNode[item])
-  })
-  if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
-} else {
-  cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
-}
+// if ($.isNode()) {
+//   Object.keys(jdCookieNode).forEach((item) => {
+//     cookiesArr.push(jdCookieNode[item])
+//   })
+//   if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {};
+// } else {
+//   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+// }
 
-if ($.isNode()) {
-  Object.keys(jdCookieName).forEach((item) => {
-    cookienameArr.push(jdCookieName[item])
-  })
-} else {
-  cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
-}
+// if ($.isNode()) {
+//   Object.keys(jdCookieName).forEach((item) => {
+//     cookienameArr.push(jdCookieName[item])
+//   })
+// } else {
+//   cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+// }
 
 !(async () => {
+  await requireConfig();
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
     return;
@@ -164,6 +165,37 @@ async function bean() {
   await redPacket();//过期红包
   // console.log(`昨日收入：${$.incomeBean}个京豆 🐶`);
   // console.log(`昨日支出：${$.expenseBean}个京豆 🐶`)
+}
+
+function requireConfig() {
+  return new Promise(resolve => {
+    console.log('开始获取配置文件\n')
+    notify = $.isNode() ? require('./sendNotify') : '';
+    //Node.js用户请在jdCookie.js处填写京东ck;
+    const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+    const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
+    //IOS等用户直接用NobyDa的jd cookie
+    //jdCookieNode
+    if ($.isNode()) {
+      Object.keys(jdCookieNode).forEach((item) => {
+        cookiesArr.push(jdCookieNode[item])
+      })
+      if (process.env.JD_DEBUG && process.env.JD_DEBUG === 'false') console.log = () => {
+      };
+    } else {
+      cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
+    }
+    //jdCookieName
+    if ($.isNode()) {
+      Object.keys(jdCookieName).forEach((item) => {
+        cookienameArr.push(jdCookieName[item])
+      })
+    } else {
+      cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+    }
+    console.log(`共${cookiesArr.length}个京东账号\n`)
+    resolve()
+  })
 }
 
 function TotalBean() {
