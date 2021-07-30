@@ -688,7 +688,7 @@ function invite2() {
         'content-type': 'application/x-www-form-urlencoded',
         'origin': 'https://assignment.jd.com',
         'accept-language': 'zh-cn',
-        'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+        'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "jdltapp;android;3.5.0;6.0.1;8363636343630323233363334393-63D2834373330333234663164643;network/wifi;model/X800 ;addressid/0;aid/71b17c8d2b24a7f9;oaid/;osVer/23;appBuild/1587;psn//XTffMkVAdmY0P1I5wOgqOy25Y8OmolrG0zV82cnX9M=|28;psq/3;adk/;ads/;pap/JA2020_3112531|3.5.0|ANDROID 6.0.1;osv/6.0.1;pv/17.66;jdv/;ref/com.jd.jdlite.lib.personal.view.fragment.JDPersonalFragment;partner/huawei;apprpd/MyJD_Main;eufv/1;Mozilla/5.0 (Linux; Android 6.0.1; X800  Build/BEXCNFN5801810191S; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045537 Mobile Safari/537.36"),
         'referer': 'https://assignment.jd.com/?inviterId=' + encodeURIComponent(inviterPins),
         'Cookie': cookie
     },
@@ -703,6 +703,7 @@ function invite2() {
               if (data) {
                 console.log(`invite2`)
                 data = JSON.parse(data);
+                console.log(data)
               } else {
                 console.log(`京东服务器返回空数据`)
               }
@@ -730,11 +731,12 @@ function invite() {
         'content-type': 'application/x-www-form-urlencoded',
         'origin': 'https://invite-reward.jd.com',
         'accept-language': 'zh-cn',
-        'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+        'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "jdltapp;android;3.5.0;6.0.1;8363636343630323233363334393-63D2834373330333234663164643;network/wifi;model/X800 ;addressid/0;aid/71b17c8d2b24a7f9;oaid/;osVer/23;appBuild/1587;psn//XTffMkVAdmY0P1I5wOgqOy25Y8OmolrG0zV82cnX9M=|28;psq/3;adk/;ads/;pap/JA2020_3112531|3.5.0|ANDROID 6.0.1;osv/6.0.1;pv/17.66;jdv/;ref/com.jd.jdlite.lib.personal.view.fragment.JDPersonalFragment;partner/huawei;apprpd/MyJD_Main;eufv/1;Mozilla/5.0 (Linux; Android 6.0.1; X800  Build/BEXCNFN5801810191S; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045537 Mobile Safari/537.36"),
         'referer': 'https://invite-reward.jd.com/',
         'Cookie': cookie
     },
-        'body': 'functionId=InviteFriendApiService&body={"method":"attendInviteActivity","data":{"inviterPin":"' + encodeURIComponent(inviterPins) + '","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidIf3dd8121b7sdmiBLGdxRR46OlWyh62kFAZogTJFnYqqRkwgr63%2BdGmMlcv7EQJ5v0HBic81xHXzXLwKM6fh3i963zIa7Ym2v5ehnwo2B7uDN92Q0&aid=&client=ios&clientVersion=14.4&networkType=wifi&fp=-1&appid=market-task-h5&_t=' +new Date()
+    // {"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A=","channel":1,"token":"mrgpgtcz3jrbalecm5216276202882423i7s~NmZeSyVEbFNSd3V6clNdB3VwAw9lRHpTBiUjb35DFm5vLUROOBEzLUF7G28iAAFBKBgVFA1EPwIVKDclGENXbm8iVlQiAwpTTx1lKSsTCG5vfmsaDUR6LUEnG29+PU8DKHNVCTRSZ0NWeXYuJlFVCnR3AVplADdFAHFyfXxWCwEvdEVkc0oKUwoyKhFmWzEQOTZCXQ1Eei1BKTQ5GENXbm8tWU44EjNcESQwLDYFQ1gpalRXPDp0XT9jNyMYQ1dub2trGn06dAEXHWV3GEMFRjk0RAINRHotQTEuEWZbMRB8fBsNfVdmXVNtd2F2PU9Pb2gVXTUCJRZBe2UnPVgZEGFmVEtzXHQCCHd2eycSAkR1L19POgssFhMoLjo1CB9cOH1BSGIcZkhQIj9vaEMOEHdmAFo/AT4FEHgiKjcRGFYlfVtTNFdgQ1R3dX12WVUAeXRGViBVdF1BJTQjZltPQHkrT1IrVyxTT2MuPmZbTwNvaBVSOAV0S0F4fnR9QxA=|~1627620584679~1~20201218~eyJ2aXdlIjoiMCIsImJhaW4iOnsiaWMiOiIwIiwibGUiOiI5NCIsImN0IjoiaSIsImR0IjoiaSJ9fQ==~2~-231~eiv5|doei:,1,0,0,0,0,1000,-1000,1000,-1000;dmei:,1,0,0,1000,-1000,1000,-1000,1000,-1000;emc:;emmm:;emcf:;ivli:;iivl:;ivcvj:;scvje:;ewhi:;1627620584460,1627620584678,0,0,0,0,0,0,0,0,0;88yo","frontendInitStatus":"s"}}
+        'body': 'functionId=InviteFriendApiService&body={"method":"attendInviteActivity","data":{"inviterPin":"' + encodeURIComponent(inviterPins) + '","channel":1,"mrgpgtcz3jrbalecm5216276202882423i7s~NmZeSyVEbFNSd3V6clNdB3VwAw9lRHpTBiUjb35DFm5vLUROOBEzLUF7G28iAAFBKBgVFA1EPwIVKDclGENXbm8iVlQiAwpTTx1lKSsTCG5vfmsaDUR6LUEnG29+PU8DKHNVCTRSZ0NWeXYuJlFVCnR3AVplADdFAHFyfXxWCwEvdEVkc0oKUwoyKhFmWzEQOTZCXQ1Eei1BKTQ5GENXbm8tWU44EjNcESQwLDYFQ1gpalRXPDp0XT9jNyMYQ1dub2trGn06dAEXHWV3GEMFRjk0RAINRHotQTEuEWZbMRB8fBsNfVdmXVNtd2F2PU9Pb2gVXTUCJRZBe2UnPVgZEGFmVEtzXHQCCHd2eycSAkR1L19POgssFhMoLjo1CB9cOH1BSGIcZkhQIj9vaEMOEHdmAFo/AT4FEHgiKjcRGFYlfVtTNFdgQ1R3dX12WVUAeXRGViBVdF1BJTQjZltPQHkrT1IrVyxTT2MuPmZbTwNvaBVSOAV0S0F4fnR9QxA=|~1627620584679~1~20201218~eyJ2aXdlIjoiMCIsImJhaW4iOnsiaWMiOiIwIiwibGUiOiI5NCIsImN0IjoiaSIsImR0IjoiaSJ9fQ==~2~-231~eiv5|doei:,1,0,0,0,0,1000,-1000,1000,-1000;dmei:,1,0,0,1000,-1000,1000,-1000,1000,-1000;emc:;emmm:;emcf:;ivli:;iivl:;ivcvj:;scvje:;ewhi:;1627620584460,1627620584678,0,0,0,0,0,0,0,0,0;88yo","frontendInitStatus":""}}&referer=-1&eid=eidIf3dd8121b7sdmiBLGdxRR46OlWyh62kFAZogTJFnYqqRkwgr63%2BdGmMlcv7EQJ5v0HBic81xHXzXLwKM6fh3i963zIa7Ym2v5ehnwo2B7uDN92Q0&aid=&client=ios&clientVersion=14.4&networkType=wifi&fp=-1&appid=market-task-h5&_t=' +new Date()
     };
     $.post(options, (err, resp, data) => {
         try {
@@ -745,6 +747,7 @@ function invite() {
               if (data) {
                 console.log(`invite`)
                 data = JSON.parse(data);
+                console.log(data)
               } else {
                 console.log(`京东服务器返回空数据`)
               }
