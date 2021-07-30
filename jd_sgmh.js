@@ -216,7 +216,7 @@ function interact_template_getLotteryResult(taskId,timeout = 0) {
           'Cookie' : cookie,
           'Connection' : `keep-alive`,
           'Accept' : `application/json, text/plain, */*`,
-          'Referer' : `https://h5.m.jd.com/babelDiy/Zeus/2WBcKYkn8viyxv7MoKKgfzmu7Dss/index.html?inviteId=P04z54XCjVXmYaW5m9cZ2f433tIlGBj3JnLHD0`,//?inviteId=P225KkcRx4b8lbWJU72wvZZcwCjVXmYaS5jQ P225KkcRx4b8lbWJU72wvZZcwCjVXmYaS5jQ
+          'Referer' : `https://h5.m.jd.com/babelDiy/Zeus/2WBcKYkn8viyxv7MoKKgfzmu7Dss/index.html?inviteId=T019-aknAFRllhyoQlyI46gCjVQmoaT5kRrbA`,//?inviteId=P225KkcRx4b8lbWJU72wvZZcwCjVXmYaS5jQ P225KkcRx4b8lbWJU72wvZZcwCjVXmYaS5jQ
           'Host' : `api.m.jd.com`,
           'Accept-Encoding' : `gzip, deflate, br`,
           'Accept-Language' : `zh-cn`

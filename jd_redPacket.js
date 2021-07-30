@@ -34,10 +34,10 @@ $.redPacketId = [];
  */
 if ($['isNode']()) {
     Object['keys'](jdCookieNode)['forEach'](_0x331d2e => {
-        cookiesArr['push'](jdCookieNode[_0x331d2e]);
+        cookiesArr.push(jdCookieNode[_0x331d2e]);
     });
-    if (process['env']['JD_DEBUG'] && process['env']['JD_DEBUG'] === 'false') console['log'] = () => {};
-    if (JSON['stringify'](process['env'])['indexOf']('GITHUB') > -0x1) process['exit'](0x0);
+    if (process['env']['JD_DEBUG'] && process['env']['JD_DEBUG'] === 'false') console.log = () => {};
+    if (JSON.stringify(process['env'])['indexOf']('GITHUB') > -0x1) process['exit'](0x0);
 } else {
     cookiesArr = [$['getdata']('CookieJD'), $['getdata']('CookieJD2'), ...jsonParse($['getdata']('CookiesJD') || '[]')['map'](_0x571e32 => _0x571e32['cookie'])]['filter'](_0x279622 => !!_0x279622);
 }
@@ -80,23 +80,21 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
     let _0x254699 = await _0x2b599c['WDhXz'](getAuthorShareCode, 'https://raw.githubusercontent.com/gitupdate/updateTeam/master/shareCodes/jd_red.json'),
         _0x49dd90 = await _0x2b599c['sqQLO'](getAuthorShareCode, 'http://cdn.annnibb.me/red.json');
     if (!_0x254699) _0x254699 = await _0x2b599c['epCvw'](getAuthorShareCode);
-    $['authorMyShareIds'] = [..._0x254699 || [], ..._0x49dd90 || []];
+    // $.authorMyShareIds = [..._0x254699 || [], ..._0x49dd90 || []];
+    $.authorMyShareIds = [];
     for (let _0xd83cb6 = 0x0; _0x2b599c['yPPHv'](_0xd83cb6, cookiesArr['length']); _0xd83cb6++) {
         if (cookiesArr[_0xd83cb6]) {
             cookie = cookiesArr[_0xd83cb6];
             $['UserName'] = decodeURIComponent(cookie['match'](/pt_pin=([^; ]+)(?=;?)/) && cookie['match'](/pt_pin=([^; ]+)(?=;?)/)[0x1]);
             $['index'] = _0xd83cb6 + 0x1;
-            $['isLogin'] = !![];
+            $['isLogin'] = true;
             $['nickName'] = '';
             await TotalBean();
-            console['log']('\n****开始【京东账号' + $['index'] + '】' + ($['nickName'] || $['UserName']) + '****\x0a');
+            console.log('\n****开始【京东账号' + $['index'] + '】' + ($['nickName'] || $['UserName']) + '****\x0a');
             if (!$['isLogin']) {
                 $['msg']($['name'], '【提示】cookie已失效', '京东账号' + $['index'] + ' ' + ($['nickName'] || $['UserName']) + '\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action', {
                     'open-url': 'https://bean.m.jd.com/bean/signIndex.action'
                 });
-                // if ($['isNode']()) {
-                //     await notify['sendNotify']($['name'] + 'cookie已失效 - ' + $['UserName'], '京东账号' + $['index'] + ' ' + $['UserName'] + '\n请重新登录获取cookie');
-                // }
                 continue;
             }
             $['discount'] = 0x0;
@@ -108,33 +106,33 @@ const JD_API_HOST = 'https://api.m.jd.com/api';
         cookie = cookiesArr[_0x108dc3];
         $['index'] = _0x2b599c['duSwE'](_0x108dc3, 0x1);
         $['UserName'] = _0x2b599c['Imrul'](decodeURIComponent, cookie['match'](/pt_pin=([^; ]+)(?=;?)/) && cookie['match'](/pt_pin=([^; ]+)(?=;?)/)[0x1]);
-        $['canHelp'] = !![];
-        $['redPacketId'] = [...new Set($['redPacketId'])];
+        $.canHelp = true;
+        $.redPacketId = [...new Set($.redPacketId)];
         if (cookiesArr && cookiesArr['length'] > 0x2) {
-            console['log']('\n\n自己账号内部互助');
-            for (let _0x5c5ad1 of $['redPacketId']) {
-                console['log']('账号 ' + $['index'] + ' ' + $['UserName'] + ' 开始给 ' + _0x5c5ad1 + ' 进行助力');
+            console.log('\n\n自己账号内部互助');
+            for (let _0x5c5ad1 of $.redPacketId) {
+                console.log('账号 ' + $['index'] + ' ' + $['UserName'] + ' 开始给 ' + _0x5c5ad1 + ' 进行助力');
                 await jinli_h5assist(_0x5c5ad1);
-                if (!$['canHelp']) {
-                    console['log']('次数已用完或活动火爆，跳出助力');
+                if (!$.canHelp) {
+                    console.log('次数已用完或活动火爆，跳出助力');
                     break;
                 }
             }
         }
-        if ($['canHelp']) {
-            console['log']('\n\n有剩余助力机会则给作者lxk0301进行助力');
-            for (let _0x3f5aaf of $['authorMyShareIds'] || []) {
-                console['log']('\x0a账号 ' + $['index'] + ' ' + $['UserName'] + ' 开始给作者 ' + _0x3f5aaf + ' 进行助力');
+        if ($.canHelp) {
+            console.log('\n\n有剩余助力机会则给作者lxk0301进行助力');
+            for (let _0x3f5aaf of $.authorMyShareIds || []) {
+                console.log('\x0a账号 ' + $['index'] + ' ' + $['UserName'] + ' 开始给作者 ' + _0x3f5aaf + ' 进行助力');
                 await jinli_h5assist(_0x3f5aaf);
-                if (!$['canHelp']) {
-                    console['log']('次数已用完，跳出助力');
+                if (!$.canHelp) {
+                    console.log('次数已用完，跳出助力');
                     break;
                 }
             }
         }
     }
 })()['catch'](_0x598b1d => {
-    $['log']('', '❌ ' + $['name'] + ', 失败! 原因: ' + _0x598b1d + '!', '');
+    $.log('', '❌ ' + $['name'] + ', 失败! 原因: ' + _0x598b1d + '!', '');
 })['finally'](() => {
     $['done']();
 });
@@ -166,7 +164,7 @@ async function redPacket() {
         if (_0x3d851d['IQjWk']('lBXHO', _0x3d851d['mMzXs'])) {
             var _0x15e94e = _0x3d851d['BlsrB']['split']('|'),
                 _0x2d5c8a = 0x0;
-            while (!![]) {
+            while (true) {
                 switch (_0x15e94e[_0x2d5c8a++]) {
                     case '0':
                         await _0x3d851d['BUiTm'](doLuckDrawFun);
@@ -196,14 +194,14 @@ async function redPacket() {
         if (_0x3d851d['iugmP'](_0x3d851d['EkOxt'], 'pDHXQ')) {
             $['logErr'](_0x4372c4);
         } else {
-            console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-            console['log'](JSON['stringify'](err));
+            console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+            console.log(JSON.stringify(err));
         }
     }
 }
 
 function showMsg() {
-    console['log']('\x0a\x0a' + $['name'] + '获得红包：' + $['discount'] + '元\n\n');
+    console.log('\x0a\x0a' + $['name'] + '获得红包：' + $['discount'] + '元\n\n');
 }
 async function doLuckDrawFun() {
     var _0x1678ca = {
@@ -270,8 +268,8 @@ function doLuckDrawEntrance() {
                 try {
                     if (_0x446f01) {
                         if (_0x2d8ba8['JWjKW']('jTAit', _0x2d8ba8['WlnFb'])) {
-                            console['log']('' + JSON['stringify'](_0x446f01));
-                            console['log']($['name'] + ' API请求失败，请检查网路重试');
+                            console.log('' + JSON.stringify(_0x446f01));
+                            console.log($['name'] + ' API请求失败，请检查网路重试');
                         } else {
                             const _0x4ec2ee = $['h5activityIndex']['data'][_0x55ffbc['JDPbl']]['rewards'] || [];
                             for (let _0x9bcdf9 of _0x4ec2ee) {
@@ -286,26 +284,26 @@ function doLuckDrawEntrance() {
                                 if (_0x2d8ba8['mLXhv'](_0x41b7f['code'], '0') && _0x41b7f['busiCode'] === '0') {
                                     if (_0x2d8ba8['oyFMf'] !== _0x2d8ba8['BCqMn']) {
                                         if (_0x41b7f['result']['luckyDrawData']['actId']) {
-                                            if (_0x41b7f['result']['luckyDrawData']['redPacketId']) {
+                                            if (_0x41b7f['result']['luckyDrawData'].redPacketId) {
                                                 if (_0x2d8ba8['dhJSE'] === 'nFreq') {
-                                                    url = 'https://api.m.jd.com/client.action?functionId=' + functionId + '&body=' + escape(JSON['stringify'](body)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158358007&sign=a15f78e5846f9b0178dcabb1093a6a7f&sv=100';
+                                                    url = 'https://api.m.jd.com/client.action?functionId=' + functionId + '&body=' + escape(JSON.stringify(body)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158358007&sign=a15f78e5846f9b0178dcabb1093a6a7f&sv=100';
                                                 } else {
-                                                    console['log']('券后9.9抽奖获得【红包】：' + _0x41b7f['result']['luckyDrawData']['quota'] + '元');
+                                                    console.log('券后9.9抽奖获得【红包】：' + _0x41b7f['result']['luckyDrawData']['quota'] + '元');
                                                 }
                                             } else {
-                                                console['log']('券后9.9抽奖获得【优惠券】：' + _0x41b7f['result']['luckyDrawData']['discount'] + '元：' + _0x41b7f['result']['luckyDrawData']['prizeName'] + '，' + _0x41b7f['result']['luckyDrawData']['quotaDesc']);
+                                                console.log('券后9.9抽奖获得【优惠券】：' + _0x41b7f['result']['luckyDrawData']['discount'] + '元：' + _0x41b7f['result']['luckyDrawData']['prizeName'] + '，' + _0x41b7f['result']['luckyDrawData']['quotaDesc']);
                                             }
                                         } else {
-                                            console['log']('券后9.9抽奖获失败：今日3次抽奖机会已用完\n');
+                                            console.log('券后9.9抽奖获失败：今日3次抽奖机会已用完\n');
                                         }
                                     } else {
-                                        console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                        console['log'](JSON['stringify'](_0x446f01));
+                                        console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                        console.log(JSON.stringify(_0x446f01));
                                     }
                                 }
                             } else {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x446f01));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x446f01));
                             }
                         }
                     }
@@ -315,7 +313,7 @@ function doLuckDrawEntrance() {
                     _0x2d8ba8['wQeAQ'](_0x3d43ca);
                 }
             } else {
-                console['log']('\x0a\x0a' + $['name'] + '获得红包：' + $['discount'] + '元\n\n');
+                console.log('\x0a\x0a' + $['name'] + '获得红包：' + $['discount'] + '元\n\n');
             }
         });
     });
@@ -378,13 +376,13 @@ async function doTask() {
             if (_0x3b27d9['dcBtf'](_0x3b27d9['jiLne'], _0x3b27d9['jiLne'])) {
                 resolve(data);
             } else {
-                console['log']('    任务     状态  红包是否领取');
+                console.log('    任务     状态  红包是否领取');
                 for (let _0x2c246a of $['taskInfo']) {
-                    console['log'](_0x2c246a['title']['slice'](-0x6) + '   ' + (_0x2c246a['alreadyReceivedCount'] ? _0x2c246a['alreadyReceivedCount'] : 0x0) + '/' + _0x2c246a['requireCount'] + '      ' + (_0x2c246a['innerStatus'] === 0x4 ? '是' : '否'));
+                    console.log(_0x2c246a['title']['slice'](-0x6) + '   ' + (_0x2c246a['alreadyReceivedCount'] ? _0x2c246a['alreadyReceivedCount'] : 0x0) + '/' + _0x2c246a['requireCount'] + '      ' + (_0x2c246a['innerStatus'] === 0x4 ? '是' : '否'));
                 }
                 for (let _0x9c974d of $['taskInfo']) {
                     if (_0x3b27d9['BYFcq'](_0x9c974d['innerStatus'], 0x4)) {
-                        console['log']('[' + _0x9c974d['title'] + '] 已经领取奖励');
+                        console.log('[' + _0x9c974d['title'] + '] 已经领取奖励');
                     } else if (_0x9c974d['innerStatus'] === 0x3) {
                         await _0x3b27d9['YkaQH'](receiveTaskRedpacket, _0x9c974d['taskType']);
                     } else if (_0x9c974d['innerStatus'] === 0x2) {
@@ -392,38 +390,38 @@ async function doTask() {
                             if (_0x3b27d9['ZjWmx'](_0x3b27d9['LUede'], _0x3b27d9['UwoqG'])) {
                                 data = JSON['parse'](data);
                                 if (data && data['data'] && _0x3b27d9['BYFcq'](data['data'][_0x3b27d9['wMOyt']], 0x0)) {
-                                    console['log']('拆红包获得：' + data['data']['result'][_0x3b27d9['dHvqM']] + '元');
+                                    console.log('拆红包获得：' + data['data']['result'][_0x3b27d9['dHvqM']] + '元');
                                 } else {
-                                    console['log']('领红包失败：' + JSON['stringify'](data));
+                                    console.log('领红包失败：' + JSON.stringify(data));
                                 }
                             } else {
-                                console['log']('开始做【' + _0x9c974d['title'] + '】任务');
+                                console.log('开始做【' + _0x9c974d['title'] + '】任务');
                                 await _0x3b27d9['gtfAT'](active, _0x9c974d['taskType']);
-                                console['log']('开始领取【' + _0x9c974d['title'] + '】任务所得红包奖励');
+                                console.log('开始领取【' + _0x9c974d['title'] + '】任务所得红包奖励');
                                 await _0x3b27d9['EfNZp'](receiveTaskRedpacket, _0x9c974d['taskType']);
                             }
                         } else if (_0x3b27d9['AxCVO'](_0x9c974d['taskType'], 0x1)) {
-                            console['log']('开始做【' + _0x9c974d['title'] + '】任务');
+                            console.log('开始做【' + _0x9c974d['title'] + '】任务');
                             await _0x3b27d9['cBjfa'](doAppTask);
                         } else {
-                            console['log']('[' + _0x9c974d['title'] + '] 功能未开发');
+                            console.log('[' + _0x9c974d['title'] + '] 功能未开发');
                         }
                     } else if (_0x3b27d9['UMaLf'](_0x9c974d['innerStatus'], 0x4)) {
-                        console['log']('\n开始领取【' + _0x9c974d['title'] + '】任务');
+                        console.log('\n开始领取【' + _0x9c974d['title'] + '】任务');
                         await _0x3b27d9['agwdz'](startTask, _0x9c974d['taskType']);
                         if (_0x3b27d9['wrkWS'](_0x9c974d['taskType'], 0x0) && _0x3b27d9['wrkWS'](_0x9c974d['taskType'], 0x1)) {
-                            console['log']('开始做【' + _0x9c974d['title'] + '】任务');
+                            console.log('开始做【' + _0x9c974d['title'] + '】任务');
                             await _0x3b27d9['UIQYz'](active, _0x9c974d['taskType']);
-                            console['log']('开始领取【' + _0x9c974d['title'] + '】任务所得红包奖励');
+                            console.log('开始领取【' + _0x9c974d['title'] + '】任务所得红包奖励');
                             await _0x3b27d9['VwJwy'](receiveTaskRedpacket, _0x9c974d['taskType']);
                         } else if (_0x9c974d['taskType'] === 0x1) {
-                            console['log']('开始做【' + _0x9c974d['title'] + '】任务');
+                            console.log('开始做【' + _0x9c974d['title'] + '】任务');
                             await _0x3b27d9['cBjfa'](doAppTask);
                         } else {
                             if (_0x3b27d9['AxCVO'](_0x3b27d9['gytIv'], _0x3b27d9['VbRMK'])) {
                                 $['logErr'](e, resp);
                             } else {
-                                console['log']('[' + _0x9c974d['title'] + '] 功能未开发');
+                                console.log('[' + _0x9c974d['title'] + '] 功能未开发');
                             }
                         }
                     }
@@ -431,7 +429,7 @@ async function doTask() {
             }
         }
     } else {
-        console['log']('\n获取任务列表异常：' + JSON['stringify']($['taskHomePageData']) + '\x0a');
+        console.log('\n获取任务列表异常：' + JSON.stringify($['taskHomePageData']) + '\x0a');
     }
 }
 async function red() {
@@ -489,15 +487,15 @@ async function red() {
         }
     } else if ($['h5activityIndex'] && $['h5activityIndex']['data'] && _0xf8d4f2['ZJnnS']($['h5activityIndex']['data']['biz_code'], 0x4e21)) {
         const _0xdfe9b5 = $['h5activityIndex'][_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['CyXBV']]['id'];
-        if (_0xdfe9b5) $['redPacketId']['push'](_0xdfe9b5);
-        console['log']('\x0a\x0a当前待拆红包ID:' + $['h5activityIndex'][_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['CyXBV']]['id'] + '，进度：再邀' + $['h5activityIndex'][_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['hPldU']] + '个好友，开第' + ($['hasSendNumber'] + 0x1) + '个红包。当前已拆红包：' + $['hasSendNumber'] + '个，剩余' + $['h5activityIndex'][_0xf8d4f2['sWYWP']]['result']['remainRedpacketNumber'] + '个红包待开，已有' + $['assistants'] + '好友助力\x0a\x0a');
+        if (_0xdfe9b5) $.redPacketId.push(_0xdfe9b5);
+        console.log('\x0a\x0a当前待拆红包ID:' + $['h5activityIndex'][_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['CyXBV']]['id'] + '，进度：再邀' + $['h5activityIndex'][_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['hPldU']] + '个好友，开第' + ($['hasSendNumber'] + 0x1) + '个红包。当前已拆红包：' + $['hasSendNumber'] + '个，剩余' + $['h5activityIndex'][_0xf8d4f2['sWYWP']]['result']['remainRedpacketNumber'] + '个红包待开，已有' + $['assistants'] + '好友助力\x0a\x0a');
         const _0x3aaf94 = $['h5activityIndex']['data'][_0xf8d4f2['pevEv']][_0xf8d4f2['CyXBV']][_0xf8d4f2['VNiVk']] || 0x0;
-        console['log']('当前可拆红包个数：' + _0x3aaf94);
+        console.log('当前可拆红包个数：' + _0x3aaf94);
         if (_0xf8d4f2['xQQDd'](_0x3aaf94, 0x0)) {
             if (_0xf8d4f2['vVgRF'] !== 'bBLKh') {
-                console['log']('助力结果：' + data['data']['result'][_0xf8d4f2['ZqOHs']]);
-                if (data[_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['twrQs']] === 0x3) $['canHelp'] = ![];
-                if (_0xf8d4f2['JfIrO'](data[_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['twrQs']], 0x9)) $['canHelp'] = ![];
+                console.log('助力结果：' + data['data']['result'][_0xf8d4f2['ZqOHs']]);
+                if (data[_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['twrQs']] === 0x3) $.canHelp = ![];
+                if (_0xf8d4f2['JfIrO'](data[_0xf8d4f2['sWYWP']][_0xf8d4f2['pevEv']][_0xf8d4f2['twrQs']], 0x9)) $.canHelp = ![];
             } else {
                 for (let _0x1e176e = 0x0; _0xf8d4f2['cWZxl'](_0x1e176e, new Array(_0x3aaf94)['fill']('')['length']); _0x1e176e++) {
                     if (!_0xdfe9b5) break;
@@ -508,11 +506,11 @@ async function red() {
         }
     } else if ($['h5activityIndex'] && $['h5activityIndex']['data'] && $['h5activityIndex']['data'][_0xf8d4f2['eHsRq']] === 0x4e22) {
         if ('qVBZh' !== _0xf8d4f2['damdx']) {
-            console['log']('\x0a' + $['h5activityIndex']['data'][_0xf8d4f2['tSMtB']] + '\x0a');
+            console.log('\x0a' + $['h5activityIndex']['data'][_0xf8d4f2['tSMtB']] + '\x0a');
         } else {
             if (err) {
-                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                console['log'](JSON['stringify'](err));
+                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                console.log(JSON.stringify(err));
             } else {
                 $['taskHomePageData'] = JSON['parse'](data);
             }
@@ -558,7 +556,7 @@ function taskHomePage() {
             }
         };
         if (_0x18f4cb['VCZWx'](_0x18f4cb['jGpTc'], _0x18f4cb['JmYGW'])) {
-            $['post'](_0x18f4cb['SUvrz'](taskUrl, arguments['callee']['name']['toString'](), {
+            $['post'](_0x18f4cb['SUvrz'](taskUrl, arguments.callee['name'].toString(), {
                 'clientInfo': {}
             }), (_0x1c6bdd, _0x356597, _0x518e89) => {
                 if (_0x18f4cb['BcQCf'](_0x18f4cb['KxnUO'], _0x18f4cb['KxnUO'])) {
@@ -566,22 +564,22 @@ function taskHomePage() {
                 } else {
                     try {
                         if (_0x18f4cb['VCZWx'](_0x18f4cb['tfLwG'], _0x18f4cb['tfLwG'])) {
-                            url = 'https://api.m.jd.com/client.action?functionId=' + functionId + '&body=' + _0x4c7fe3['dUkhn'](escape, JSON['stringify'](body)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158435079&sign=7eff07437dd817dbfa348c209fd5c129&sv=120';
+                            url = 'https://api.m.jd.com/client.action?functionId=' + functionId + '&body=' + _0x4c7fe3['dUkhn'](escape, JSON.stringify(body)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158435079&sign=7eff07437dd817dbfa348c209fd5c129&sv=120';
                         } else {
                             if (_0x1c6bdd) {
                                 if (_0x18f4cb['NwCYs'](_0x18f4cb['SiEKp'], 'jIvjU')) {
-                                    console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                    console['log'](JSON['stringify'](_0x1c6bdd));
+                                    console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                    console.log(JSON.stringify(_0x1c6bdd));
                                 } else {
-                                    if (_0x518e89['result']['luckyDrawData']['redPacketId']) {
-                                        console['log']('券后9.9抽奖获得【红包】：' + _0x518e89['result']['luckyDrawData']['quota'] + '元');
+                                    if (_0x518e89['result']['luckyDrawData'].redPacketId) {
+                                        console.log('券后9.9抽奖获得【红包】：' + _0x518e89['result']['luckyDrawData']['quota'] + '元');
                                     } else {
-                                        console['log']('券后9.9抽奖获得【优惠券】：' + _0x518e89['result']['luckyDrawData']['discount'] + '元：' + _0x518e89['result']['luckyDrawData']['prizeName'] + '，' + _0x518e89['result']['luckyDrawData']['quotaDesc']);
+                                        console.log('券后9.9抽奖获得【优惠券】：' + _0x518e89['result']['luckyDrawData']['discount'] + '元：' + _0x518e89['result']['luckyDrawData']['prizeName'] + '，' + _0x518e89['result']['luckyDrawData']['quotaDesc']);
                                     }
                                 }
                             } else {
                                 if (_0x18f4cb['NwCYs'](_0x18f4cb['hzvXy'], _0x18f4cb['Cmvmt'])) {
-                                    console['log']('券后9.9抽奖获得【红包】：' + _0x518e89['result']['luckyDrawData']['quota'] + '元');
+                                    console.log('券后9.9抽奖获得【红包】：' + _0x518e89['result']['luckyDrawData']['quota'] + '元');
                                 } else {
                                     $['taskHomePageData'] = JSON['parse'](_0x518e89);
                                 }
@@ -595,8 +593,8 @@ function taskHomePage() {
                 }
             });
         } else {
-            console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-            console['log'](JSON['stringify'](err));
+            console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+            console.log(JSON.stringify(err));
         }
     });
 }
@@ -623,21 +621,21 @@ function startTask(_0x4ac69a) {
     let _0x3d654a = {
         'taskType': _0x4ac69a
     };
-    _0x3d654a[_0x20180a['SbFsC']] = $['md5']($['md5'](_0x20180a['nSnHt']('j', JSON['stringify'](_0x3d654a)) + 'D'));
+    _0x3d654a[_0x20180a['SbFsC']] = $['md5']($['md5'](_0x20180a['nSnHt']('j', JSON.stringify(_0x3d654a)) + 'D'));
     return new Promise(_0x60cd4e => {
         if (_0x20180a['VYCPR'] === 'zabXd') {
-            console['log']('---具体任务详情---' + JSON['stringify'](getTaskDetailForColorRes));
+            console.log('---具体任务详情---' + JSON.stringify(getTaskDetailForColorRes));
         } else {
-            $['post'](taskUrl(arguments['callee']['name']['toString'](), _0x3d654a), (_0x1f5a73, _0x1d7290, _0x3d654a) => {
+            $['post'](taskUrl(arguments.callee['name'].toString(), _0x3d654a), (_0x1f5a73, _0x1d7290, _0x3d654a) => {
                 try {
                     if (_0x20180a['KtUKO']('sfeuv', _0x20180a['ohdvi'])) {
                         $['taskHomePageData'] = JSON['parse'](_0x3d654a);
                     } else {
                         if (_0x1f5a73) {
-                            console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                            console['log'](JSON['stringify'](_0x1f5a73));
+                            console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                            console.log(JSON.stringify(_0x1f5a73));
                         } else {
-                            console['log']('领取任务：' + _0x3d654a);
+                            console.log('领取任务：' + _0x3d654a);
                             _0x3d654a = JSON['parse'](_0x3d654a);
                         }
                     }
@@ -647,7 +645,7 @@ function startTask(_0x4ac69a) {
                     if (_0x20180a['zCWjv'](_0x20180a['YdPFO'], _0x20180a['YdPFO'])) {
                         _0x20180a['qbUut'](_0x60cd4e, _0x3d654a);
                     } else {
-                        console['log']('发起助力红包 失败：' + JSON['stringify'](_0x3d654a));
+                        console.log('发起助力红包 失败：' + JSON.stringify(_0x3d654a));
                     }
                 }
             });
@@ -687,7 +685,7 @@ async function active(_0x2bea66) {
                     await $['wait'](0x3e8);
                     if (_0x5611dd['id'] && _0x5611dd['status'] === 0x0) {
                         if (_0x353a1a['cqjXG'] === _0x353a1a['UFdUs']) {
-                            console['log']('领取任务：' + data);
+                            console.log('领取任务：' + data);
                             data = JSON['parse'](data);
                         } else {
                             await _0x353a1a['puRgv'](taskReportForColor, _0x2bea66, _0x5611dd['id']);
@@ -698,16 +696,16 @@ async function active(_0x2bea66) {
                 }
             }
         } else {
-            console['log']('任务列表为空,手动进入app内检查 是否存在[从京豆首页进领券中心逛30秒]的任务,如存在,请手动完成再运行脚本');
+            console.log('任务列表为空,手动进入app内检查 是否存在[从京豆首页进领券中心逛30秒]的任务,如存在,请手动完成再运行脚本');
             $['msg']('' + $['name'], '', '手动进入app内检查\n是否存在[从京豆首页进领券中心逛30秒]的任务\n如存在,请手动完成再运行脚本');
             if ($['isNode']()) await notify['sendNotify']($['name'] + ' - 账号' + $['index'] + ' - ' + $['nickName'], '执行脚本出现异常\n请手动进入app内检查\n是否存在[从京豆首页进领券中心逛30秒]的任务\n如存在,请手动完成再运行脚本');
         }
     } else {
         if (_0x353a1a['TGAyD'](_0x353a1a['rHPgz'], 'cNcZj')) {
-            console['log']('---具体任务详情---' + JSON['stringify'](_0x39c8d9));
+            console.log('---具体任务详情---' + JSON.stringify(_0x39c8d9));
         } else {
-            console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-            console['log'](JSON['stringify'](err));
+            console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+            console.log(JSON.stringify(err));
         }
     }
 }
@@ -743,20 +741,20 @@ function getTaskDetailForColor(_0x2c4c7b) {
     };
     return new Promise(_0x2f2f57 => {
         if (_0x2682ae['nbYTc'](_0x2682ae['GSsrS'], _0x2682ae['wrfDD'])) {
-            $['post'](_0x2682ae['nmAsw'](taskUrl, arguments['callee']['name']['toString'](), _0x574b60), (_0x167487, _0x312813, _0x574b60) => {
+            $['post'](_0x2682ae['nmAsw'](taskUrl, arguments.callee['name'].toString(), _0x574b60), (_0x167487, _0x312813, _0x574b60) => {
                 if (_0x2682ae['giQyg'] === _0x2682ae['giQyg']) {
                     try {
                         if (_0x2682ae['SlFpb'](_0x2682ae['znQly'], _0x2682ae['ejnGm'])) {
                             if (_0x167487) {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x167487));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x167487));
                             } else {
                                 _0x574b60 = JSON['parse'](_0x574b60);
                             }
                         } else {
                             if (_0x167487) {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x167487));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x167487));
                             } else {
                                 if (_0x2682ae['vXznd'](_0x2682ae['dbFxk'], _0x2682ae['dbFxk'])) {
                                     _0x574b60 = JSON['parse'](_0x574b60);
@@ -767,7 +765,7 @@ function getTaskDetailForColor(_0x2c4c7b) {
                         }
                     } catch (_0x3f13d7) {
                         if (_0x2682ae['vXznd']('OnggA', _0x2682ae['QEckC'])) {
-                            console['log']('助力异常：' + JSON['stringify'](_0x574b60));
+                            console.log('助力异常：' + JSON.stringify(_0x574b60));
                         } else {
                             $['logErr'](_0x3f13d7, _0x312813);
                         }
@@ -775,17 +773,17 @@ function getTaskDetailForColor(_0x2c4c7b) {
                         if ('THatM' !== 'yaoZd') {
                             _0x2682ae['VtrCf'](_0x2f2f57, _0x574b60);
                         } else {
-                            console['log']('[' + item['title'] + '] 已经领取奖励');
+                            console.log('[' + item['title'] + '] 已经领取奖励');
                         }
                     }
                 } else {
-                    console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                    console['log'](JSON['stringify'](_0x167487));
+                    console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                    console.log(JSON.stringify(_0x167487));
                 }
             });
         } else {
             if (_0x574b60) {
-                if (type === '1' && functionId === 'reportCcTask') console['log']('京东首页点击“领券”逛10s任务:' + _0x574b60);
+                if (type === '1' && functionId === 'reportCcTask') console.log('京东首页点击“领券”逛10s任务:' + _0x574b60);
             }
         }
     });
@@ -824,7 +822,7 @@ function taskReportForColor(_0x2f201d, _0x19e657) {
         'taskType': _0x2f201d,
         'detailId': _0x19e657
     };
-    _0x1e84f5[_0x425c25['tlqAz']] = $['md5']($['md5'](_0x425c25['TTfnO'](_0x425c25['rssvc']('j', JSON['stringify'](_0x1e84f5)), 'D')));
+    _0x1e84f5[_0x425c25['tlqAz']] = $['md5']($['md5'](_0x425c25['TTfnO'](_0x425c25['rssvc']('j', JSON.stringify(_0x1e84f5)), 'D')));
     return new Promise(_0x58dd7b => {
         var _0x59e4e9 = {
             'DOxRl': _0x425c25['fNhbD'],
@@ -832,7 +830,7 @@ function taskReportForColor(_0x2f201d, _0x19e657) {
             'KMfLp': _0x425c25['zVZan']
         };
         if (_0x425c25['hOFqU'] !== _0x425c25['byDFX']) {
-            $['post'](_0x425c25['RHfJb'](taskUrl, arguments['callee']['name']['toString'](), _0x1e84f5), (_0x99f409, _0x27df77, _0x1e84f5) => {
+            $['post'](_0x425c25['RHfJb'](taskUrl, arguments.callee['name'].toString(), _0x1e84f5), (_0x99f409, _0x27df77, _0x1e84f5) => {
                 var _0x237957 = {
                     'FMYKk': function(_0x3f983b, _0x41de54) {
                         return _0x3f983b(_0x41de54);
@@ -840,12 +838,12 @@ function taskReportForColor(_0x2f201d, _0x19e657) {
                 };
                 if (_0x425c25['PQDxe']('BTdPn', _0x425c25['nxSUq'])) {
                     if (_0x99f409) {
-                        console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                        console['log'](JSON['stringify'](_0x99f409));
+                        console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                        console.log(JSON.stringify(_0x99f409));
                     } else {
                         _0x1e84f5 = JSON['parse'](_0x1e84f5);
                         if (_0x1e84f5['data']['success'] && _0x1e84f5['data']['biz_code'] === 0x0) {
-                            console['log']('红包领取成功，获得' + _0x1e84f5['data']['result']['discount'] + '元\x0a');
+                            console.log('红包领取成功，获得' + _0x1e84f5['data']['result']['discount'] + '元\x0a');
                             $['discount'] += _0x237957['FMYKk'](Number, _0x1e84f5['data']['result']['discount']);
                         }
                     }
@@ -853,8 +851,8 @@ function taskReportForColor(_0x2f201d, _0x19e657) {
                     try {
                         if (_0x99f409) {
                             if (_0x425c25['xjOHG'](_0x425c25['IdYkm'], 'RVLzD')) {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x99f409));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x99f409));
                             } else {
                                 _0x1e84f5 = JSON['parse'](_0x1e84f5);
                                 $['h5activityIndex'] = _0x1e84f5;
@@ -882,7 +880,7 @@ function taskReportForColor(_0x2f201d, _0x19e657) {
                 }
             });
         } else {
-            console['log']('红包领取成功，获得' + _0x1e84f5['data']['result']['discount'] + '元\x0a');
+            console.log('红包领取成功，获得' + _0x1e84f5['data']['result']['discount'] + '元\x0a');
             $['discount'] += Number(_0x1e84f5['data']['result']['discount']);
         }
     });
@@ -894,12 +892,9 @@ function receiveTaskRedpacket(_0x271e7d) {
         'MksOD': function(_0x5cc27c, _0x4aea3d) {
             return _0x5cc27c !== _0x4aea3d;
         },
-        'oglIs': 'eaqGy',
         'FWaej': function(_0x3b4ea5, _0x1cb55f) {
             return _0x3b4ea5 === _0x1cb55f;
         },
-        'CaHuF': 'UwlRg',
-        'RQOWc': 'MIils',
         'ZqlPN': function(_0x4b5687, _0x588fe7, _0x3987b2) {
             return _0x4b5687(_0x588fe7, _0x3987b2);
         }
@@ -916,12 +911,12 @@ function receiveTaskRedpacket(_0x271e7d) {
                 return _0x278eaf['MksOD'](_0x269890, _0x55eb24);
             },
             'tJmAJ': 'CbFkR',
-            'kwmCv': _0x278eaf['oglIs'],
+            'kwmCv': 'eaqGy',
             'tlBXJ': function(_0x1a6257, _0x532118) {
                 return _0x278eaf['FWaej'](_0x1a6257, _0x532118);
             },
-            'oJdli': _0x278eaf['CaHuF'],
-            'PYYgz': _0x278eaf['RQOWc'],
+            'oJdli': 'UwlRg',
+            'PYYgz': 'MIils',
             'lVEuQ': function(_0x1eaa31, _0x400761) {
                 return _0x278eaf['FWaej'](_0x1eaa31, _0x400761);
             },
@@ -931,7 +926,7 @@ function receiveTaskRedpacket(_0x271e7d) {
                 return _0x103840(_0x2cf19e);
             }
         };
-        $['post'](_0x278eaf['ZqlPN'](taskUrl, arguments['callee']['name']['toString'](), _0x25a45c), (_0x1da607, _0x16fc0c, _0x51b3e3) => {
+        $['post'](_0x278eaf['ZqlPN'](taskUrl, arguments.callee.name.toString(), _0x25a45c), (_0x1da607, _0x16fc0c, _0x51b3e3) => {
             var _0x496324 = {
                 'vENpk': _0x294ead['cVaeT'],
                 'eXkGV': _0x294ead['blhWi']
@@ -940,20 +935,20 @@ function receiveTaskRedpacket(_0x271e7d) {
                 try {
                     if (_0x1da607) {
                         if (_0x294ead['tlBXJ'](_0x294ead['oJdli'], _0x294ead['PYYgz'])) {
-                            console['log']('' + JSON['stringify'](_0x1da607));
-                            console['log']($['name'] + ' API请求失败，请检查网路重试');
+                            console.log('' + JSON.stringify(_0x1da607));
+                            console.log($['name'] + ' API请求失败，请检查网路重试');
                         } else {
-                            console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                            console['log'](JSON['stringify'](_0x1da607));
+                            console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                            console.log(JSON.stringify(_0x1da607));
                         }
                     } else {
                         _0x51b3e3 = JSON['parse'](_0x51b3e3);
                         if (_0x51b3e3['data']['success'] && _0x294ead['lVEuQ'](_0x51b3e3['data']['biz_code'], 0x0)) {
                             if (_0x294ead['aGNla'] !== _0x294ead['Jvtzi']) {
-                                console['log']('红包领取成功，获得' + _0x51b3e3['data']['result']['discount'] + '元\x0a');
+                                console.log('红包领取成功，获得' + _0x51b3e3['data']['result']['discount'] + '元\x0a');
                                 $['discount'] += Number(_0x51b3e3['data']['result']['discount']);
                             } else {
-                                console['log']('\x0a\x0a发起助力红包 失败：' + _0x51b3e3[_0x496324['vENpk']]['result'][_0x496324['eXkGV']]);
+                                console.log('\x0a\x0a发起助力红包 失败：' + _0x51b3e3[_0x496324['vENpk']]['result'][_0x496324['eXkGV']]);
                             }
                         }
                     }
@@ -963,7 +958,7 @@ function receiveTaskRedpacket(_0x271e7d) {
                     _0x294ead['gqYTT'](_0x1aef5d, _0x51b3e3);
                 }
             } else {
-                console['log']('\n获取任务列表异常：' + JSON['stringify']($['taskHomePageData']) + '\x0a');
+                console.log('\n获取任务列表异常：' + JSON.stringify($['taskHomePageData']) + '\x0a');
             }
         });
     });
@@ -997,7 +992,7 @@ function jinli_h5assist(_0x538d51) {
         'followShop': 0x0,
         'promUserState': ''
     };
-    const _0x324215 = _0xb3d0e2['lvgns'](taskUrl, arguments['callee']['name']['toString'](), _0x2314c6);
+    const _0x324215 = _0xb3d0e2['lvgns'](taskUrl, arguments.callee['name'].toString(), _0x2314c6);
     return new Promise(_0x5e4722 => {
         var _0x3ca517 = {
             'jrEgT': function(_0x417d33) {
@@ -1041,8 +1036,8 @@ function jinli_h5assist(_0x538d51) {
                             if (_0x3ca517['udbxu']('OrBro', _0x3ca517['tgIQE'])) {
                                 $['logErr'](e, _0x418387);
                             } else {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x8fddbf));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x8fddbf));
                             }
                         } else {
                             if (_0x3ca517['KjMSK']('Klwze', _0x3ca517['LAQyg'])) {
@@ -1050,19 +1045,19 @@ function jinli_h5assist(_0x538d51) {
                             } else {
                                 _0x143ac0 = JSON['parse'](_0x143ac0);
                                 if (_0x143ac0 && _0x143ac0['data'] && _0x3ca517['RmbgS'](_0x143ac0['data'][_0x3ca517['UvmqM']], 0x0)) {
-                                    console['log']('助力结果：' + _0x143ac0[_0x3ca517['TlKTI']][_0x3ca517['McDmb']][_0x3ca517['dpHFI']]);
-                                    if (_0x143ac0[_0x3ca517['TlKTI']][_0x3ca517['McDmb']][_0x3ca517['iQTqR']] === 0x3) $['canHelp'] = ![];
-                                    if (_0x3ca517['RmbgS'](_0x143ac0['data'][_0x3ca517['McDmb']]['status'], 0x9)) $['canHelp'] = ![];
+                                    console.log('助力结果：' + _0x143ac0[_0x3ca517['TlKTI']][_0x3ca517['McDmb']][_0x3ca517['dpHFI']]);
+                                    if (_0x143ac0[_0x3ca517['TlKTI']][_0x3ca517['McDmb']][_0x3ca517['iQTqR']] === 0x3) $.canHelp = ![];
+                                    if (_0x3ca517['RmbgS'](_0x143ac0['data'][_0x3ca517['McDmb']]['status'], 0x9)) $.canHelp = ![];
                                 } else {
-                                    console['log']('助力异常：' + JSON['stringify'](_0x143ac0));
+                                    console.log('助力异常：' + JSON.stringify(_0x143ac0));
                                 }
                             }
                         }
                     }
                 } catch (_0x2694df) {
                     if (_0x3ca517['udbxu']('rVyfB', _0x3ca517['UJShO'])) {
-                        console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                        console['log'](JSON['stringify'](_0x8fddbf));
+                        console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                        console.log(JSON.stringify(_0x8fddbf));
                     } else {
                         $['logErr'](_0x2694df, _0x418387);
                     }
@@ -1071,7 +1066,7 @@ function jinli_h5assist(_0x538d51) {
                 }
             });
         } else {
-            if (type === '1' && _0xb3d0e2['GtVBH'](functionId, _0xb3d0e2['GBHvr'])) console['log']('京东首页点击“领券”逛10s任务:' + data);
+            if (type === '1' && _0xb3d0e2['GtVBH'](functionId, _0xb3d0e2['GBHvr'])) console.log('京东首页点击“领券”逛10s任务:' + data);
         }
     });
 }
@@ -1106,8 +1101,8 @@ function h5receiveRedpacket(_0x5f4c06) {
     const _0x3b7254 = {
         'redPacketId': _0x5f4c06
     };
-    _0x3b7254['token'] = $['md5']($['md5'](_0x57afad['PgROV']('j', JSON['stringify'](_0x3b7254)) + 'D'));
-    const _0x2ec437 = _0x57afad['LvQCZ'](taskUrl, arguments['callee']['name']['toString'](), _0x3b7254);
+    _0x3b7254['token'] = $['md5']($['md5'](_0x57afad['PgROV']('j', JSON.stringify(_0x3b7254)) + 'D'));
+    const _0x2ec437 = _0x57afad['LvQCZ'](taskUrl, arguments.callee['name'].toString(), _0x3b7254);
     return new Promise(_0xa03e44 => {
         var _0x4a1f39 = {
             'WRCdy': function(_0x552a02, _0x18d261) {
@@ -1132,16 +1127,16 @@ function h5receiveRedpacket(_0x5f4c06) {
                     return;
                 } else {
                     if (_0x3ef482) {
-                        console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                        console['log'](JSON['stringify'](_0x3ef482));
+                        console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                        console.log(JSON.stringify(_0x3ef482));
                     } else {
                         if (_0x57afad['rZQVU'] === _0x57afad['rZQVU']) {
                             _0x3b7254 = JSON['parse'](_0x3b7254);
                             if (_0x3b7254 && _0x3b7254['data'] && _0x57afad['xDOUv'](_0x3b7254['data'][_0x57afad['lrKHT']], 0x0)) {
-                                console['log']('拆红包获得：' + _0x3b7254[_0x57afad['YIoks']]['result'][_0x57afad['IhVGR']] + '元');
+                                console.log('拆红包获得：' + _0x3b7254[_0x57afad['YIoks']]['result'][_0x57afad['IhVGR']] + '元');
                             } else {
                                 if (_0x57afad['gPwJq'](_0x57afad['ykVma'], _0x57afad['SOAlQ'])) {
-                                    console['log']('领红包失败：' + JSON['stringify'](_0x3b7254));
+                                    console.log('领红包失败：' + JSON.stringify(_0x3b7254));
                                 } else {
                                     const _0x5999b0 = _0x4a1f39['WRCdy'](require, _0x4a1f39['RNMPb']);
                                     const _0x5b0a6e = {
@@ -1158,7 +1153,7 @@ function h5receiveRedpacket(_0x5f4c06) {
                                 }
                             }
                         } else {
-                            console['log']('\x0a' + $['h5activityIndex']['data'][_0x10cd55['ZeqnL']] + '\x0a');
+                            console.log('\x0a' + $['h5activityIndex']['data'][_0x10cd55['ZeqnL']] + '\x0a');
                         }
                     }
                 }
@@ -1208,7 +1203,7 @@ function h5launch() {
         'followShop': 0x0,
         'promUserState': ''
     };
-    const _0x1367bf = _0x8f78f1['OlzqI'](taskUrl, arguments['callee']['name']['toString'](), _0x19d3bc);
+    const _0x1367bf = _0x8f78f1['OlzqI'](taskUrl, arguments.callee['name'].toString(), _0x19d3bc);
     return new Promise(_0x1a5a6b => {
         var _0x1dec42 = {
             'xlKGP': _0x8f78f1['tFmbN'],
@@ -1225,21 +1220,21 @@ function h5launch() {
         $['post'](_0x1367bf, (_0x2fefe9, _0x4be56c, _0xad8b82) => {
             try {
                 if (_0x2fefe9) {
-                    console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                    console['log'](JSON['stringify'](_0x2fefe9));
+                    console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                    console.log(JSON.stringify(_0x2fefe9));
                 } else {
                     if (_0x8f78f1['AmSrm'](_0x8f78f1['kRHNh'], _0x8f78f1['kRHNh'])) {
                         _0xad8b82 = JSON['parse'](_0xad8b82);
                         if (_0xad8b82 && _0xad8b82['data'] && _0x8f78f1['AmSrm'](_0xad8b82['data'][_0x8f78f1['GlGal']], 0x0)) {
                             if (_0xad8b82[_0x8f78f1['jbEyY']][_0x8f78f1['xNdNj']][_0x8f78f1['OefvD']]) {
-                                console['log']('\n\n发起助力红包 成功：红包ID ' + _0xad8b82[_0x8f78f1['jbEyY']]['result'][_0x8f78f1['OefvD']]);
-                                $['redPacketId']['push'](_0xad8b82[_0x8f78f1['jbEyY']][_0x8f78f1['xNdNj']][_0x8f78f1['OefvD']]);
+                                console.log('\n\n发起助力红包 成功：红包ID ' + _0xad8b82[_0x8f78f1['jbEyY']]['result'][_0x8f78f1['OefvD']]);
+                                $.redPacketId.push(_0xad8b82[_0x8f78f1['jbEyY']][_0x8f78f1['xNdNj']][_0x8f78f1['OefvD']]);
                             } else {
-                                console['log']('\n\n发起助力红包 失败：' + _0xad8b82[_0x8f78f1['jbEyY']]['result'][_0x8f78f1['gcEhY']]);
+                                console.log('\n\n发起助力红包 失败：' + _0xad8b82[_0x8f78f1['jbEyY']]['result'][_0x8f78f1['gcEhY']]);
                             }
                         } else {
                             if (_0x8f78f1['Hdfcb'](_0x8f78f1['QLWlL'], _0x8f78f1['lpUUt'])) {
-                                console['log']('发起助力红包 失败：' + JSON['stringify'](_0xad8b82));
+                                console.log('发起助力红包 失败：' + JSON.stringify(_0xad8b82));
                             } else {
                                 _0x1a5a6b(_0xad8b82);
                             }
@@ -1254,7 +1249,7 @@ function h5launch() {
                 if ('gjTgV' !== _0x8f78f1['aZJTi']) {
                     return {
                         'url': JD_API_HOST + '?appid=jd_mp_h5&functionId=' + function_id + '&loginType=2&client=jd_mp_h5&t=' + new Date()['getTime']() * 0x3e8,
-                        'body': 'body=' + JSON['stringify'](_0x19d3bc),
+                        'body': 'body=' + JSON.stringify(_0x19d3bc),
                         'headers': {
                             'Host': _0x1dec42['xlKGP'],
                             'Content-Type': _0x1dec42['VwwTz'],
@@ -1318,7 +1313,7 @@ function h5activityIndex() {
         'clientInfo': {},
         'isjdapp': 0x1
     };
-    const _0x275296 = _0x162440['Pyeni'](taskUrl, arguments['callee']['name']['toString'](), _0x1ae3a2);
+    const _0x275296 = _0x162440['Pyeni'](taskUrl, arguments.callee['name'].toString(), _0x1ae3a2);
     return new Promise(_0x4fdd05 => {
         var _0x5728d6 = {
             'GuVTO': function(_0x54bf5f, _0x524d8c) {
@@ -1344,10 +1339,10 @@ function h5activityIndex() {
             };
             if (_0x162440['DXfXi'](_0x162440['kPvwm'], _0x162440['kPvwm'])) {
                 Object['keys'](jdCookieNode)['forEach'](_0x3c1564 => {
-                    cookiesArr['push'](jdCookieNode[_0x3c1564]);
+                    cookiesArr.push(jdCookieNode[_0x3c1564]);
                 });
-                if (process['env']['JD_DEBUG'] && _0x5728d6['GuVTO'](process['env']['JD_DEBUG'], 'false')) console['log'] = () => {};
-                if (_0x5728d6['mUgjV'](JSON['stringify'](process['env'])['indexOf'](_0x5728d6['NABnq']), -0x1)) process['exit'](0x0);
+                if (process['env']['JD_DEBUG'] && _0x5728d6['GuVTO'](process['env']['JD_DEBUG'], 'false')) console.log = () => {};
+                if (_0x5728d6['mUgjV'](JSON.stringify(process['env'])['indexOf'](_0x5728d6['NABnq']), -0x1)) process['exit'](0x0);
             } else {
                 try {
                     if (_0x162440['DXfXi']('EZZKb', _0x162440['OdJxR'])) {
@@ -1357,8 +1352,8 @@ function h5activityIndex() {
                             if (_0x162440['jkreg'](_0x162440['wZunv'], _0x162440['IkUWK'])) {
                                 $['logErr'](e, _0x4c2cfe);
                             } else {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x99ed74));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x99ed74));
                             }
                         } else {
                             if (_0x162440['jkreg'](_0x162440['qbhsg'], _0x162440['qbhsg'])) {
@@ -1375,11 +1370,11 @@ function h5activityIndex() {
                             } else {
                                 _0x1dd6a5 = JSON['parse'](_0x1dd6a5);
                                 if (_0x1dd6a5 && _0x1dd6a5['data'] && _0x1dd6a5['data']['biz_code'] === 0x0) {
-                                    console['log']('助力结果：' + _0x1dd6a5[_0x5b01ff['fqYLF']][_0x5b01ff['CreDx']][_0x5b01ff['ANjyW']]);
-                                    if (_0x5b01ff['XPhld'](_0x1dd6a5['data'][_0x5b01ff['CreDx']][_0x5b01ff['wyxBX']], 0x3)) $['canHelp'] = ![];
-                                    if (_0x1dd6a5[_0x5b01ff['fqYLF']][_0x5b01ff['CreDx']][_0x5b01ff['wyxBX']] === 0x9) $['canHelp'] = ![];
+                                    console.log('助力结果：' + _0x1dd6a5[_0x5b01ff['fqYLF']][_0x5b01ff['CreDx']][_0x5b01ff['ANjyW']]);
+                                    if (_0x5b01ff['XPhld'](_0x1dd6a5['data'][_0x5b01ff['CreDx']][_0x5b01ff['wyxBX']], 0x3)) $.canHelp = ![];
+                                    if (_0x1dd6a5[_0x5b01ff['fqYLF']][_0x5b01ff['CreDx']][_0x5b01ff['wyxBX']] === 0x9) $.canHelp = ![];
                                 } else {
-                                    console['log']('助力异常：' + JSON['stringify'](_0x1dd6a5));
+                                    console.log('助力异常：' + JSON.stringify(_0x1dd6a5));
                                 }
                             }
                         }
@@ -1486,10 +1481,10 @@ function getCcTaskList(_0xc3ff0a, _0x2374b3, _0x4f75cc = '1') {
             'VUfQG': _0x1d4147['uJsqL']
         };
         if (_0xc3ff0a === _0x1d4147['rxjdw']) {
-            _0x5c7395 = 'https://api.m.jd.com/client.action?functionId=' + _0xc3ff0a + '&body=' + _0x1d4147['HQbwN'](escape, JSON['stringify'](_0x2374b3)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158358007&sign=a15f78e5846f9b0178dcabb1093a6a7f&sv=100';
+            _0x5c7395 = 'https://api.m.jd.com/client.action?functionId=' + _0xc3ff0a + '&body=' + _0x1d4147['HQbwN'](escape, JSON.stringify(_0x2374b3)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158358007&sign=a15f78e5846f9b0178dcabb1093a6a7f&sv=100';
         } else if (_0x1d4147['SOfCH'](_0xc3ff0a, _0x1d4147['BbEaB'])) {
             if (_0x1d4147['KwxqA'](_0x1d4147['woXdF'], _0x1d4147['TuNAW'])) {
-                _0x5c7395 = 'https://api.m.jd.com/client.action?functionId=' + _0xc3ff0a + '&body=' + _0x1d4147['tPWLb'](escape, JSON['stringify'](_0x2374b3)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158435079&sign=7eff07437dd817dbfa348c209fd5c129&sv=120';
+                _0x5c7395 = 'https://api.m.jd.com/client.action?functionId=' + _0xc3ff0a + '&body=' + _0x1d4147['tPWLb'](escape, JSON.stringify(_0x2374b3)) + '&uuid=8888888&client=apple&clientVersion=9.4.1&st=1617158435079&sign=7eff07437dd817dbfa348c209fd5c129&sv=120';
             } else {
                 const _0x557ef4 = $['h5activityIndex'][_0x1f300a['fyhOR']][_0x1f300a['lQwmV']]['rewards'] || [];
                 $['hasSendNumber'] = $['h5activityIndex']['data'][_0x1f300a['lQwmV']][_0x1f300a['WNLau']];
@@ -1500,7 +1495,7 @@ function getCcTaskList(_0xc3ff0a, _0x2374b3, _0x4f75cc = '1') {
         }
         const _0x49ddb5 = {
             'url': _0x5c7395,
-            'body': 'body=' + _0x1d4147['Owrll'](escape, JSON['stringify'](_0x2374b3)),
+            'body': 'body=' + _0x1d4147['Owrll'](escape, JSON.stringify(_0x2374b3)),
             'headers': {
                 'Accept': _0x1d4147['tNLwl'],
                 'Accept-Encoding': _0x1d4147['AMSCM'],
@@ -1527,11 +1522,11 @@ function getCcTaskList(_0xc3ff0a, _0x2374b3, _0x4f75cc = '1') {
             if (_0x1f300a['PndHZ'](_0x1f300a['KoPGq'], 'PmkhB')) {
                 try {
                     if (_0x77d0b0) {
-                        console['log']('' + JSON['stringify'](_0x77d0b0));
-                        console['log']($['name'] + ' API请求失败，请检查网路重试');
+                        console.log('' + JSON.stringify(_0x77d0b0));
+                        console.log($['name'] + ' API请求失败，请检查网路重试');
                     } else {
                         if (_0x395ac5) {
-                            if (_0x1f300a['PndHZ'](_0x4f75cc, '1') && _0x1f300a['PndHZ'](_0xc3ff0a, 'reportCcTask')) console['log']('京东首页点击“领券”逛10s任务:' + _0x395ac5);
+                            if (_0x1f300a['PndHZ'](_0x4f75cc, '1') && _0x1f300a['PndHZ'](_0xc3ff0a, 'reportCcTask')) console.log('京东首页点击“领券”逛10s任务:' + _0x395ac5);
                         }
                     }
                 } catch (_0x42e673) {
@@ -1548,8 +1543,8 @@ function getCcTaskList(_0xc3ff0a, _0x2374b3, _0x4f75cc = '1') {
                     }
                 }
             } else {
-                console['log']('\n\n发起助力红包 成功：红包ID ' + _0x395ac5['data'][_0x4d439d['EqNmc']][_0x4d439d['BPizI']]);
-                $['redPacketId']['push'](_0x395ac5[_0x4d439d['gzTpY']][_0x4d439d['EqNmc']]['redPacketId']);
+                console.log('\n\n发起助力红包 成功：红包ID ' + _0x395ac5['data'][_0x4d439d['EqNmc']][_0x4d439d['BPizI']]);
+                $.redPacketId.push(_0x395ac5[_0x4d439d['gzTpY']][_0x4d439d['EqNmc']].redPacketId);
             }
         });
     });
@@ -1610,8 +1605,8 @@ function getAuthorShareCode(_0x353afa = 'https://cdn.jsdelivr.net/gh/gitupdate/u
         $['get'](_0x1f09e6, async (_0x3bd83, _0xe91b83, _0x4b5727) => {
             if (_0x369d0e['jZHSQ'](_0x369d0e['JaNEQ'], 'ZoFsG')) {
                 if (_0x3bd83) {
-                    console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                    console['log'](JSON['stringify'](_0x3bd83));
+                    console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                    console.log(JSON.stringify(_0x3bd83));
                 } else {
                     _0x4b5727 = JSON['parse'](_0x4b5727);
                 }
@@ -1620,10 +1615,10 @@ function getAuthorShareCode(_0x353afa = 'https://cdn.jsdelivr.net/gh/gitupdate/u
                     if (_0x3bd83) {} else {
                         if (_0x369d0e['NhTNy'] === _0x369d0e['jHGgI']) {
                             if (_0x3bd83) {
-                                console['log']('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
-                                console['log'](JSON['stringify'](_0x3bd83));
+                                console.log('\x0a' + $['name'] + ': API查询请求失败 ‼️‼️');
+                                console.log(JSON.stringify(_0x3bd83));
                             } else {
-                                console['log']('领取任务：' + _0x4b5727);
+                                console.log('领取任务：' + _0x4b5727);
                                 _0x4b5727 = JSON['parse'](_0x4b5727);
                             }
                         } else {
@@ -1661,7 +1656,7 @@ function taskUrl(_0x175cd6, _0x300a9f) {
     };
     return {
         'url': JD_API_HOST + '?appid=jd_mp_h5&functionId=' + _0x175cd6 + '&loginType=2&client=jd_mp_h5&t=' + _0x50f081['IGOfn'](new Date()['getTime'](), 0x3e8),
-        'body': 'body=' + JSON['stringify'](_0x300a9f),
+        'body': 'body=' + JSON.stringify(_0x300a9f),
         'headers': {
             'Host': _0x50f081['lAZbU'],
             'Content-Type': _0x50f081['IxlIf'],
