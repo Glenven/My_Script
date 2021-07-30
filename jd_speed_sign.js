@@ -675,12 +675,7 @@ function taskGetUrl(function_id, body) {
  *JSDec - JSDec.js.org
  */
 function invite3() {
-    var _0x4528be = {
-        'WcVSW': function(_0x4c5c2a, _0x17e256) {
-            return _0x4c5c2a * _0x17e256;
-        }
-    };
-    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor(_0x4528be['WcVSW'](Math['random'](), 0xd))];
+    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor((Math.random() * 1))];
     var options = {
         'url': 'https://api.m.jd.com/?t=' +new Date(),
         'headers': {
@@ -693,7 +688,6 @@ function invite3() {
         'referer': 'https://invite-reward.jd.com/',
         'Cookie': cookie
     },
-    // {"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A=","channel":1,"token":"mrgpgtcz3jrbalecm5216276202882423i7s~NmZeSyVEbFNSd3V6clNdB3VwAw9lRHpTBiUjb35DFm5vLUROOBEzLUF7G28iAAFBKBgVFA1EPwIVKDclGENXbm8iVlQiAwpTTx1lKSsTCG5vfmsaDUR6LUEnG29+PU8DKHNVCTRSZ0NWeXYuJlFVCnR3AVplADdFAHFyfXxWCwEvdEVkc0oKUwoyKhFmWzEQOTZCXQ1Eei1BKTQ5GENXbm8tWU44EjNcESQwLDYFQ1gpalRXPDp0XT9jNyMYQ1dub2trGn06dAEXHWV3GEMFRjk0RAINRHotQTEuEWZbMRB8fBsNfVdmXVNtd2F2PU9Pb2gVXTUCJRZBe2UnPVgZEGFmVEtzXHQCCHd2eycSAkR1L19POgssFhMoLjo1CB9cOH1BSGIcZkhQIj9vaEMOEHdmAFo/AT4FEHgiKjcRGFYlfVtTNFdgQ1R3dX12WVUAeXRGViBVdF1BJTQjZltPQHkrT1IrVyxTT2MuPmZbTwNvaBVSOAV0S0F4fnR9QxA=|~1627620584679~1~20201218~eyJ2aXdlIjoiMCIsImJhaW4iOnsiaWMiOiIwIiwibGUiOiI5NCIsImN0IjoiaSIsImR0IjoiaSJ9fQ==~2~-231~eiv5|doei:,1,0,0,0,0,1000,-1000,1000,-1000;dmei:,1,0,0,1000,-1000,1000,-1000,1000,-1000;emc:;emmm:;emcf:;ivli:;iivl:;ivcvj:;scvje:;ewhi:;1627620584460,1627620584678,0,0,0,0,0,0,0,0,0;88yo","frontendInitStatus":"s"}}
         'body': 'functionId=InviteFriendChangeAssertsService&body={"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB%2FSUgnj7otnNjTwN8A%3D","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidAa98b812297s4NUc8sQdBSsaJ3Eo1Ee2r/DVHPir4OEtuJ1DK0aCQ/s7dIbJDOaU0sW9OBuPe97ti69umwozTbbGNSjux78ZzxLrnahgl6gtdzVZt&aid=&client=android&clientVersion=6.0.1&networkType=wifi&fp=-1&appid=market-task-h5&_t=' +new Date()
     };
     $.post(options, (err, resp, data) => {
@@ -705,7 +699,7 @@ function invite3() {
               if (data) {
                 console.log(`invite3`)
                 data = JSON.parse(data);
-                console.log(data)
+                console.log(data.data.isSuccess)
               } else {
                 console.log(`京东服务器返回空数据`)
               }
@@ -719,12 +713,7 @@ function invite3() {
 };
 
 function invite2() {
-    var _0x27cc4a = {
-        'dFQTB': function(_0x50b8e9, _0x5ad457) {
-            return _0x50b8e9 * _0x5ad457;
-        }
-    };
-    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor(_0x27cc4a['dFQTB'](Math['random'](), 0xd))];
+    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor((Math.random() * 1))];
     var options = {
         'url': 'https://api.m.jd.com/',
         'headers': {
@@ -762,12 +751,7 @@ function invite2() {
 }
 
 function invite() {
-    var _0x4528be = {
-        'WcVSW': function(_0x4c5c2a, _0x17e256) {
-            return _0x4c5c2a * _0x17e256;
-        }
-    };
-    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor(_0x4528be['WcVSW'](Math['random'](), 0xd))];
+    let inviterPins = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor((Math.random() * 1))];
     var options = {
         'url': 'https://api.m.jd.com/?t=' +new Date(),
         'headers': {
