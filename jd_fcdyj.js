@@ -24,7 +24,7 @@ cron "1 6-22/3 * * *" script-path=https://raw.githubusercontent.com/Wenmoux/scri
 ============小火箭=========
 发财大赢家 = type=cron,script-path=https://raw.githubusercontent.com/Wenmoux/scripts/master/jd/jd_fcdyj.js, cronexpr="1 6-22/3 * * *", timeout=3600, enable=true
  */
-const $ = new Env('发财大赢家');
+const $ = new Env('京东极速版-发财大赢家');
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const dyjCode = $.isNode() ? (process.env.dyjCode ? process.env.dyjCode : null) : null //邀请码变量，不支持多账号，格式：redEnvelopeId@markedPin
@@ -82,12 +82,12 @@ const JD_API_HOST = `https://api.m.jd.com`;
         cookie = cookiesArr[i];
         if (cookie) {
             $.index = i + 1;
-            console.log(`\n******查询【京东账号${$.index}】红包情况\n`);
+            console.log(`\n******查询【京东账号${$.index}】红包情况******\n`);
             await getinfo()
             if ($.canDraw) {
-                console.log("检测到已可兑换，开始兑换")
-                await Draw()
-                await $.wait(2000);
+                console.log(`检测到账号${$.index}已可兑换，开始兑换`)
+                await exchange()
+                await $.wait(1000)
             }
         }
     }
@@ -99,18 +99,20 @@ const JD_API_HOST = `https://api.m.jd.com`;
         $.done();
     })
 
-function Draw() {
+function exchange() {
     return new Promise(async (resolve) => {
-        let options = taskUrl("rewardIndex", `{"linkId":"${$.linkid}"}`)
-        $.post(options, async (err, resp, data) => {
+        let options = taskUrl("exchange", `{"linkId":"${$.linkid}", "rewardType":1}`)
+        $.get(options, async (err, resp, data) => {
             try {
                 if (err) {
                     console.log(`${JSON.stringify(err)}`);
                     console.log(`${$.name} API请求失败，请检查网路重试`);
                 } else {
                     data = JSON.parse(data);
-                    if (data.errMsg === "success") {
-                        console.log(" 兑换成功 ")
+                    if (data.success) {
+                        console.log(`【京东账号${$.index}】提现成功`)
+                    } else {
+                        console.log(`【京东账号${$.index}】提现失败`)
                     }
                 }
             } catch (e) {
@@ -189,15 +191,14 @@ function getinfo() {
                             if (data.data.state === 3) {
                                 console.log("今日已成功兑换")
                                 $.needhelp = false
-                            } else {
-                                if (data.data.needAmount === 0) {
-                                    $.needhelp = false
-                                    $.canDraw = true
-                                }
+                                $.canDraw = false
                             }
-                            console.log(`当前余额：${data.data.amount} 还需 ${data.data.needAmount} `)
+                            if (data.data.state === 6) {
+                                $.needhelp = false
+                                $.canDraw = true
+                            }
                         } else {
-                            console.log(data)
+                            console.log(`当前余额：${data.data.amount} 还需 ${data.data.needAmount} `)
                         }
                     } else {
                         $.canDraw = false
@@ -246,7 +247,7 @@ function help(rid, inviter, type) {
 }
 
 /*
- *Progcessed By JSDec in 0.02s
+ *Progcessed By JSDec in 0.01s
  *JSDec - JSDec.js.org
  */
 var _0xod1 = 'jsjiami.com.v6',
@@ -317,7 +318,7 @@ function taskUrl(function_id, body) {
             "Host": "api.m.jd.com",
             "Referer": "https://618redpacket.jd.com/?activityId=DA4SkG7NXupA9sksI00L0g&channel=wjicon&sid=0a1ec8fa2455796af69028f8410996aw&un_area=1_2803_2829_0",
             "Cookie": cookie,
-            "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdapp;iPhone;9.4.4;14.3;network/4g;Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+            "User-Agent": $.isNode() ? (process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT)) : ($.getdata('JDUA') ? $.getdata('JDUA') : "jdltapp;android;3.5.6;9;8363532363230343238303836333-43D2468336563316936636265356;network/wifi;model/MI 8;addressid/2688971613;aid/059b2009dc5afb88;oaid/665d225a3f96764;osVer/28;appBuild/1656;psn/gB6yf l3bIcXHm 4uTHuFZIigUClYKza5OsTPc6vgTc=|932;psq/11;adk/;ads/;pap/JA2020_3112531|3.5.6|ANDROID 9;osv/9;pv/712.12;jdv/0|direct|-|none|-|1613884468974|1613884552;ref/HomeFragment;partner/xiaomi;apprpd/Home_Main;eufv/1;Mozilla/5.0 (Linux; Android 9; MI 8 Build/PKQ1-wesley_iui-19.08.25; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045513 Mobile Safari/537.36"),
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
 京东极速版红包
 自动提现微信现金
-更新时间：2021-5-228
+更新时间：2021-5-31
 活动时间：2021-4-6至2021-5-30
 活动地址：https://prodev.m.jd.com/jdlite/active/31U4T6S4PbcK83HyLPioeCWrD63j/index.html
 活动入口：京东极速版-领红包
@@ -23,7 +23,7 @@ cron "20 0,22 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master
 京东极速版红包 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed_redpocke.js, cronexpr="20 0,22 * * *", timeout=3600, enable=true
 */
 
-const $ = new Env('京东极速版红包');
+const $ = new Env('京东极速版-领红包');
 
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
@@ -61,9 +61,6 @@ if ($.isNode()) {
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
-        // if ($.isNode()) {
-        //   await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        // }
         continue
       }
       await jsRedPacket()
@@ -79,15 +76,16 @@ if ($.isNode()) {
 
 async function jsRedPacket() {
   try {
-    await invite();
+    // await invite();
     await sign();//极速版签到提现
     await reward_query();
-    for (let i = 0; i < 3; ++i) {
-      await redPacket()
-      await $.wait(500)
+    for (let i = 0; i < 5; ++i) {
+      await redPacket();//开红包
+      await $.wait(1000)
     }
-    await getPacketList()
-    await showMsg()
+    await getPacketList();//领红包提现
+    await signPrizeDetailList();
+    // await showMsg()
   } catch (e) {
     $.logErr(e)
   }
@@ -150,7 +148,7 @@ async function sign() {
 function reward_query() {
   return new Promise(resolve => {
     $.get(taskGetUrl("spring_reward_query", {
-      "inviter": ["ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I"][Math.floor((Math.random() * 1))],
+      "inviter": "ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I",
       linkId
     }), async (err, resp, data) => {
       try {
@@ -177,7 +175,7 @@ function reward_query() {
 }
 async function redPacket() {
   return new Promise(resolve => {
-    $.get(taskGetUrl("spring_reward_receive",{"inviter":["ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I"][Math.floor((Math.random()*1))],linkId}),
+    $.get(taskGetUrl("spring_reward_receive",{"inviter": "ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I",linkId}),
         async (err, resp, data) => {
           try {
             if (err) {
@@ -238,6 +236,115 @@ function getPacketList() {
     })
   })
 }
+function signPrizeDetailList() {
+  return new Promise(resolve => {
+    const body = {"linkId":signLinkId,"serviceName":"dayDaySignGetRedEnvelopeSignService","business":1,"pageSize":20,"page":1};
+    const options = {
+      url: `https://api.m.jd.com`,
+      body: `functionId=signPrizeDetailList&body=${escape(JSON.stringify(body))}&_t=${+new Date()}&appid=activities_platform`,
+      headers: {
+        'Cookie': cookie,
+        "Host": "api.m.jd.com",
+        'Origin': 'https://daily-redpacket.jd.com',
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "User-Agent": "jdltapp;iPhone;3.3.2;14.5.1network/wifi;hasUPPay/0;pushNoticeIsOpen/1;lang/zh_CN;model/iPhone13,2;addressid/137923973;hasOCPay/0;appBuild/1047;supportBestPay/0;pv/467.11;apprpd/MyJD_Main;",
+        "Accept-Language": "zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8",
+        'Referer': 'https://daily-redpacket.jd.com/?activityId=9WA12jYGulArzWS7vcrwhw',
+        "Accept-Encoding": "gzip, deflate, br"
+      }
+    }
+    $.post(options, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = $.toObj(data);
+            if (data.code === 0) {
+              if (data.data.code === 0) {
+                const list = (data.data.prizeDrawBaseVoPageBean.items || []).filter(vo => vo['prizeType'] === 4 && vo['prizeStatus'] === 0);
+                for (let code of list) {
+                  console.log(`极速版签到提现，去提现${code['prizeValue']}现金\n`);
+                  message += `极速版签到提现，去提现${code['prizeValue']}微信现金，`
+                  await apCashWithDraw(code['id'], code['poolBaseId'], code['prizeGroupId'], code['prizeBaseId']);
+                }
+              } else {
+                console.log(`极速版签到查询奖品：失败:${JSON.stringify(data)}\n`);
+              }
+            } else {
+              console.log(`极速版签到查询奖品：异常:${JSON.stringify(data)}\n`);
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+function apCashWithDraw(id, poolBaseId, prizeGroupId, prizeBaseId) {
+  return new Promise(resolve => {
+    const body = {
+      "linkId": signLinkId,
+      "businessSource": "DAY_DAY_RED_PACKET_SIGN",
+      "base": {
+        "prizeType": 4,
+        "business": "dayDayRedPacket",
+        "id": id,
+        "poolBaseId": poolBaseId,
+        "prizeGroupId": prizeGroupId,
+        "prizeBaseId": prizeBaseId
+      }
+    }
+    const options = {
+      url: `https://api.m.jd.com`,
+      body: `functionId=apCashWithDraw&body=${escape(JSON.stringify(body))}&_t=${+new Date()}&appid=activities_platform`,
+      headers: {
+        'Cookie': cookie,
+        "Host": "api.m.jd.com",
+        'Origin': 'https://daily-redpacket.jd.com',
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "*/*",
+        "Connection": "keep-alive",
+        "User-Agent": "jdltapp;iPhone;3.3.2;14.5.1network/wifi;hasUPPay/0;pushNoticeIsOpen/1;lang/zh_CN;model/iPhone13,2;addressid/137923973;hasOCPay/0;appBuild/1047;supportBestPay/0;pv/467.11;apprpd/MyJD_Main;",
+        "Accept-Language": "zh-Hans-CN;q=1, en-CN;q=0.9, zh-Hant-CN;q=0.8",
+        'Referer': 'https://daily-redpacket.jd.com/?activityId=9WA12jYGulArzWS7vcrwhw',
+        "Accept-Encoding": "gzip, deflate, br"
+      }
+    }
+    $.post(options, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = $.toObj(data);
+            if (data.code === 0) {
+              if (data.data.status === "310") {
+                console.log(`极速版签到提现现金成功！`)
+                message += `极速版签到提现现金成功！`;
+              } else {
+                console.log(`极速版签到提现现金：失败:${JSON.stringify(data)}\n`);
+              }
+            } else {
+              console.log(`极速版签到提现现金：异常:${JSON.stringify(data)}\n`);
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
 function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
   let body = {
     "businessSource": "SPRING_FESTIVAL_RED_ENVELOPE",
@@ -265,7 +372,7 @@ function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
             if (data.code === 0) {
               if (data['data']['status'] === "310") {
                 console.log(`提现成功！`)
-                message += `提现成功！`;
+                message += `提现成功！\n`;
               } else {
                 console.log(`提现失败：${data['data']['message']}`);
                 message += `提现失败：${data['data']['message']}`;
@@ -283,53 +390,6 @@ function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
     })
   })
 }
-
-
-/*
- *Progcessed By JSDec in 0.01s
- *JSDec - JSDec.js.org
- */
- //百万现金
-function invite() {
-    var _0x4c359b = {
-        'ajCQw': function(_0x2cce24, _0x562d5d) {
-            return _0x2cce24 * _0x562d5d;
-        },
-        'qkXko': 'api.m.jd.com',
-        'DPrdZ': 'application/json, text/plain, */*',
-        'mUpSd': 'https://invite-reward.jd.com',
-        'zUNfV': 'zh-cn',
-        'HIayc': function(_0x1a1b78, _0x43fb04) {
-            return _0x1a1b78(_0x43fb04);
-        },
-        'lvRJs': './JS_USER_AGENTS',
-        'rHUPU': 'JSUA',
-        'qpZEp': 'https://invite-reward.jd.com/',
-        'tRmYc': function(_0x368db7, _0x25c256) {
-            return _0x368db7(_0x25c256);
-        }
-    };
-    let _0x2448b2 = +new Date();
-    let _0x157083 = ['iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A='][Math.floor((Math.random() * 1))];
-    var _0x57e37a = {
-        'Host': _0x4c359b['qkXko'],
-        'accept': _0x4c359b['DPrdZ'],
-        'content-type': 'application/x-www-form-urlencoded',
-        'origin': _0x4c359b['mUpSd'],
-        'accept-language': _0x4c359b['zUNfV'],
-        'user-agent': $['isNode']() ? process['env']['JS_USER_AGENT'] ? process['env']['JS_USER_AGENT'] : _0x4c359b['HIayc'](require, _0x4c359b['lvRJs'])['USER_AGENT'] : $['getdata']('JSUA') ? $['getdata'](_0x4c359b['rHUPU']) : '\'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1',
-        'referer': _0x4c359b['qpZEp'],
-        'Cookie': cookie
-    };
-    var _0x4f674b = 'functionId=InviteFriendApiService&body={\"method\":\"attendInviteActivity\",\"data\":{\"inviterPin\":\"' + _0x4c359b['tRmYc'](encodeURIComponent, _0x157083) + '","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidIf3dd8121b7sdmiBLGdxRR46OlWyh62kFAZogTJFnYqqRkwgr63%2BdGmMlcv7EQJ5v0HBic81xHXzXLwKM6fh3i963zIa7Ym2v5ehnwo2B7uDN92Q0&aid=&client=ios&clientVersion=14.4&networkType=wifi&fp=-1&appid=market-task-h5&_t=' + _0x2448b2;
-    var _0x5ab1fc = {
-        'url': 'https://api.m.jd.com/?t=' + +new Date(),
-        'headers': _0x57e37a,
-        'body': _0x4f674b
-    };
-    $['post'](_0x5ab1fc, (_0x727473, _0x590d22, _0x35ad09) => {});
-};
-_0xod6 = 'jsjiami.com.v6'
 
 
 function taskPostUrl(function_id, body) {
