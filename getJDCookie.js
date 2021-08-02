@@ -83,7 +83,7 @@ function checkLogin() {
         'Connection': 'Keep-Alive',
         'Content-Type': 'application/x-www-form-urlencoded; Charset=UTF-8',
         'Accept': 'application/json, text/plain, */*',
-        'User-Agent': process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT),
+        'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; EBG-AN00 Build/HUAWEIEBG-AN00)',
       }
     }
     $.post(options, (err, resp, data) => {
@@ -166,7 +166,7 @@ function taskUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT),
+      'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; EBG-AN00 Build/HUAWEIEBG-AN00)',
       'Host': 'plogin.m.jd.com'
     }
   }
@@ -182,7 +182,7 @@ function taskPostUrl() {
       'Accept': 'application/json, text/plain, */*',
       'Accept-Language': 'zh-cn',
       'Referer': `https://plogin.m.jd.com/login/login?appid=300&returnurl=https://wq.jd.com/passport/LoginRedirect?state=${Date.now()}&returnurl=https://home.m.jd.com/myJd/newhome.action?sceneval=2&ufc=&/myJd/home.action&source=wq_passport`,
-      'User-Agent': process.env.JD_USER_AGENT ? process.env.JD_USER_AGENT : (require('./USER_AGENTS').USER_AGENT),
+      'User-Agent': 'Dalvik/2.1.0 (Linux; U; Android 10; EBG-AN00 Build/HUAWEIEBG-AN00)',
       'Host': 'plogin.m.jd.com'
     }
   }
