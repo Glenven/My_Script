@@ -19,6 +19,9 @@
 20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
+#伊利养牛记
+38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
+
 #燃动夏季
 12 0,6-23/2 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
 #燃动夏季助力
@@ -140,6 +143,9 @@
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 京东极速版签到+赚现金任务
 1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
+# 京东极速版种水果
+5 0-23/6 * * * node /scripts/jd_speed_fruit.js >> /scripts/logs/jd_speed_fruit.log 2>&1
+
 # 监控crazyJoy分红
 # 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
 # 京喜app签到
@@ -201,9 +207,9 @@
 #早起福利
 35 6 * * * node /scripts/jd_goodMorning.js >> /scripts/logs/jd_goodMorning.log 2>&1
 #京东到家-果园水果任务
-35 6 * * * node /scripts/jd_jddj_fruit.js >> /scripts/logs/jd_jddj_fruit.log 2>&1
+10 */8 * * * node /scripts/jd_jddj_fruit.js >> /scripts/logs/jd_jddj_fruit.log 2>&1
 #京东到家-果园水车收水滴
-35 6 * * * node /scripts/jd_jddj_fruit_collectWater.js >> /scripts/logs/jd_jddj_fruit_collectWater.log 2>&1
+0 * * * * node /scripts/jd_jddj_fruit_collectWater.js >> /scripts/logs/jd_jddj_fruit_collectWater.log 2>&1
 
 
 
