@@ -19,7 +19,7 @@ cron "20 * * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd
 省钱大赢家之翻翻乐 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_big_winner.js, cronexpr="20 * * * *", timeout=3600, enable=true
  */
 const $ = new Env('省钱大赢家之翻翻乐');
-const helpAu = true; //帮作者助力
+const helpAu = false; //帮作者助力
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -27,7 +27,7 @@ const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message = '', cookienameArr = [], cookiename = '', linkId = 'DA4SkG7NXupA9sksI00L0g', fflLinkId = 'YhCkrVusBVa_O2K-7xE6hA';
 let redEnvelopeId = '315490742bf04977857cfe768ae9625b41441624425312129';
-let inviter = 'ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I';
+let inviter = 'AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA';
 //兼容elecV2P
 redEnvelopeId = $.getdata('redEnvelopeId') ? $.getdata('redEnvelopeId') : redEnvelopeId;
 if ($.isNode() && process.env.DYJ_PACKETID) {
