@@ -517,10 +517,10 @@ function JingDongGetCash() {
               console.log("\n" + "京东商城-现金签到成功 ")
             } else { 
               console.log("\n" + "京东商城-现金签到失败 ")
-              console.log(data)
-              if (data.match(/\"bizCode\":201|已经签过/)) {
-                console.log("京东商城-现金: 失败, 原因: 已签过 ⚠️") 
-              } 
+              console.log(data.data.bizMsg)
+              // if (data.match(/\"bizCode\":201|已经签过/)) {
+              //   console.log("京东商城-现金: 失败, 原因: 已签过 ⚠️") 
+              // } 
             } 
           }
         }
