@@ -78,6 +78,8 @@
 ##############长期活动##############
 # 签到
 3 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
+# 赚30
+3 0,5 * * * node /scripts/jd_earn30.js >> /scripts/logs/jd_earn30.log 2>&1
 # 东东超市兑换奖品
 0,30 0 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
 # 摇京豆
