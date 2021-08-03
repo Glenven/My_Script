@@ -511,18 +511,20 @@ function JingDongGetCash() {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
-            const data = JSON.parse(data);
+          if (data) {
+            data = JSON.parse(data);
             if (data.data.success && data.data.result) {
               console.log("\n" + "京东商城-现金签到成功 ")
             } else { 
               console.log("\n" + "京东商城-现金签到失败 ")
-              console.log(data.data)
+              console.log(data)
               if (data.match(/\"bizCode\":201|已经签过/)) {
                 console.log("京东商城-现金: 失败, 原因: 已签过 ⚠️") 
               } 
             } 
           }
-      } catch (e) {
+        }
+    } catch (e) {
             reject(
               `⚠️ ${arguments.callee.name.toString()} API返回结果解析出错\n${e}\n${JSON.stringify(
                 data
