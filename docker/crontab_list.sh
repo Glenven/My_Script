@@ -22,6 +22,9 @@
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
+#7.31-8.10 全民奥运 激情奔跑
+30 0,8 * * * node /scripts/gua_olympic_opencard2.js >> /scripts/logs/gua_olympic_opencard2.log 2>&1
+
 #燃动夏季
 12 0,6-23/2 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
 #燃动夏季助力
