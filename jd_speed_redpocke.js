@@ -1,37 +1,35 @@
 /*
 京东极速版红包
 自动提现微信现金
-更新时间：2021-5-31
+更新时间：2021-8-2
 活动时间：2021-4-6至2021-5-30
 活动地址：https://prodev.m.jd.com/jdlite/active/31U4T6S4PbcK83HyLPioeCWrD63j/index.html
 活动入口：京东极速版-领红包
 已支持IOS双京东账号,Node.js支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+{"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A=","channel":1,"token":"mrgpgtcz3jrbalecm5216276202882423i7s~NmZeSyVEbFNSd3V6clNdB3VwAw9lRHpTBiUjb35DFm5vLUROOBEzLUF7G28iAAFBKBgVFA1EPwIVKDclGENXbm8iVlQiAwpTTx1lKSsTCG5vfmsaDUR6LUEnG29+PU8DKHNVCTRSZ0NWeXYuJlFVCnR3AVplADdFAHFyfXxWCwEvdEVkc0oKUwoyKhFmWzEQOTZCXQ1Eei1BKTQ5GENXbm8tWU44EjNcESQwLDYFQ1gpalRXPDp0XT9jNyMYQ1dub2trGn06dAEXHWV3GEMFRjk0RAINRHotQTEuEWZbMRB8fBsNfVdmXVNtd2F2PU9Pb2gVXTUCJRZBe2UnPVgZEGFmVEtzXHQCCHd2eycSAkR1L19POgssFhMoLjo1CB9cOH1BSGIcZkhQIj9vaEMOEHdmAFo/AT4FEHgiKjcRGFYlfVtTNFdgQ1R3dX12WVUAeXRGViBVdF1BJTQjZltPQHkrT1IrVyxTT2MuPmZbTwNvaBVSOAV0S0F4fnR9QxA=|~1627620584679~1~20201218~eyJ2aXdlIjoiMCIsImJhaW4iOnsiaWMiOiIwIiwibGUiOiI5NCIsImN0IjoiaSIsImR0IjoiaSJ9fQ==~2~-231~eiv5|doei:,1,0,0,0,0,1000,-1000,1000,-1000;dmei:,1,0,0,1000,-1000,1000,-1000,1000,-1000;emc:;emmm:;emcf:;ivli:;iivl:;ivcvj:;scvje:;ewhi:;1627620584460,1627620584678,0,0,0,0,0,0,0,0,0;88yo","frontendInitStatus":"s"}}
 ============Quantumultx===============
 [task_local]
 #京东极速版红包
-20 0,22 * * * https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed_redpocke.js, tag=京东极速版红包, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
+20 0,22 * * * jd_speed_redpocke.js, tag=京东极速版红包, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/jd.png, enabled=true
 
 ================Loon==============
 [Script]
-cron "20 0,22 * * *" script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed_redpocke.js,tag=京东极速版红包
+cron "20 0,22 * * *" script-path=jd_speed_redpocke.js,tag=京东极速版红包
 
 ===============Surge=================
-京东极速版红包 = type=cron,cronexp="20 0,22 * * *",wake-system=1,timeout=3600,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed_redpocke.js
+京东极速版红包 = type=cron,cronexp="20 0,22 * * *",wake-system=1,timeout=3600,script-path=jd_speed_redpocke.js
 
 ============小火箭=========
-京东极速版红包 = type=cron,script-path=https://gitee.com/lxk0301/jd_scripts/raw/master/jd_speed_redpocke.js, cronexpr="20 0,22 * * *", timeout=3600, enable=true
+京东极速版红包 = type=cron,script-path=jd_speed_redpocke.js, cronexpr="20 0,22 * * *", timeout=3600, enable=true
 */
-
-const $ = new Env('京东极速版-领红包');
-
+const $ = new Env('京东极速版红包');
 const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let cookiesArr = [], cookie = '', message;
-const linkId = "AkOULcXbUA_8EAPbYLLMgg";
+const linkId = "9wdf1YTT2L59Vr-meKskLA";
 const signLinkId = '9WA12jYGulArzWS7vcrwhw';
-
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -41,7 +39,6 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-
 !(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/bean/signIndex.action', {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
@@ -61,36 +58,38 @@ if ($.isNode()) {
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
 
+        if ($.isNode()) {
+          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
+        }
         continue
       }
       await jsRedPacket()
     }
   }
 })()
-    .catch((e) => {
-      $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
-    })
-    .finally(() => {
-      $.done();
-    })
+  .catch((e) => {
+    $.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')
+  })
+  .finally(() => {
+    $.done();
+  })
 
 async function jsRedPacket() {
   try {
-    // await invite();
+    await invite();
     await sign();//极速版签到提现
     await reward_query();
-    for (let i = 0; i < 5; ++i) {
+    for (let i = 0; i < 3; ++i) {
       await redPacket();//开红包
-      await $.wait(1000)
+      await $.wait(2000)
     }
     await getPacketList();//领红包提现
     await signPrizeDetailList();
-    // await showMsg()
+    await showMsg()
   } catch (e) {
     $.logErr(e)
   }
 }
-
 
 function showMsg() {
   return new Promise(resolve => {
@@ -148,6 +147,7 @@ async function sign() {
 function reward_query() {
   return new Promise(resolve => {
     $.get(taskGetUrl("spring_reward_query", {
+      // ["7eKzr10NLcmTYeaeyUebLw", "zicY3HSd2gfmfYAc3DZ1OQ","nJ0poKQnWevLvWXw7mM1zA-R24gcXp-ju6zeMFi-r6A"][Math.floor((Math.random() * 3))]
       "inviter": "AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA",
       linkId
     }), async (err, resp, data) => {
@@ -175,7 +175,7 @@ function reward_query() {
 }
 async function redPacket() {
   return new Promise(resolve => {
-    $.get(taskGetUrl("spring_reward_receive",{"inviter": "AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA",linkId}),
+    $.get(taskGetUrl("spring_reward_receive",{"inviter":"AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA", linkId}),
         async (err, resp, data) => {
           try {
             if (err) {
@@ -207,7 +207,7 @@ async function redPacket() {
 
 function getPacketList() {
   return new Promise(resolve => {
-    $.get(taskGetUrl("spring_reward_list",{"pageNum":1,"pageSize":100,linkId,"inviter":""}), async (err, resp, data) => {
+    $.get(taskGetUrl("spring_reward_list",{"pageNum":1,"pageSize":100,linkId,"inviter":"AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA"}), async (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
@@ -357,7 +357,7 @@ function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
       "prizeType": 4
     },
     linkId,
-    "inviter": ""
+    "inviter": "7eKzr10NLcmTYeaeyUebLw"
   }
   return new Promise(resolve => {
     $.post(taskPostUrl("apCashWithDraw",body), async (err, resp, data) => {
@@ -391,6 +391,32 @@ function cashOut(id,poolBaseId,prizeGroupId,prizeBaseId,) {
   })
 }
 
+function invite() {
+  let t = +new Date()
+  let inviterId = [
+    "iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A="
+  ][Math.floor((Math.random() * 1))]
+  var headers = {
+    'Host': 'api.m.jd.com',
+    'accept': 'application/json, text/plain, */*',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://invite-reward.jd.com',
+    'accept-language': 'zh-cn',
+    'user-agent': $.isNode() ? (process.env.JS_USER_AGENT ? process.env.JS_USER_AGENT : (require('./JS_USER_AGENTS').USER_AGENT)) : ($.getdata('JSUA') ? $.getdata('JSUA') : "'jdltapp;iPad;3.1.0;14.4;network/wifi;Mozilla/5.0 (iPad; CPU OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1"),
+    'referer': 'https://invite-reward.jd.com/',
+    'Cookie': cookie
+  };
+
+  var dataString = `functionId=InviteFriendChangeAssertsService&body={"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB/SUgnj7otnNjTwN8A=","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidI9b2981202fsec83iRW1nTsOVzCocWda3YHPN471AY78%2FQBhYbXeWtdg%2F3TCtVTMrE1JjM8Sqt8f2TqF1Z5P%2FRPGlzA1dERP0Z5bLWdq5N5B2VbBO&aid=&client=ios&clientVersion=14.4.2&networkType=wifi&fp=-1&uuid=ab048084b47df24880613326feffdf7eee471488&osVersion=14.4.2&d_brand=iPhone&d_model=iPhone10,2&agent=-1&pageClickKey=-1&platform=3&lang=zh_CN&appid=market-task-h5&_t=${t}`;
+  var options = {
+    url: `https://api.m.jd.com/?t=${t}`,
+    headers: headers,
+    body: dataString
+  };
+  $.post(options, (err, resp, data) => {
+    // console.log(data)
+  })
+}
 
 function taskPostUrl(function_id, body) {
   return {
@@ -459,7 +485,7 @@ function TotalBean() {
               $.nickName = data.data.userInfo.baseInfo.nickname;
             }
           } else {
-            $.log('京东服务器返回空数据');
+            console.log('京东服务器返回空数据');
           }
         }
       } catch (e) {

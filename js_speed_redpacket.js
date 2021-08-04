@@ -58,10 +58,6 @@ if ($.isNode()) {
       console.log(`\n******开始【京东账号${$.index}】${$.nickName || $.UserName}*********\n`);
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
-
-        if ($.isNode()) {
-          await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
-        }
         continue
       }
       await jsRedPacket()
@@ -108,7 +104,7 @@ async function redPacket() {
   };
 
   var options = {
-    url: `https://api.m.jd.com/?functionId=spring_reward_receive&body={%22inviter%22:%22hJyuwiDvDEc5-jIeec4Iyg%22,%22linkId%22:%22FqktpB8R3nkJB8wVh8wC_g%22}&_t=${+new Date()}&appid=activities_platform`,
+    url: `https://api.m.jd.com/?functionId=spring_reward_receive&body={%22inviter%22:%22AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA%22,%22linkId%22:%22FqktpB8R3nkJB8wVh8wC_g%22}&_t=${+new Date()}&appid=activities_platform`,
     headers: headers
   }
   return new Promise(resolve => {
@@ -154,7 +150,7 @@ function invite() {
     'Cookie': cookie
   };
 
-  var dataString = `functionId=InviteFriendApiService&body={"method":"attendInviteActivity","data":{"inviterPin":"Wy3rGd8o4Vckq1VucBFJjA%3D%3D","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidIf3dd8121b7sdmiBLGdxRR46OlWyh62kFAZogTJFnYqqRkwgr63%2BdGmMlcv7EQJ5v0HBic81xHXzXLwKM6fh3i963zIa7Ym2v5ehnwo2B7uDN92Q0&aid=&client=ios&clientVersion=14.4&networkType=wifi&fp=-1&appid=market-task-h5&_t=${t}`;
+  var dataString = `functionId=InviteFriendApiService&body={"method":"attendInviteActivity","data":{"inviterPin":"iiqhQl7zO9uhejfQItuORzuOKB%2FSUgnj7otnNjTwN8A%3D","channel":1,"token":"","frontendInitStatus":""}}&referer=-1&eid=eidIf3dd8121b7sdmiBLGdxRR46OlWyh62kFAZogTJFnYqqRkwgr63%2BdGmMlcv7EQJ5v0HBic81xHXzXLwKM6fh3i963zIa7Ym2v5ehnwo2B7uDN92Q0&aid=&client=ios&clientVersion=14.4&networkType=wifi&fp=-1&appid=market-task-h5&_t=${t}`;
 
   var options = {
     url: `https://api.m.jd.com/?t=${t}`,
