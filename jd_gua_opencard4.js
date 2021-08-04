@@ -48,7 +48,7 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-let guaopencard_addSku4 = false
+let guaopencard_addSku4 = true
 const JD_API_HOST = `https://api.m.jd.com/client.action`;
 message = ""
 !(async () => {
@@ -64,10 +64,10 @@ message = ""
       return
     }
   }
-  guaopencard_addSku4 = process.env.guaopencard_addSku4
-  if (!process.env.guaopencard_addSku4 || process.env.guaopencard_addSku4 == "false") {
-    console.log('如需加购请设置环境变量[guaopencard_addSku4]为"true"')
-  }
+  // guaopencard_addSku4 = process.env.guaopencard_addSku4
+  // if (!process.env.guaopencard_addSku4 || process.env.guaopencard_addSku4 == "false") {
+  //   console.log('如需加购请设置环境变量[guaopencard_addSku4]为"true"')
+  // }
   $.shareUuid = 'ee0d20a9cec64ad297668ed1194005b2'
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity/832865?activityId=c225ad5922cf4ac8b4a68fd37f486088&shareUuid=${$.shareUuid}`)
   // 134
