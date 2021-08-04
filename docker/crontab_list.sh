@@ -25,16 +25,9 @@
 #7.31-8.10 全民奥运 激情奔跑
 30 0,8 * * * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
 
-#燃动夏季
-12 0,6-23/2 * * * node /scripts/jd_summer_movement.js >> /scripts/logs/jd_summer_movement.log 2>&1
-#燃动夏季助力
-14/41 7-14 * * * node /scripts/jd_summer_movement_help.js >> /scripts/logs/jd_summer_movement_help.log 2>&1
 
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
 10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
-
-#京东极速版红包(活动时间：2021-3-8至2021-5-5)
-15 0,23 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 
 #女装盲盒 活动时间：2021-4-1至2021-04-31
 5 1,23 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
@@ -45,9 +38,6 @@
 #环球挑战赛 第二季(活动时间：2021-03-08 至 2021-03-31)
 35 6,22 * * * node /scripts/jd_global.js >> /scripts/logs/jd_global.log 2>&1
 
-#城城领现金
-33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
-
 #手机狂欢城
 0 0,12,18,21 * * * node /scripts/jd_carnivalcity.js >> /scripts/logs/jd_carnivalcity.log 2>&1
 
@@ -55,10 +45,7 @@
 0 1,22 * * * node /scripts/jd_gold_creator.js >> /scripts/logs/jd_gold_creator.log 2>&1
 
 #京享值PK
-15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
-
-##东东乐园
-30 14 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
+# 15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
 
 ##京喜签到
 30 14 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
@@ -66,19 +53,12 @@
 ##京东极速版-我的-发财大赢家
 10 6-22/3 * * * node /scripts/jd_fcdyj.js >> /scripts/logs/jd_fcdyj.log 2>&1
 
-##翻翻乐大赢家
-20 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
-
-##整点京豆雨，每天8*16豆
-1,2 0-23/1 * * * node /scripts/jd_super_redrain.js >> /scripts/logs/jd_super_redrain.log 2>&1
-
-##半点京豆雨
-30,31 16-23/1 * * * node /scripts/jd_half_redrain.js >> /scripts/logs/jd_half_redrain.log 2>&1
-
-##店铺签到
-30,31 1,6,10 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
-
 ##############长期活动##############
+# 导到所有互助码
+47 7 * * * node /scripts/jd_get_share_code.js >> /scripts/logs/jd_get_share_code.log 2>&1
+
+
+##############京东APP##############
 # 签到
 3 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 赚30
@@ -109,56 +89,95 @@
 0 10 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
 # 京东排行榜
 11 9 * * * node /scripts/jd_rankingList.js >> /scripts/logs/jd_rankingList.log 2>&1
-# 天天提鹅
-18 * * * * node /scripts/jd_daily_egg.js >> /scripts/logs/jd_daily_egg.log 2>&1
-# 金融养猪
-12 * * * * node /scripts/jd_pigPet.js >> /scripts/logs/jd_pigPet.log 2>&1
-# 点点券
-20 0,20 * * * node /scripts/jd_necklace.js >> /scripts/logs/jd_necklace.log 2>&1
-# 点点券new
-20 0,20 * * * node /scripts/jd_necklace_new.js >> /scripts/logs/jd_necklace_new.log 2>&1
 # 东东工厂
 36 * * * * node /scripts/jd_jdfactory.js >> /scripts/logs/jd_jdfactory.log 2>&1
-# 十元街
-36 8,18 * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
 # 京东快递签到
 23 1 * * * node /scripts/jd_kd.js >> /scripts/logs/jd_kd.log 2>&1
 # 京东汽车(签到满500赛点可兑换500京豆)
 0 0 * * * node /scripts/jd_car.js >> /scripts/logs/jd_car.log 2>&1
 # 领京豆额外奖励(每日可获得3京豆)
 33 4 * * * node /scripts/jd_bean_home.js >> /scripts/logs/jd_bean_home.log 2>&1
-# 微信小程序京东赚赚
-10 11 * * * node /scripts/jd_jdzz.js >> /scripts/logs/jd_jdzz.log 2>&1
-# crazyJoy自动每日任务
-# 10 7,23 * * * node /scripts/jd_crazy_joy.js >> /scripts/logs/jd_crazy_joy.log 2>&1
 # 京东汽车旅程赛点兑换金豆
 0 0 * * * node /scripts/jd_car_exchange.js >> /scripts/logs/jd_car_exchange.log 2>&1
-# 导到所有互助码
-47 7 * * * node /scripts/jd_get_share_code.js >> /scripts/logs/jd_get_share_code.log 2>&1
 # 签到领现金
 27 */4 * * * node /scripts/jd_cash.js >> /scripts/logs/jd_cash.log 2>&1
 # 愤怒的现金
 0 0,1 * * * node /scripts/jd_angryCash.js >> /scripts/logs/jd_angryCash.log 2>&1
 # 签到领现金红包兑换
 0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
-# 闪购盲盒
-27 8 * * * node /scripts/jd_sgmh.js >> /scripts/logs/jd_sgmh.log 2>&1
 # 京东秒秒币
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 美丽研究院
 1 7,10,20 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 京东保价
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
-# 京东极速版签到+赚现金任务
-1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
-# 京东极速版种水果
-5 0-23/6 * * * node /scripts/jd_speed_fruit.js >> /scripts/logs/jd_speed_fruit.log 2>&1
-# 京东极速版赚金币
-0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
-# 京东极速版-天天领红包
-10 */6 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
+# 闪购盲盒
+27 8 * * * node /scripts/jd_sgmh.js >> /scripts/logs/jd_sgmh.log 2>&1
+# 京东试用
+1 3 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
+# 京东领积分
+1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
+# 京东砍价
+10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
+# 京东健康社区
+13 1,6,22 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
+# 京东健康社区收集健康能量
+5-45/20 * * * * node /scripts/jd_health_collect.js >> /scripts/logs/jd_health_collect.log 2>&1
+# 幸运大转盘
+10 10,23 * * * node /scripts/jd_market_lottery.js >> /scripts/logs/jd_market_lottery.log 2>&1
+# 领金贴
+5 0 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
+# 早起福利
+35 6 * * * node /scripts/jd_goodMorning.js >> /scripts/logs/jd_goodMorning.log 2>&1
+# 京东到家-果园水果任务
+10 */8 * * * node /scripts/jd_jddj_fruit.js >> /scripts/logs/jd_jddj_fruit.log 2>&1
+# 京东到家-果园水车收水滴
+0 * * * * node /scripts/jd_jddj_fruit_collectWater.js >> /scripts/logs/jd_jddj_fruit_collectWater.log 2>&1
+# 整点京豆雨，每天8*16豆
+1,2 0-23/1 * * * node /scripts/jd_super_redrain.js >> /scripts/logs/jd_super_redrain.log 2>&1
+# 半点京豆雨
+30,31 16-23/1 * * * node /scripts/jd_half_redrain.js >> /scripts/logs/jd_half_redrain.log 2>&1
+# 东东乐园
+30 14 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
+# 家庭号
+20 */6 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
+#京东直播（又回来了）
+30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1 
+#送豆得豆
+45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
+#天天优惠大乐透
+10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
+# 跳跳乐瓜分京豆
+15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
+# 天天优惠大乐透
+0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
+# 金榜创造营，最高瓜分7亿京豆！
+0 8 * * * node /scripts/jd_jbczy.js >> /scripts/logs/jd_jbczy.log 2>&1
+# 东东电竞经理
+# 15 10,20 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
+# 店铺签到
+30,31 1,6,10 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
+# 城城领现金
+33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
+# 宠汪汪
+15 0-23/2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
+# 宠汪汪偷好友积分与狗粮
+10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
+# 宠汪汪积分兑换奖品
+58,59 7,15,23 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
+# 全民挖现金
+# 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
+# crazyJoy自动每日任务
+# 10 7,23 * * * node /scripts/jd_crazy_joy.js >> /scripts/logs/jd_crazy_joy.log 2>&1
 # 监控crazyJoy分红
 # 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
+# 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
+# 20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
+# 京小兑
+# 13 8,16,20 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
+
+
+##############京喜APP##############
 # 京喜app签到
 39 7 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 京喜牧场
@@ -177,49 +196,49 @@
 59 11,12,23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 # 京喜财富岛提现
 0 0,12,13 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
-# 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
-#20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
-# 家庭号
-20 */6 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
-#京东直播（又回来了）
-30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1    
-#京小兑
-# 13 8,16,20 * * * node /scripts/jd_jxd.js >> /scripts/logs/jd_jxd.log 2>&1
-# 京东试用
-1 3 * * * node /scripts/jd_try.js >> /scripts/logs/jd_try.log 2>&1
-# 京东领积分
-1 3,20 * * * node /scripts/jd_ljf.js >> /scripts/logs/jd_ljf.log 2>&1
-# 京东砍价
-10 10,20 * * * node /scripts/jd_mfn.js >> /scripts/logs/jd_mfn.log 2>&1
-#京东健康社区
-13 1,6,22 * * * node /scripts/jd_health.js >> /scripts/logs/jd_health.log 2>&1
-#京东健康社区收集健康能量
-5-45/20 * * * * node /scripts/jd_health_collect.js >> /scripts/logs/jd_health_collect.log 2>&1
-# 幸运大转盘
-10 10,23 * * * node /scripts/jd_market_lottery.js >> /scripts/logs/jd_market_lottery.log 2>&1
-# 领金贴
-5 0 * * * node /scripts/jd_jin_tie.js >> /scripts/logs/jd_jin_tie.log 2>&1
-# 跳跳乐瓜分京豆
-15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
-# 天天优惠大乐透
-0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
-# 金榜创造营，最高瓜分7亿京豆！
-0 8 * * * node /scripts/jd_jbczy.js >> /scripts/logs/jd_jbczy.log 2>&1
-#东东电竞经理
-15 10,20 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
-#全民挖现金
-# 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
 
-#送豆得豆
-45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
-#天天优惠大乐透
-10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
-#早起福利
-35 6 * * * node /scripts/jd_goodMorning.js >> /scripts/logs/jd_goodMorning.log 2>&1
-#京东到家-果园水果任务
-10 */8 * * * node /scripts/jd_jddj_fruit.js >> /scripts/logs/jd_jddj_fruit.log 2>&1
-#京东到家-果园水车收水滴
-0 * * * * node /scripts/jd_jddj_fruit_collectWater.js >> /scripts/logs/jd_jddj_fruit_collectWater.log 2>&1
+
+##############京东金融##############
+# 天天提鹅
+18 * * * * node /scripts/jd_daily_egg.js >> /scripts/logs/jd_daily_egg.log 2>&1
+# 金融养猪
+12 * * * * node /scripts/jd_pigPet.js >> /scripts/logs/jd_pigPet.log 2>&1
+# 点点券
+20 0,20 * * * node /scripts/jd_necklace.js >> /scripts/logs/jd_necklace.log 2>&1
+
+
+##############京东极速版##############
+# 京东极速版签到+赚现金任务
+1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
+# 京东极速版种水果
+5 0-23/6 * * * node /scripts/jd_speed_fruit.js >> /scripts/logs/jd_speed_fruit.log 2>&1
+# 京东极速版赚金币
+0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
+# 京东极速版-天天领红包
+10 */6 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
+# 京东极速版-翻翻乐
+20 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
+
+
+
+##############微信小程序##############
+# 十元街
+36 8,18 * * * node /scripts/jd_syj.js >> /scripts/logs/jd_syj.log 2>&1
+# 微信小程序京东赚赚
+10 11 * * * node /scripts/jd_jdzz.js >> /scripts/logs/jd_jdzz.log 2>&1
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
