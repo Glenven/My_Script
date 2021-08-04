@@ -24,6 +24,8 @@
 
 #7.31-8.10 全民奥运 激情奔跑
 30 0,8 * * * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
+#8.4-8.12 大牌联合 冰爽一夏 [gua_opencard4.js]
+36 0,8 4-12 8 * node /scripts/jd_gua_opencard4.js >> /scripts/logs/jd_gua_opencard4.log 2>&1
 
 
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
