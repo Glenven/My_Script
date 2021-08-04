@@ -148,7 +148,7 @@ async function sign() {
 function reward_query() {
   return new Promise(resolve => {
     $.get(taskGetUrl("spring_reward_query", {
-      "inviter": "ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I",
+      "inviter": "AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA",
       linkId
     }), async (err, resp, data) => {
       try {
@@ -175,7 +175,7 @@ function reward_query() {
 }
 async function redPacket() {
   return new Promise(resolve => {
-    $.get(taskGetUrl("spring_reward_receive",{"inviter": "ejpLG7LJcHBYwrD6SV7Dn48Wa7D2O8Uxr4u7cFEgV7I",linkId}),
+    $.get(taskGetUrl("spring_reward_receive",{"inviter": "AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA",linkId}),
         async (err, resp, data) => {
           try {
             if (err) {

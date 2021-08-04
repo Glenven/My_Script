@@ -153,7 +153,10 @@
 1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
 # 京东极速版种水果
 5 0-23/6 * * * node /scripts/jd_speed_fruit.js >> /scripts/logs/jd_speed_fruit.log 2>&1
-
+# 京东极速版赚金币
+0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
+# 京东极速版-天天领红包
+10 */6 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 # 监控crazyJoy分红
 # 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
 # 京喜app签到
@@ -206,8 +209,7 @@
 15 10,20 * * * node /scripts/jd_djjl.js >> /scripts/logs/jd_djjl.log 2>&1
 #全民挖现金
 # 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
-# 极速版赚金币
-0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
+
 #送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
 #天天优惠大乐透
