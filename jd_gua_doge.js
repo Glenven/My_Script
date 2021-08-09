@@ -59,12 +59,12 @@ message = ""
     });
     return;
   }
-  if ($.isNode()) {
-    if (!process.env.guaopencard7 || process.env.guaopencard7 == "false") {
-      console.log('如需执行脚本请设置环境变量[guaopencard7]为"true"')
-      return
-    }
-  }
+  // if ($.isNode()) {
+  //   if (!process.env.guaopencard7 || process.env.guaopencard7 == "false") {
+  //     console.log('如需执行脚本请设置环境变量[guaopencard7]为"true"')
+  //     return
+  //   }
+  // }
   // guaopencard_addSku = process.env.guaopencard_addSku7
   // if (!process.env.guaopencard_addSku7 || process.env.guaopencard_addSku7 == "false") {
   //   console.log('如需加购请设置环境变量[guaopencard_addSku7]为"true"')
