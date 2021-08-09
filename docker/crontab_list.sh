@@ -19,6 +19,8 @@
 20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
+
+
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
@@ -26,7 +28,8 @@
 30 0,8 * * * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
 #8.4-8.12 大牌联合 冰爽一夏 [gua_opencard4.js]
 36 0,8 4-12 8 * node /scripts/jd_gua_opencard4.js >> /scripts/logs/jd_gua_opencard4.log 2>&1
-
+#8.4-8.15 七夕情报局🐶
+36 0,10,21 4-15 8 * node /scripts/jd_gua_doge.js >> /scripts/logs/jd_gua_doge.log 2>&1
 
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
 10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
@@ -162,11 +165,11 @@
 # 城城领现金
 33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
 # 宠汪汪
-15 0-23/2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
-# 宠汪汪偷好友积分与狗粮
-10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
-# 宠汪汪积分兑换奖品
-58,59 7,15,23 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
+# 15 0-23/2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
+# # 宠汪汪偷好友积分与狗粮
+# 10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
+# # 宠汪汪积分兑换奖品
+# 58,59 7,15,23 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
 # 全民挖现金
 # 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
 # crazyJoy自动每日任务
