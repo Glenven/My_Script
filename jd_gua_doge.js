@@ -49,7 +49,7 @@ if ($.isNode()) {
 } else {
   cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
-let guaopencard_addSku4 = true
+let guaopencard_addSku = true
 const JD_API_HOST = `https://api.m.jd.com/client.action`;
 message = ""
 !(async () => {
