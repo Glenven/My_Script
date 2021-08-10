@@ -150,10 +150,6 @@
 30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1 
 #送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
-#天天优惠大乐透
-# 10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
-# 跳跳乐瓜分京豆
-15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
 # 天天优惠大乐透
 0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
 # 金榜创造营，最高瓜分7亿京豆！
@@ -167,18 +163,7 @@
 # 京东抽奖机
 11 1,22 * * * node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
 
-# 宠汪汪
-# 15 0-23/2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
-# # 宠汪汪偷好友积分与狗粮
-# 10 0-21/3 * * * node /scripts/jd_joy_steal.js >> /scripts/logs/jd_joy_steal.log 2>&1
-# # 宠汪汪积分兑换奖品
-# 58,59 7,15,23 * * * node /scripts/jd_joy_reward.js >> /scripts/logs/jd_joy_reward.log 2>&1
-# 全民挖现金
-# 0 10 * * * node /scripts/jd_wxj.js >> /scripts/logs/jd_wxj.log 2>&1
-# crazyJoy自动每日任务
-# 10 7,23 * * * node /scripts/jd_crazy_joy.js >> /scripts/logs/jd_crazy_joy.log 2>&1
-# 监控crazyJoy分红
-# 10 12 * * * node /scripts/jd_crazy_joy_bonus.js >> /scripts/logs/jd_crazy_joy_bonus.log 2>&1
+
 # 删除优惠券(默认注释，如需要自己开启，如有误删，已删除的券可以在回收站中还原，慎用)
 # 20 9 * * 6 node /scripts/jd_delCoupon.js >> /scripts/logs/jd_delCoupon.log 2>&1
 # 京小兑
