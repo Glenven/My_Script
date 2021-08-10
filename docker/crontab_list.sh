@@ -151,7 +151,7 @@
 #送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
 #天天优惠大乐透
-10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
+# 10 6 * * * node /scripts/jd_DrawEntrance.js >> /scripts/logs/jd_DrawEntrance.log 2>&1
 # 跳跳乐瓜分京豆
 15 0,12,22 * * * node /scripts/jd_jump.js >> /scripts/logs/jd_jump.log 2>&1
 # 天天优惠大乐透
