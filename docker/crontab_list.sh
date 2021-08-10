@@ -164,6 +164,9 @@
 30,31 1,6,10 * * * node /scripts/jd_dpqd.js >> /scripts/logs/jd_dpqd.log 2>&1
 # 城城领现金
 33 * * * * node /scripts/jd_city.js >> /scripts/logs/jd_city.log 2>&1
+# 京东抽奖机
+11 1,22 * * * node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
+
 # 宠汪汪
 # 15 0-23/2 * * * node /scripts/jd_joy.js >> /scripts/logs/jd_joy.log 2>&1
 # # 宠汪汪偷好友积分与狗粮
