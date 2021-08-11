@@ -24,11 +24,21 @@
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
-#7.31-8.10 全民奥运 激情奔跑
+# 7.31-8.10 全民奥运 激情奔跑
 30 0,8 * * * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
-#8.4-8.12 大牌联合 冰爽一夏 [gua_opencard4.js]
-36 0,8 4-12 8 * node /scripts/jd_gua_opencard4.js >> /scripts/logs/jd_gua_opencard4.log 2>&1
-#8.4-8.15 七夕情报局🐶
+# 8.4-8.12 大牌联合 冰爽一夏 [gua_opencard4.js]
+36 0,8,16 4-12 8 * node /scripts/jd_gua_opencard4.js >> /scripts/logs/jd_gua_opencard4.log 2>&1
+# 8.5-8.12 冰爽夏日 钜惠送好礼
+36 0,8,16 5-12 8 * node /scripts/jd_gua_opencard5.js >> /scripts/logs/jd_gua_opencard5.log 2>&1
+# 8.8-8.14 七夕告白季-开卡
+36 0,8,16 * 8 * node /scripts/jd_gua_opencard6.js >> /scripts/logs/jd_gua_opencard6.log 2>&1
+# 8.8-8.14 七夕会员福利社
+36 0,8,16 8-14 8 * node /scripts/jd_gua_opencard7.js >> /scripts/logs/jd_gua_opencard7.log 2>&1
+# 8.10-8.15 头号玩家 一起热8
+36 0,8,16 8-15 8 * node /scripts/jd_gua_opencard8.js >> /scripts/logs/jd_gua_opencard8.log 2>&1
+# 8.11-8.15 星动七夕 纵享丝滑
+36 0,8,16 8-15 8 * node /scripts/jd_gua_opencard9.js >> /scripts/logs/jd_gua_opencard9.log 2>&1
+# 8.4-8.15 七夕情报局🐶
 36 0,10,21 4-15 8 * node /scripts/jd_gua_doge.js >> /scripts/logs/jd_gua_doge.log 2>&1
 
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
@@ -181,7 +191,7 @@
 # 京喜领红包
 2 0,6,18,23 * * * node /scripts/jx_lhb.js >> /scripts/logs/jx_lhb.log 2>&1
 # 京喜财富岛
-10 0-23/2 * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
+*/30 * * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
 # 京喜财富岛提现
 59 11,12,23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 # 京喜财富岛提现
