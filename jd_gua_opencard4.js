@@ -68,7 +68,7 @@ message = ""
   // if (!process.env.guaopencard_addSku4 || process.env.guaopencard_addSku4 == "false") {
   //   console.log('如需加购请设置环境变量[guaopencard_addSku4]为"true"')
   // }
-  $.shareUuid = 'ee0d20a9cec64ad297668ed1194005b2'
+  $.shareUuid = 'be53971d5c1d499d83ea84f38ad74926'
   console.log(`入口:\nhttps://lzdz1-isv.isvjcloud.com/dingzhi/dz/openCard/activity/832865?activityId=c225ad5922cf4ac8b4a68fd37f486088&shareUuid=${$.shareUuid}`)
   // 134
   for (let i = 0; i < cookiesArr.length; i++) {
