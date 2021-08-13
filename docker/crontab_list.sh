@@ -19,17 +19,12 @@
 20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
-
+# 特务Z
+2 */6 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
-# 7.31-8.10 全民奥运 激情奔跑
-30 0,8 * * * node /scripts/jd_olympic_opencard2.js >> /scripts/logs/jd_olympic_opencard2.log 2>&1
-# 8.4-8.12 大牌联合 冰爽一夏 [gua_opencard4.js]
-36 0,8,16 4-12 8 * node /scripts/jd_gua_opencard4.js >> /scripts/logs/jd_gua_opencard4.log 2>&1
-# 8.5-8.12 冰爽夏日 钜惠送好礼
-36 0,8,16 5-12 8 * node /scripts/jd_gua_opencard5.js >> /scripts/logs/jd_gua_opencard5.log 2>&1
 # 8.8-8.14 七夕告白季-开卡
 36 0,8,16 * 8 * node /scripts/jd_gua_opencard6.js >> /scripts/logs/jd_gua_opencard6.log 2>&1
 # 8.8-8.14 七夕会员福利社
@@ -77,7 +72,7 @@
 # 签到
 3 0,18 * * * cd /scripts && node jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
 # 赚30
-3 0,5 * * * node /scripts/jd_earn30.js >> /scripts/logs/jd_earn30.log 2>&1
+3 0,5,20 * * * node /scripts/jd_earn30.js >> /scripts/logs/jd_earn30.log 2>&1
 # 东东超市兑换奖品
 0,30 0 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
 # 摇京豆
@@ -101,7 +96,7 @@
 # 取关京东店铺商品
 55 23 * * * node /scripts/jd_unsubscribe.js >> /scripts/logs/jd_unsubscribe.log 2>&1
 # 京豆变动通知
-0 10 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
+5 9,20 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
 # 京东排行榜
 11 9 * * * node /scripts/jd_rankingList.js >> /scripts/logs/jd_rankingList.log 2>&1
 # 东东工厂
@@ -123,7 +118,7 @@
 # 京东秒秒币
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 美丽研究院
-1 7,10,20 * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
+5 * * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 京东保价
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 闪购盲盒
@@ -179,7 +174,7 @@
 
 ##############京喜APP##############
 # 京喜app签到
-39 7 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
+39 7,10 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 京喜牧场
 15 0,12,22 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
 # 京喜农场
@@ -209,15 +204,15 @@
 
 ##############京东极速版##############
 # 京东极速版签到+赚现金任务
-1 1,6 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
+1 1,6,18 * * * node /scripts/jd_speed_sign.js >> /scripts/logs/jd_speed_sign.log 2>&1
 # 京东极速版种水果
 5 0-23/6 * * * node /scripts/jd_speed_fruit.js >> /scripts/logs/jd_speed_fruit.log 2>&1
 # 京东极速版赚金币
-0 5 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
+0 5,17 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 京东极速版-天天领红包
 10 */6 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
 # 京东极速版-翻翻乐
-20 * * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
+20 */4 * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
 
 
 
