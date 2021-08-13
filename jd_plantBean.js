@@ -45,6 +45,7 @@ let lastRoundId = null;//上期id
 let roundList = [];
 let awardState = '';//上期活动的京豆是否收取
 let randomCount = $.isNode() ? 20 : 5;
+let num;
 !(async () => {
   await requireConfig();
   if (!cookiesArr[0]) {
@@ -90,18 +91,24 @@ async function jdPlantBean() {
     console.log(`获取任务及基本信息`)
     await plantBeanIndex();
     // console.log(plantBeanIndexResult.data.taskList);
+    for (let i = 0; i < $.plantBeanIndexResult.data.roundList.length; i++) {
+      if ($.plantBeanIndexResult.data.roundList[i].roundState === "2") {
+        num = i
+        break
+      }
+    }
     if ($.plantBeanIndexResult.code === '0') {
       const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
       $.myPlantUuid = getParam(shareUrl, 'plantUuid')
-      console.log(`\n【京东账号${$.index}（${$.nickName || $.UserName}）的${$.name}好友互助码】${$.myPlantUuid}\n`);
+      console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${$.myPlantUuid}\n`);
       roundList = $.plantBeanIndexResult.data.roundList;
-      currentRoundId = roundList[2].roundId;//本期的roundId
-      lastRoundId = roundList[1].roundId;//上期的roundId
-      awardState = roundList[1].awardState;
+      currentRoundId = roundList[num].roundId;//本期的roundId
+      lastRoundId = roundList[num - 1].roundId;//上期的roundId
+      awardState = roundList[num - 1].awardState;
       $.taskList = $.plantBeanIndexResult.data.taskList;
       subTitle = `【京东昵称】${$.plantBeanIndexResult.data.plantUserInfo.plantNickName}`;
-      message += `【上期时间】${roundList[1].dateDesc.replace('上期 ', '')}\n`;
-      message += `【上期成长值】${roundList[1].growth}\n`;
+      message += `【上期时间】${roundList[num - 1].dateDesc.replace('上期 ', '')}\n`;
+      message += `【上期成长值】${roundList[num - 1].growth}\n`;
       await receiveNutrients();//定时领取营养液
       await doHelp();//助力
       await doTask();//做日常任务
@@ -202,7 +209,7 @@ async function stealFriendWater() {
 }
 async function doEgg() {
   await egg();
-  if ($.plantEggLotteryRes.code === '0') {
+  if ($.plantEggLotteryRes && $.plantEggLotteryRes.code === '0') {
     if ($.plantEggLotteryRes.data.restLotteryNum > 0) {
       const eggL = new Array($.plantEggLotteryRes.data.restLotteryNum).fill('');
       console.log(`目前共有${eggL.length}次扭蛋的机会`)
@@ -215,7 +222,7 @@ async function doEgg() {
       console.log('暂无扭蛋机会')
     }
   } else {
-    console.log('查询天天扭蛋的机会失败')
+    console.log('查询天天扭蛋的机会失败' + JSON.stringify($.plantEggLotteryRes))
   }
 }
 async function doTask() {
