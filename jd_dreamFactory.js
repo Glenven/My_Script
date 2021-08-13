@@ -42,7 +42,7 @@ const randomCount = $.isNode() ? 20 : 5;
 let tuanActiveId = ``;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
 let cookiesArr = [], cookie = '', message = '', allMessage = '';
-const inviteCodes = [];
+const inviteCodes = ['5-GjPFJV15nhSfpjpLJzKA==','ersZtniZJRayAaB3g1y8Rg==','gV-7J2uqM-upAiWTcVGEkw==','PtCxSHMAhulwpDpU_YIPJQ==','','Nky4mOK2pA9Mc1xZxJZ5iA==','kjow0UZhPwBfYO_uwvBELw==','rJwrcCfWf2sMvsPCzsE_yg==','Tn4iXnN2DRQAUFJB5_RqMQ==','jXJfNX725I4AMNW38U2AGg==','-L6V0_c7mIDFfwfqFM5TjQ==','NIW_qbA80KTENtCiPnn6wlOkgTVM-sRK5A5aVddk5II=','lBwYFXb4dJCtPuhgGehUWw==','8smdql9kFghHfT-7b924Xw==','vhoqYWjg2s5wsWrg_WVZPg==','zJ19wQUepkQdmeN3Uo0Stg==','EJ0Pi0-H814HvFL_d2Znxw==','JhBM-HPNg-F1r0GMcfHBog==','eBfFEE9XToBNLMSmFvyClw==','jJrxOlSTV-ckivTesxl67g==','YT92CWhKgNB2qJYQEOCPxw==','ucUZ1H6_wsxdjAzP7cAmdg==','c1eRRdpYHu0Bq5-ZZD1S5w==','pklUfUu_j3AiOanW4QlbVw==','R9EDBOtHLekv3lCNW3AEiQ==','Ted9zFnDgLC6pdKjeCK0kg=='];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.tuanIds = [];
 $.appId = 10001;
