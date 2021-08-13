@@ -1,8 +1,8 @@
 /*
 * 来客有礼小程序
-* cron 45 4 * * *
-* 至少需要11个ck
-* 优先账号内互助，再助力zero205
+* cron 15 0,,4 * * *
+* 至少需要6个ck
+* 优先账号内互助
 * */
 const $ = new Env('送豆得豆');
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -20,7 +20,7 @@ if ($.isNode()) {
     $.getdata("CookieJD2"),
     ...$.toObj($.getdata("CookiesJD") || "[]").map((item) => item.cookie)].filter((item) => !!item);
 }
-$.activityId = 85;
+$.activityId = 1604;
 !(async () => {
   $.isLoginInfo = {};
   if (!cookiesArr[0]) {
