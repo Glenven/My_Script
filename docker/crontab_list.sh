@@ -180,7 +180,7 @@
 # 京喜农场
 0 9,12,18 * * * node /scripts/jd_jxnc.js >> /scripts/logs/jd_jxnc.log 2>&1
 # 京喜工厂
-20 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
+*/30 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂自动收取道具
 50 * * * * node /scripts/jx_factory_component.js >> /scripts/logs/jx_factory_component.log 2>&1
 # 京喜领红包
