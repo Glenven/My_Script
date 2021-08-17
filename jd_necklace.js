@@ -101,7 +101,7 @@ async function jd_necklace() {
         await necklace_exchangeGift(formatInt($.totalScore));//自动兑换多少钱的无门槛红包，1000代表1元，默认兑换全部点点券
       }
     }
-    await showMsg();
+    // await showMsg();
   } catch (e) {
     $.logErr(e)
   }
