@@ -63,7 +63,7 @@ let cityid = Math.round(Math.random() * (1500 - 1000) + 1000);
 
         let tslist = await taskList();
         if (tslist.code == 1) {
-            $.notify('第' + (i + 1) + '个账号cookie过期', '请访问\nhttps://bean.m.jd.com/bean/signIndex.action\n抓取cookie', { url: 'https://bean.m.jd.com/bean/signIndex.action' });
+            // $.notify('第' + (i + 1) + '个账号cookie过期', '请访问\nhttps://bean.m.jd.com/bean/signIndex.action\n抓取cookie', { url: 'https://bean.m.jd.com/bean/signIndex.action' });
             continue;
         }
 
