@@ -30,7 +30,7 @@ let cookiesArr = [], cookie = '', message;
 let helpAuthor = false;
 const randomCount = $.isNode() ? 5 : 5;
 let cash_exchange = false;//是否消耗2元红包兑换200京豆，默认否
-const inviteCodes = ['eU9Ya--7Zfgu8m_UmiER3w','eU9Ya-y3Y_h19m-BzncR0Q','IRkyaOuwZ_og7GvXy3AX3g','eU9YCb_1EKVHoBK_qyVO','eU9Yabq0Napz9WrczyAa1g','eU9YC4rtLoRYji2CkxF2','eU9YL5rkP4R4hQezrTZR','eU9YGK7tNIRZhDCdozZC','eU9YaeuwMK0h9WqDyncThw','eU9Yaum1b_pwoDvVyCdA0Q','eU9Ya7rhZ_klozqGy3JC0A','dU7j5GruP7Q','eU9YL5DuMYNZhz-0tjNi','eU9Yabi3MvogoG3dz3VG0g','9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA','eU9Ya-Swb_ojoD_TmiURgw','-5SAuXIgZvgl8w','Ih40auy0ZPs782zVzHsT','eU9YP7THGrtsrzCOkSJI','eU9YMqTaAY5ChB-2qg5t']
+const inviteCodes = ['eU9Ya--7Zfgu8m_UmiER3w@eU9Ya-y3Y_h19m-BzncR0Q@IRkyaOuwZ_og7GvXy3AX3g@eU9YCb_1EKVHoBK_qyVO@eU9Yabq0Napz9WrczyAa1g@eU9YC4rtLoRYji2CkxF2@eU9YL5rkP4R4hQezrTZR@eU9YGK7tNIRZhDCdozZC@eU9YaeuwMK0h9WqDyncThw@eU9Yaum1b_pwoDvVyCdA0Q@eU9Ya7rhZ_klozqGy3JC0A@dU7j5GruP7Q@eU9YL5DuMYNZhz-0tjNi@eU9Yabi3MvogoG3dz3VG0g@9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA@eU9Ya-Swb_ojoD_TmiURgw@-5SAuXIgZvgl8w@Ih40auy0ZPs782zVzHsT@eU9YP7THGrtsrzCOkSJI@eU9YMqTaAY5ChB-2qg5t']
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
