@@ -33,6 +33,7 @@ const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%2
 let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '', message = '', allMessage = '';
 const inviteCodes = [''];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
 $.tuanIds = [];
 $.appId = 10001;
 if ($.isNode()) {
