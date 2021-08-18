@@ -51,7 +51,7 @@ $.shareId = [];
   // await $.wait(1000)
   // await updateShareCodesCDN('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_shareCodes.json')
   await $.wait(1000)
-  // await getShareCode()
+  await getShareCode()
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -445,7 +445,7 @@ function updateShareCodesCDN(url) {
 function getShareCode() {
   return new Promise(resolve => {
     $.get({
-      url: "https://raw.fastgit.org/zero205/updateTeam/main/shareCodes/jd_mohe.json",
+      url: "https://raw.fastgit.org/h455257166/MyUpdateTeam/main/MyShareCodes/jd_mohe.json",
       headers: {
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
       }
