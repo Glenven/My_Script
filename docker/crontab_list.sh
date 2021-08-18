@@ -213,6 +213,8 @@
 0 5,17 * * * node /scripts/jd_zjb.js >> /scripts/logs/jd_zjb.log 2>&1
 # 京东极速版-天天领红包
 10 */6 * * * node /scripts/jd_speed_redpocke.js >> /scripts/logs/jd_speed_redpocke.log 2>&1
+# 京东极速版-推一推
+0 */6 * * * node /scripts/jd_speed_tyt.js >> /scripts/logs/jd_speed_tyt.log 2>&1
 # 京东极速版-翻翻乐
 20 */4 * * * node /scripts/jd_big_winner.js >> /scripts/logs/jd_big_winner.log 2>&1
 
