@@ -31,8 +31,9 @@ let helpAuthor = false;
 const randomCount = $.isNode() ? 5 : 5;
 let cash_exchange = true;//是否消耗2元红包兑换200京豆，默认否
 const inviteCodes = [
-'eU9Ya--7Zfgu8m_UmiER3w@eU9Ya-y3Y_h19m-BzncR0Q@IRkyaOuwZ_og7GvXy3AX3g@eU9YCb_1EKVHoBK_qyVO@eU9Yabq0Napz9WrczyAa1g@eU9YC4rtLoRYji2CkxF2@eU9YL5rkP4R4hQezrTZR@eU9YGK7tNIRZhDCdozZC@eU9YaeuwMK0h9WqDyncThw@eU9Yaum1b_pwoDvVyCdA0Q@eU9Ya7rhZ_klozqGy3JC0A@dU7j5GruP7Q@eU9YL5DuMYNZhz-0tjNi@eU9Yabi3MvogoG3dz3VG0g@9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA@eU9Ya-Swb_ojoD_TmiURgw@-5SAuXIgZvgl8w@Ih40auy0ZPs782zVzHsT@eU9YP7THGrtsrzCOkSJI@eU9YMqTaAY5ChB-2qg5t',
-'eU9Yaum1b_pwoDvVyCdA0Q@eU9Ya7rhZ_klozqGy3JC0A@dU7j5GruP7Q@eU9YL5DuMYNZhz-0tjNi@eU9Yabi3MvogoG3dz3VG0g@9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA@eU9Ya-Swb_ojoD_TmiURgw@-5SAuXIgZvgl8w@Ih40auy0ZPs782zVzHsT@eU9YP7THGrtsrzCOkSJI@eU9YMqTaAY5ChB-2qg5t']
+`eU9Ya--7Zfgu8m_UmiER3w@eU9Ya-y3Y_h19m-BzncR0Q@IRkyaOuwZ_og7GvXy3AX3g@eU9YCb_1EKVHoBK_qyVO@eU9Yabq0Napz9WrczyAa1g@eU9YC4rtLoRYji2CkxF2@eU9YL5rkP4R4hQezrTZR@eU9YGK7tNIRZhDCdozZC@eU9YaeuwMK0h9WqDyncThw@eU9Yaum1b_pwoDvVyCdA0Q@eU9Ya7rhZ_klozqGy3JC0A@dU7j5GruP7Q@eU9YL5DuMYNZhz-0tjNi@eU9Yabi3MvogoG3dz3VG0g@9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA@eU9Ya-Swb_ojoD_TmiURgw@-5SAuXIgZvgl8w@Ih40auy0ZPs782zVzHsT@eU9YP7THGrtsrzCOkSJI@eU9YMqTaAY5ChB-2qg5t`,
+`eU9Yaum1b_pwoDvVyCdA0Q@eU9Ya7rhZ_klozqGy3JC0A@dU7j5GruP7Q@eU9YL5DuMYNZhz-0tjNi@eU9Yabi3MvogoG3dz3VG0g@9YSIuXgrv0-rJeJ_Hv2rA3DK7ADvEiA@eU9Ya-Swb_ojoD_TmiURgw@-5SAuXIgZvgl8w@Ih40auy0ZPs782zVzHsT@eU9YP7THGrtsrzCOkSJI@eU9YMqTaAY5ChB-2qg5t`
+]
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -49,8 +50,7 @@ let allMessage = '';
     return;
   }
   await requireConfig()
-  // await getAuthorShareCode();
-  // await getAuthorShareCode2();
+  await getAuthorShareCode();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       cookie = cookiesArr[i];
@@ -185,14 +185,14 @@ async function helpFriends() {
     if(!$.canHelp) break
     await $.wait(1000)
   }
-  // if (helpAuthor && $.authorCode) {
-  //   for(let helpInfo of $.authorCode){
-  //     console.log(`去帮助好友${helpInfo['inviteCode']}`)
-  //     await helpFriend(helpInfo)
-  //     if(!$.canHelp) break
-  //     await $.wait(1000)
-  //   }
-  // }
+  if ($.authorCode) {
+    for(let helpInfo of $.authorCode){
+      console.log(`去帮助好友${helpInfo['inviteCode']}`)
+      await helpFriend(helpInfo)
+      if(!$.canHelp) break
+      await $.wait(1000)
+    }
+  }
 }
 function helpFriend(helpInfo) {
   return new Promise((resolve) => {
@@ -383,10 +383,6 @@ function shareCodesFormat() {
       let authorCode = deepCopy($.authorCode)
       $.newShareCodes = [...(authorCode.map((item, index) => authorCode[index] = item['inviteCode'])), ...$.newShareCodes];
     }
-    const readShareCodeRes = await readShareCode();
-    if (readShareCodeRes && readShareCodeRes.code === 200) {
-      $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
-    }
     $.newShareCodes.map((item, index) => $.newShareCodes[index] = { "inviteCode": item, "shareDate": $.shareDate })
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify($.newShareCodes)}`)
     resolve();
@@ -455,7 +451,9 @@ function taskUrl(functionId, body = {}) {
   }
 }
 
-function getAuthorShareCode(url = "http://cdn.annnibb.me/jd_cash.json") {
+
+// https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateCash.json
+function getAuthorShareCode(url = "https://raw.fastgit.org/h455257166/MyUpdateTeam/main/MyShareCodes/jd_cash.json") {
   return new Promise(resolve => {
     $.get({url, headers:{
         "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
@@ -465,28 +463,6 @@ function getAuthorShareCode(url = "http://cdn.annnibb.me/jd_cash.json") {
         if (err) {
         } else {
           $.authorCode = JSON.parse(data)
-        }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        resolve();
-      }
-    })
-  })
-}
-function getAuthorShareCode2(url = "https://cdn.jsdelivr.net/gh/gitupdate/updateTeam@master/shareCodes/jd_updateCash.json") {
-  return new Promise(resolve => {
-    $.get({url, headers:{
-        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-      }, timeout: 200000,}, async (err, resp, data) => {
-      $.authorCode2 = [];
-      try {
-        if (err) {
-        } else {
-          $.authorCode2 = JSON.parse(data)
-          if ($.authorCode2 && $.authorCode2.length) {
-            $.authorCode.push(...$.authorCode2);
-          }
         }
       } catch (e) {
         $.logErr(e, resp)

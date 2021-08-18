@@ -47,10 +47,9 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
   console.log('京喜领红包\n' +
       '活动入口：京喜app-》我的-》京喜领红包\n' +
       '助力逻辑：脚本会助力作者，介意请取消脚本')
-  let res = await getAuthorShareCode() || [];
-  let res2 = await getAuthorShareCode('https://raw.fastgit.org/zero205/updateTeam/main/shareCodes/jxhb.json') || [];
+  let res = await getAuthorShareCode('https://raw.fastgit.org/h455257166/MyUpdateTeam/main/MyShareCodes/jx_lhb.json') || [];
   if (res && res.activeId) $.activeId = res.activeId;
-  $.authorMyShareIds = [...((res && res.codes) || []), ...res2];
+  $.authorMyShareIds = [...((res && res.codes) || [])];
   //开启红包,获取互助码
   for (let i = 0; i < cookiesArr.length; i++) {
     $.index = i + 1;
@@ -66,6 +65,17 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
     $.canHelp = true;
     $.max = false;
     $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+    if ($.canHelp) {
+      console.log(`\n【${$.UserName}】有剩余助力机会，开始助力作者\n`)
+      for (let item of $.authorMyShareIds) {
+        if (!item) continue;
+        if (!$.canHelp) break
+        console.log(`【${$.UserName}】去助力作者的邀请码：${item}`);
+        await enrollFriend(item);
+        await $.wait(2500);
+      }
+      // console.log(`\n【${$.UserName}】助力作者的代码被注释了哟，真尴尬\n`)
+    }
      for (let code of $.packetIdArr) {
        if (!code) continue;
        if ($.UserName === code['userName']) continue;
@@ -75,17 +85,6 @@ const BASE_URL = 'https://wq.jd.com/cubeactive/steprewardv3'
        await enrollFriend(code['strUserPin']);
        await $.wait(2500);
      }
-    if ($.canHelp) {
-      console.log(`\n【${$.UserName}】有剩余助力机会，开始助力作者\n`)
-      // for (let item of $.authorMyShareIds) {
-      //   if (!item) continue;
-      //   if (!$.canHelp) break
-      //   console.log(`【${$.UserName}】去助力作者的邀请码：${item}`);
-      //   await enrollFriend(item);
-      //   await $.wait(2500);
-      // }
-      console.log(`\n【${$.UserName}】助力作者的代码被注释了哟，真尴尬\n`)
-    }
   }
   //拆红包
   for (let i = 0; i < cookiesArr.length; i++) {

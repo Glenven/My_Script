@@ -25,16 +25,8 @@
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
-# 8.8-8.14 七夕告白季-开卡
-36 0,8,16 * 8 * node /scripts/jd_gua_opencard6.js >> /scripts/logs/jd_gua_opencard6.log 2>&1
-# 8.8-8.14 七夕会员福利社
-36 0,8,16 8-14 8 * node /scripts/jd_gua_opencard7.js >> /scripts/logs/jd_gua_opencard7.log 2>&1
-# 8.10-8.15 头号玩家 一起热8
-36 0,8,16 8-15 8 * node /scripts/jd_gua_opencard8.js >> /scripts/logs/jd_gua_opencard8.log 2>&1
-# 8.11-8.15 星动七夕 纵享丝滑
-36 0,8,16 8-15 8 * node /scripts/jd_gua_opencard9.js >> /scripts/logs/jd_gua_opencard9.log 2>&1
-# 8.4-8.15 七夕情报局🐶
-36 0,10,21 4-15 8 * node /scripts/jd_gua_doge.js >> /scripts/logs/jd_gua_doge.log 2>&1
+# 京东工业品抽奖
+10 7 17,18 8 * node /scripts/jd_industryLottery.js >> /scripts/logs/jd_industryLottery.log 2>&1 
 
 #5G超级盲盒 活动时间：2021-03-19到2021-04-30
 10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
