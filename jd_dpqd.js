@@ -57,7 +57,7 @@ if ($.isNode()) {
         continue
       }
       await dpqd()
-      if (i < 1) { await showMsg() }
+      // if (i < 1) { await showMsg() }
     }
   }
 })()
