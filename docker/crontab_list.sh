@@ -10,7 +10,7 @@
 # 咪咕爱看签到
 15 */8 * * * node /scripts/js_migu.js >> /scripts/logs/js_migu.log 2>&1
 #抖音极速版日常任务
-15 */1 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
+15 */2 * * * node /scripts/js_douyin.js >> /scripts/logs/js_douyin.log 2>&1
 # 吾爱破解签到
 15 */8 * * * node /scripts/js_wapj.js >> /scripts/logs/js_wapj.log 2>&1
 # 聚看点
@@ -32,7 +32,7 @@
 10 0,1-23/4 * * * node /scripts/jd_mohe.js >> /scripts/logs/jd_mohe.log 2>&1
 
 #女装盲盒 活动时间：2021-4-1至2021-04-31
-5 1,23 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
+5 */6 * * * node /scripts/jd_nzmh.js >> /scripts/logs/jd_nzmh.log 2>&1
 
 #京东国际盲盒活动时间】2021年02月23日 起至 2021年03月31日 18:00:00
 5 7,12,23 * * * node /scripts/jd_global_mh.js >> /scripts/logs/jd_global_mh.log 2>&1
@@ -66,7 +66,7 @@
 # 赚30
 3 0,5,20 * * * node /scripts/jd_earn30.js >> /scripts/logs/jd_earn30.log 2>&1
 # 东东超市兑换奖品
-0,30 0 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
+59 23,0 * * * node /scripts/jd_blueCoin.js >> /scripts/logs/jd_blueCoin.log 2>&1
 # 摇京豆
 0 0,23 * * * node /scripts/jd_club_lottery.js >> /scripts/logs/jd_club_lottery.log 2>&1
 # 东东农场
@@ -106,11 +106,11 @@
 # 愤怒的现金
 0 0,1 * * * node /scripts/jd_angryCash.js >> /scripts/logs/jd_angryCash.log 2>&1
 # 签到领现金红包兑换
-0,1,2 0 * * 0,1 node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
+59 23,7,15 * * * node /scripts/jd_cash_exchange.js >> /scripts/logs/jd_cash_exchange.log 2>&1
 # 京东秒秒币
 10 7 * * * node /scripts/jd_ms.js >> /scripts/logs/jd_ms.log 2>&1
 # 美丽研究院
-5 * * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
+58 * * * * node /scripts/jd_beauty.js >> /scripts/logs/jd_beauty.log 2>&1
 # 京东保价
 1 0,23 * * * node /scripts/jd_price.js >> /scripts/logs/jd_price.log 2>&1
 # 闪购盲盒
@@ -143,9 +143,9 @@
 30 14 * * * node /scripts/jd_ddnc_farmpark.js >> /scripts/logs/jd_ddnc_farmpark.log 2>&1
 # 家庭号
 20 */6 * * * node /scripts/jd_family.js >> /scripts/logs/jd_family.log 2>&1
-#京东直播（又回来了）
+# 京东直播（又回来了）
 30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1 
-#送豆得豆
+# 送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
 # 天天优惠大乐透
 0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
@@ -190,7 +190,7 @@
 # 京喜财富岛
 */30 * * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
 # 京喜财富岛提现
-59 11,12,23 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
+59 * * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 # 京喜财富岛提现
 0 0,12,13 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
 

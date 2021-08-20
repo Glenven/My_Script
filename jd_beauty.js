@@ -473,7 +473,7 @@ async function mr() {
           for (let benefit of vo.data) {
             if (benefit.type === 1) { //type 1 是京豆
               console.log(`benefit:${JSON.stringify(benefit)}`);
-              if(benefit.description === "500颗京豆打包兑换" &&   //1 京豆 或 500颗京豆打包兑换
+              if(benefit.description === "1 京豆" &&   //1 京豆 或 500颗京豆打包兑换
                   parseInt(benefit.day_exchange_count) < 10 &&
                   $.total > benefit.coins){
                 for (let i = benefit.day_exchange_count; i < 10; i++){
