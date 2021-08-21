@@ -122,11 +122,12 @@ if (readTokenRes && readTokenRes.code === 200) {
   } else {
     $.LKYLToken = $.isNode() ? (process.env.JOY_RUN_TOKEN ? process.env.JOY_RUN_TOKEN : jdJoyRunToken) : ($.getdata('jdJoyRunToken') || jdJoyRunToken);
   }
-  console.log(`打印token：${$.LKYLToken ? $.LKYLToken : '暂无token'}\n`)
+  console.log(`打印token：${$.LKYLToken ? $.LKYLToken : '暂无自定义token'}\n`)
   if (!$.LKYLToken) {
     $.msg($.name, '【提示】请先获取来客有礼宠汪汪token', "iOS用户微信搜索'来客有礼'小程序\n点击底部的'发现'Tab\n即可获取Token\n");
     console.log(`尝试获取【zero205】仓库来客有礼token，一天只更新一次，有效期几个小时，请留意TG群内消息\n`)
     $.LKYLToken = $.lkyl
+    console.log(`打印token：${$.LKYLToken ? $.LKYLToken : '暂无远程token'}\n`)
   }
   // await getFriendPins();
   for (let i = 0; i < cookiesArr.length; i++) {
