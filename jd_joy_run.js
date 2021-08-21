@@ -52,9 +52,9 @@ const jdCookieNode = $.isNode() ? require('./jdCookie.js') : {};
 ///下面给出好友邀请助力的示例填写规则
 let invite_pins = ["jd_739348311ab29,225472166-520348,jd_70554c71d5427,jd_UcwFiQaLZPfm,jd_5f6cfe4494c90,jd_hVtTJAHsyCvv,jd_lFlIFqocWigs,jd_WVoxHNOsghRU,jd_sFfiHnDYVVur,关燕兄,碧兰泉,jcjyids,我的小太阳-丁,jd_GctZNBjFWTsa,jd_6e5a2c28551b1,锋强颜欢笑,红茶不为情,Mint_红茶,jd_ldhLsPDXyXwf,jd_150685xnl"];
 //下面给出好友赛跑助力的示例填写规则
-let run_pins = ["jd_739348311ab29,225472166-520348,jd_70554c71d5427,jd_UcwFiQaLZPfm,jd_5f6cfe4494c90,jd_hVtTJAHsyCvv,jd_lFlIFqocWigs,jd_WVoxHNOsghRU,jd_sFfiHnDYVVur,关燕兄,碧兰泉,jcjyids,我的小太阳-丁,jd_GctZNBjFWTsa,jd_6e5a2c28551b1,锋强颜欢笑,红茶不为情,Mint_红茶,jd_ldhLsPDXyXwf,jd_150685xnl,daozisi10996,18374991542_p,18368343571_p,13168885005_p,jd_7bfaae44697b8,805214833_m,a97500696,13681618779_p,jd_5ff0149a704ed,1839512989_m,jd_nTMLFAhCniPv,jd_6d1f53ef83341,wdmEyBQUqAKWZM,jd_48a94eeaeb8aa,lidonglei1,jd_5e0360af58af5,jd_5d893d2dcd170,jd_IscTBsCvIYKz,jd_uiXUlnyrhZhs,jd_722611448b46e,jd_7c963de1a4a00,jd_6874e804fc32f,邵帅19920110,芬芳的空气,jd_ikuMIXoFLcXF,jd_taOSHquozbiv,jiazhou84,jd_JGDpGEbPZqkq,zhu_hua82,jd_73f207dc7c342,1005081460xb,jd_7ec1861ff2491,呵呵6990,jd_49a89d7983021,jd_4689344dcacbd,jd_76aa0bbb2511f,蓝色的少年,蓝坊文化,董小萌Mario,jd_DhLpMtDOUJqG,jd_IkIiGmrNndWo,丶灬陌然,18237091240_p,jd_IkIiGmrNndWo,wdmEyBQUqAKWZM,a97500696,pluto.5218_m,jd_IscTBsCvIYKz,jd_680c996309fbf,zhu_hua82,丶灬陌然,jd_6d1f53ef83341,jd_7ec1861ff2491,jd_48a94eeaeb8aa,c15639985031,jd_7c963de1a4a00,jd_6874e804fc32f,jd_76aa0bbb2511f,daozisi10996,jd_DhLpMtDOUJqG,jd_4689344dcacbd,jd_5e0360af58af5,jd_722611448b46e,jd_5cd15c4b0807c,董小萌Mario,jd_uiXUlnyrhZhs,jd_ikuMIXoFLcXF,18237091240_p,呵呵6990,jd_TTcYfwuzDbnh,lidonglei1,13681618779_p,jd_73f207dc7c342,jd_7bfaae44697b8,1005081460xb,jd_50f2be46743fc,18368343571_p,15082992273_p,jd_5ff0149a704ed,邵帅19920110,13168885005_p,18374991542_p,jd_5d893d2dcd170,jd_544cacc7b14ef,jd_49a89d7983021,蓝坊文化,蓝色的少年,游林yl,jiazhou84,920519087_m,芬芳的空气,jd_taOSHquozbiv,jd_nTMLFAhCniPv,313333079-954679,805214833_m,doudou123454321,jd_JGDpGEbPZqkq,1839512989_m,jd_6f5e8ee8f9429,18018982871_p,jd_YWuWKnYitefP,亮亮068,jd_CZZCpsNCDDoY,jd_7339f188c50ac,jd_4e67dd543c342,sclspc,jd_6fb63d0a4f599,jd_ObHjbnRenQhF,jd_AHLAKpHUNqWH,18780717220_p,小小雷神,kelanlee,52612974-336953,jd_44f6a599c67d9,jd_46d498f5c2cf9,咦噜哈噜咦"];
+let run_pins = ["jd_739348311ab29,225472166-520348,jd_70554c71d5427,jd_UcwFiQaLZPfm,jd_5f6cfe4494c90,jd_hVtTJAHsyCvv,jd_lFlIFqocWigs,jd_WVoxHNOsghRU,jd_sFfiHnDYVVur,关燕兄,碧兰泉,jcjyids,我的小太阳-丁,jd_GctZNBjFWTsa,jd_6e5a2c28551b1,锋强颜欢笑,红茶不为情,Mint_红茶,jd_ldhLsPDXyXwf,jd_150685xnl"];
 //friendsArr内置太多会导致IOS端部分软件重启,可PR过来(此处目的:帮别人助力可得30g狗粮)
-let friendsArr = ["jd_739348311ab29,225472166-520348,jd_70554c71d5427,jd_UcwFiQaLZPfm,jd_5f6cfe4494c90,jd_hVtTJAHsyCvv,jd_lFlIFqocWigs,jd_WVoxHNOsghRU,jd_sFfiHnDYVVur,关燕兄,碧兰泉,jcjyids,我的小太阳-丁,jd_GctZNBjFWTsa,jd_6e5a2c28551b1,锋强颜欢笑,红茶不为情,Mint_红茶,jd_ldhLsPDXyXwf,jd_150685xnl,18237091240_p,pluto.5218_m,jd_50f2be46743fc,15082992273_p,jd_680c996309fbf,jd_5cd15c4b0807c,jd_TTcYfwuzDbnh,c15639985031,jd_544cacc7b14ef,313333079-954679,游林yl,doudou123454321,920519087_m,daozisi10996,18374991542_p,18368343571_p,13168885005_p,jd_7bfaae44697b8,805214833_m,a97500696,13681618779_p,jd_5ff0149a704ed,1839512989_m,jd_nTMLFAhCniPv,jd_6d1f53ef83341,wdmEyBQUqAKWZM,jd_48a94eeaeb8aa,lidonglei1,jd_5e0360af58af5,jd_5d893d2dcd170,jd_IscTBsCvIYKz,jd_uiXUlnyrhZhs,jd_722611448b46e,jd_7c963de1a4a00,jd_6874e804fc32f,邵帅19920110,芬芳的空气,jd_ikuMIXoFLcXF,jd_taOSHquozbiv,jiazhou84,jd_JGDpGEbPZqkq,zhu_hua82,jd_73f207dc7c342,1005081460xb,jd_7ec1861ff2491,呵呵6990,jd_49a89d7983021,jd_4689344dcacbd,jd_76aa0bbb2511f,蓝色的少年,蓝坊文化,董小萌Mario,jd_DhLpMtDOUJqG,jd_IkIiGmrNndWo,丶灬陌然,18237091240_p,jd_IkIiGmrNndWo,wdmEyBQUqAKWZM,a97500696,pluto.5218_m,jd_IscTBsCvIYKz,jd_680c996309fbf,zhu_hua82,丶灬陌然,jd_6d1f53ef83341,jd_7ec1861ff2491,jd_48a94eeaeb8aa,c15639985031,jd_7c963de1a4a00,jd_6874e804fc32f,jd_76aa0bbb2511f,daozisi10996,jd_DhLpMtDOUJqG,jd_4689344dcacbd,jd_5e0360af58af5,jd_722611448b46e,jd_5cd15c4b0807c,董小萌Mario,jd_uiXUlnyrhZhs,jd_ikuMIXoFLcXF,18237091240_p,呵呵6990,jd_TTcYfwuzDbnh,lidonglei1,13681618779_p,jd_73f207dc7c342,jd_7bfaae44697b8,1005081460xb,jd_50f2be46743fc,18368343571_p,15082992273_p,jd_5ff0149a704ed,邵帅19920110,13168885005_p,18374991542_p,jd_5d893d2dcd170,jd_544cacc7b14ef,jd_49a89d7983021,蓝坊文化,蓝色的少年,游林yl,jiazhou84,920519087_m,芬芳的空气,jd_taOSHquozbiv,jd_nTMLFAhCniPv,313333079-954679,805214833_m,doudou123454321,jd_JGDpGEbPZqkq,1839512989_m,jd_6f5e8ee8f9429,18018982871_p,jd_YWuWKnYitefP"];
+let friendsArr = ["jd_739348311ab29,225472166-520348,jd_70554c71d5427,jd_UcwFiQaLZPfm,jd_5f6cfe4494c90,jd_hVtTJAHsyCvv,jd_lFlIFqocWigs,jd_WVoxHNOsghRU,jd_sFfiHnDYVVur,关燕兄,碧兰泉,jcjyids,我的小太阳-丁,jd_GctZNBjFWTsa,jd_6e5a2c28551b1,锋强颜欢笑,红茶不为情,Mint_红茶,jd_ldhLsPDXyXwf,jd_150685xnl"];
 
 
 //IOS等用户直接用NobyDa的jd cookie
@@ -116,17 +116,19 @@ async function main() {
   }
   const readTokenRes = ''
   // const readTokenRes = await readToken();
-  if (readTokenRes && readTokenRes.code === 200) {
+  await updateToken()
+if (readTokenRes && readTokenRes.code === 200) {
     $.LKYLToken = readTokenRes.data[0] || ($.isNode() ? (process.env.JOY_RUN_TOKEN ? process.env.JOY_RUN_TOKEN : jdJoyRunToken) : ($.getdata('jdJoyRunToken') || jdJoyRunToken));
   } else {
     $.LKYLToken = $.isNode() ? (process.env.JOY_RUN_TOKEN ? process.env.JOY_RUN_TOKEN : jdJoyRunToken) : ($.getdata('jdJoyRunToken') || jdJoyRunToken);
   }
   console.log(`打印token：${$.LKYLToken ? $.LKYLToken : '暂无token'}\n`)
   if (!$.LKYLToken) {
-    $.msg($.name, '【提示】请先获取来客有礼宠汪汪token', "iOS用户微信搜索'来客有礼'小程序\n点击底部的'发现'Tab\n即可获取Token");
-    // return;
+    $.msg($.name, '【提示】请先获取来客有礼宠汪汪token', "iOS用户微信搜索'来客有礼'小程序\n点击底部的'发现'Tab\n即可获取Token\n");
+    console.log(`尝试获取【zero205】仓库来客有礼token，一天只更新一次，有效期几个小时，请留意TG群内消息\n`)
+    $.LKYLToken = $.lkyl
   }
-  await getFriendPins();
+  // await getFriendPins();
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
       $.validate = '';
@@ -257,22 +259,23 @@ async function getToken() {
 }
 function readToken() {
   return new Promise(resolve => {
-    $.get({url: `http://share.turinglabs.net/api/v3/joy/query/1/`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({
+      url: "https://raw.fastgit.org/zero205/updateTeam/main/shareCodes/lkyl.json",
+      headers: {
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+      }
+    }, async (err, resp, data) => {
       try {
         if (err) {
-          console.log(`${JSON.stringify(err)}`)
-          console.log(`${$.name} API请求失败，请检查网路重试`)
+          console.log(`${JSON.stringify(err)}`);
+          console.log(`${$.name} API请求失败，请检查网路重试`);
         } else {
-          if (data) {
-            // if ($.isNode() && !run_pins[0].includes("被折叠的记忆33")) resolve(null);
-            console.log(`\n\n搬运我脚本修改我内置互助码的，请不要盗取我服务器token\n\n\n`)
-            data = JSON.parse(data);
-          }
+          $.lkyl = JSON.parse(data);
         }
       } catch (e) {
         $.logErr(e, resp)
       } finally {
-        resolve(data);
+        resolve();
       }
     })
   })

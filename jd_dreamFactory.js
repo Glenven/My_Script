@@ -1,6 +1,7 @@
 /*
 京东京喜工厂
-更新时间：2021-6-25
+更新时间：2021-8-21 
+修改为内部互助
 修复做任务、收集电力出现火爆，不能完成任务，重新计算h5st验证
 参考自 ：https://www.orzlee.com/web-development/2021/03/03/lxk0301-jingdong-signin-scriptjingxi-factory-solves-the-problem-of-unable-to-signin.html
 活动入口：京东APP-游戏与互动-查看更多-京喜工厂
@@ -30,7 +31,7 @@ let notifyLevel = $.isNode() ? process.env.JXGC_NOTIFY_LEVEL || 2 : 2;
 const randomCount = $.isNode() ? 20 : 5;
 let tuanActiveId = ``, hasSend = false;
 const jxOpenUrl = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%20%22des%22:%20%22m%22,%20%22url%22:%20%22https://wqsd.jd.com/pingou/dream_factory/index.html%22%20%7D`;
-let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '', message = '', allMessage = '';
+let cookiesArr = [], cookie = '', cookienameArr = [], cookiename = '', message = '', allMessage = '', jdDreamFactoryShareArr = [];
 const inviteCodes = [''];
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
@@ -434,6 +435,7 @@ async function helpFriends() {
   }
   if ($.canHelpFlag) {
     await shareCodesFormat();
+    newShareCode = [...(jdDreamFactoryShareArr || []), ...(newShareCodes || [])]
     for (let code of $.newShareCodes) {
       if (code) {
         if ($.encryptPin === code) {
@@ -639,6 +641,7 @@ function userInfo() {
                 console.log(`当前电力：${data.user.electric}`)
                 console.log(`当前等级：${data.user.currentLevel}`)
                 console.log(`\n【京东账号${$.index}（${$.UserName}）的${$.name}好友互助码】${data.user.encryptPin}`);
+                jdDreamFactoryShareArr.push(data.user.encryptPin)
                 console.log(`已投入电力：${production.investedElectric}`);
                 console.log(`所需电力：${production.needElectric}`);
                 console.log(`生产进度：${((production.investedElectric / production.needElectric) * 100).toFixed(2)}%`);
