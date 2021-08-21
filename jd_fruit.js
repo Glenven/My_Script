@@ -61,6 +61,7 @@ const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%2
       if (!$.isLogin) {
         $.nickName = cookiename ? cookiename : $.UserName ;
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {"open-url": "https://bean.m.jd.com/bean/signIndex.action"});
+        allMessage += `京东账号${$.index}：${$.nickName}\n请重新登录获取cookie\n\n`;
         continue
       }
       message = '';
