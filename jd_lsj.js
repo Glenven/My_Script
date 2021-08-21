@@ -24,7 +24,7 @@ let useInfo = {};
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let newShareCodes = [];
-let lsjdh = 'jdAward3';
+let lsjdh = 'jdAward2';
 // if ($.isNode() && process.env.lsjdh) {
 //   lsjdh = process.env.lsjdh;
 // }
@@ -55,11 +55,11 @@ if ($.isNode()) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, { "open-url": "https://bean.m.jd.com/bean/signIndex.action" });
         continue
       }
+      await start()
       if (lsjdh.length !== 0) {
         $.log("检测到您设置了兑换变量，开始兑换")
         await duihuan()
       }
-      await start()
     }
   }
   console.log(`\n开始账号内互助\n`);
