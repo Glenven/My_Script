@@ -116,7 +116,7 @@ async function main() {
   }
   const readTokenRes = ''
   // const readTokenRes = await readToken();
-  await updateToken()
+  await readToken()
 if (readTokenRes && readTokenRes.code === 200) {
     $.LKYLToken = readTokenRes.data[0] || ($.isNode() ? (process.env.JOY_RUN_TOKEN ? process.env.JOY_RUN_TOKEN : jdJoyRunToken) : ($.getdata('jdJoyRunToken') || jdJoyRunToken));
   } else {
