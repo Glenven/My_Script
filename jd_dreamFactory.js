@@ -435,7 +435,7 @@ async function helpFriends() {
   }
   if ($.canHelpFlag) {
     await shareCodesFormat();
-    newShareCode = [...(jdDreamFactoryShareArr || []), ...(newShareCodes || [])]
+    $.newShareCodes = [...(jdDreamFactoryShareArr || []), ...(newShareCodes || [])]
     for (let code of $.newShareCodes) {
       if (code) {
         if ($.encryptPin === code) {
