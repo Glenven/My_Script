@@ -22,6 +22,15 @@
 # 特务Z
 2 */6 * * * node /scripts/jd_superBrand.js >> /scripts/logs/jd_superBrand.log 2>&1
 
+# 来电好物季
+10 */8 * * * node /scripts/jd_ldhwj.js >> /scripts/logs/jd_ldhwj.log 2>&1
+
+# 开学充电站
+25 */8 * * * node /scripts/jd_kxcdz.js >> /scripts/logs/jd_kxcdz.log 2>&1
+
+# 29.0 8.20-8.30 联合开卡
+50 */8 * * * node /scripts/jd_gua_opencard15.js >> /scripts/logs/jd_gua_opencard15.log 2>&1
+
 #伊利养牛记
 38 5,18 * * * node /scripts/jd_ylyn.js >> /scripts/logs/jd_ylyn.log 2>&1
 
