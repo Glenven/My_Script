@@ -143,7 +143,10 @@ function getFollowGoods() {
     }
     $.get(option, (err, resp, data) => {
       try {
+        //test
+        console.log(data)
         data = JSON.parse(data.slice(14, -13));
+        console.log(`算好的数组：${data}`)
         $.goodsTotalNum = data.totalNum;
         // console.log('data', data.data.length)
       } catch (e) {
@@ -234,6 +237,8 @@ function getFollowShops() {
     }
     $.get(option, (err, resp, data) => {
       try {
+        //test
+        console.log(data)
         data = JSON.parse(data.slice(14, -13));
         $.shopsTotalNum = data.totalNum;
       } catch (e) {
