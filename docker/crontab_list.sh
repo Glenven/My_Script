@@ -55,12 +55,6 @@
 #金榜创造营 活动时间：2021-05-21至2021-12-31
 0 1,22 * * * node /scripts/jd_gold_creator.js >> /scripts/logs/jd_gold_creator.log 2>&1
 
-#京享值PK
-# 15 0,6,13,19,21 * * * node /scripts/jd_ddo_pk.js >> /scripts/logs/jd_ddo_pk.log 2>&1 
-
-##京喜签到
-30 14 * * * node /scripts/jd_jxsign.js >> /scripts/logs/jd_jxsign.log 2>&1
-
 ##京东极速版-我的-发财大赢家
 10 6-22/3 * * * node /scripts/jd_fcdyj.js >> /scripts/logs/jd_fcdyj.log 2>&1
 
@@ -191,11 +185,11 @@
 # 京喜app签到
 39 7,10 * * * node /scripts/jx_sign.js >> /scripts/logs/jx_sign.log 2>&1
 # 京喜牧场
-15 0,12,22 * * * node /scripts/jd_jxmc.js >> /scripts/logs/jd_jxmc.log 2>&1
+15 */6 * * * node /scripts/jx_mc.js >> /scripts/logs/jx_mc.log 2>&1
 # 京喜农场
 # 0 9,12,18 * * * node /scripts/jd_jxnc.js >> /scripts/logs/jd_jxnc.log 2>&1
 # 京喜工厂
-*/30 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
+25 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂开团
 5,10,20 */6 * * * node /scripts/jd_dreamFactory_tuan.js >> /scripts/logs/jd_dreamFactory_tuan.log 2>&1
 # 京喜工厂自动收取道具
@@ -204,10 +198,7 @@
 2 0,6,18,23 * * * node /scripts/jx_lhb.js >> /scripts/logs/jx_lhb.log 2>&1
 # 京喜财富岛
 */30 * * * * node /scripts/jd_cfd.js >> /scripts/logs/jd_cfd.log 2>&1
-# 京喜财富岛提现
-59 * * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
-# 京喜财富岛提现
-0 0,12,13 * * * node /scripts/jd_cfdtx.js >> /scripts/logs/jd_cfdtx.log 2>&1
+
 
 
 ##############京东金融##############
