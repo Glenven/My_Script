@@ -90,6 +90,7 @@ let args_xh = {
         for(let i = 0; i < $.cookiesArr.length; i++){
             if($.cookiesArr[i]){
                 $.cookie = $.cookiesArr[i];
+                $.cookiename = cookienameArr[i];
                 $.UserName = decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1])
                 $.index = i + 1;
                 $.isLogin = true;
@@ -97,6 +98,7 @@ let args_xh = {
                 await totalBean();
                 console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
                 if(!$.isLogin){
+                    $.nickName = $.cookiename ? $.cookiename : $.UserName ;
                     $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
                         "open-url": "https://bean.m.jd.com/bean/signIndex.action"
                     });
@@ -158,6 +160,7 @@ function requireConfig(){
         console.log(`共${$.cookiesArr.length}个京东账号\n`)
         //jdCookieName
         if ($.isNode()) {
+          const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
           Object.keys(jdCookieName).forEach((item) => {
             cookienameArr.push(jdCookieName[item])
           })
@@ -438,10 +441,12 @@ function totalBean(){
                             $.isLogin = false; //cookie过期
                             return
                         }
-                        if(data['retcode'] === 0){
-                            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
+                        if (data['retcode'] === 0) {
+                          $.nickName = $.cookiename ? $.cookiename : (data['base'] && data['base'].nickname);
+                          // console.log(`${$.nickName}`)
                         } else {
-                            $.nickName = $.UserName
+                          $.nickName = $.cookiename ? $.cookiename : $.UserName ;
+                          // console.log(`else ${$.nickName}`)
                         }
                     } else {
                         console.log(`京东服务器返回空数据`)
