@@ -31,7 +31,7 @@ let args_xh = {
      * */
 //     isNotify: process.env.JD_TRY_NOTIFY || true,
     // 商品原价，低于这个价格都不会试用
-    jdPrice: process.env.JD_TRY_PRICE || 50,
+    jdPrice: process.env.JD_TRY_PRICE || 0,
     /*
      * 获取试用商品类型，默认为1
      * 1 - 精选
@@ -48,7 +48,7 @@ let args_xh = {
      * 试用商品标题过滤
      * 可设置环境变量：JD_TRY_TITLEFILTERS，关键词与关键词之间用@分隔
      * */
-    titleFilters: process.env.JD_TRY_TITLEFILTERS && process.env.JD_TRY_TITLEFILTERS.split('@') || ["幼儿园","凉鞋","何首乌","壁纸","麦克风","车贴","童鞋","香烟","睫毛","手机绳","同仁堂","U盘","苏打水","迎宾酒","巧克力礼盒","抱枕","睡眠喷雾","墙纸","小凳子","设计服务","减肥功效","牙刷头","流量卡","刮痧板","对戒","玛瑙","雨刮器","手绳","脂肪瘤","红参","参片","小靓美","脚气","文胸","卷尺","种子","档案袋","癣","中年","老太太","妇女","私处","孕妇","卫生","课","培训","阴道","生殖器","肛门","狐臭","胸罩","洋娃娃","玩具","益智","少女","内衣","女孩","鱼饵","钓鱼","童装","吊带","黑丝","钢圈","玩具","幼儿","娃娃","网课","网校","电商","手机壳","钢化膜","车载充电器","网络课程","裤","美少女","教程","软件","英语","辅导","俄语","四级","六级","四六级","在线","宫颈","糜烂","手机膜","狗","情趣","软件","系统盘","延时","手机壳","看房","补水","保湿","化妆品","面膜","口红","卸妆水","吊坠","和田玉","施华洛世奇","冰淇淋","互动网课","周卡","泡腾片","肾宝","药品","早教","伴手礼","紫檀木","燃油宝","汽油","手机支架","电话手表","洗发液","玻尿酸","记事本子","茶","葡萄酒","洋酒","大米","地板蜡","冰王","足浴","单肩包","足链","斜挎包","创意礼品","定制","代餐","短袖","卫衣","T恤","眼镜","机油","驾照","自慰"],
+    titleFilters: process.env.JD_TRY_TITLEFILTERS && process.env.JD_TRY_TITLEFILTERS.split('@') || ["幼儿园","凉鞋","何首乌","壁纸","麦克风","车贴","童鞋","香烟","睫毛","手机绳","同仁堂","U盘","苏打水","迎宾酒","巧克力礼盒","抱枕","睡眠喷雾","墙纸","小凳子","设计服务","减肥功效","牙刷头","流量卡","刮痧板","对戒","玛瑙","雨刮器","手绳","脂肪瘤","红参","参片","小靓美","脚气","文胸","卷尺","种子","档案袋","癣","中年","老太太","妇女","私处","孕妇","卫生","课","培训","阴道","生殖器","肛门","狐臭","胸罩","洋娃娃","玩具","益智","少女","内衣","女孩","鱼饵","钓鱼","童装","吊带","黑丝","钢圈","玩具","幼儿","娃娃","网课","网校","电商","手机壳","钢化膜","车载充电器","网络课程","裤","美少女","教程","软件","英语","辅导","俄语","四级","六级","四六级","在线","宫颈","糜烂","手机膜","狗","情趣","软件","系统盘","延时","手机壳","看房","补水","保湿","化妆品","面膜","口红","卸妆水","吊坠","和田玉","施华洛世奇","冰淇淋","互动网课","周卡","泡腾片","肾宝","药品","早教","伴手礼","紫檀木","燃油宝","汽油","手机支架","电话手表","洗发液","玻尿酸","记事本子","茶","葡萄酒","洋酒","大米","地板蜡","冰王","足浴","单肩包","足链","斜挎包","创意礼品","定制","代餐","短袖","卫衣","T恤","眼镜","机油","驾照","自慰"],    // 试用价格(中了要花多少钱)，高于这个价格都不会试用，小于等于才会试用
     // 试用价格(中了要花多少钱)，高于这个价格都不会试用，小于等于才会试用
     trialPrice: 20,
     /*
@@ -73,7 +73,7 @@ let args_xh = {
      * 例如是18件，将会进行第三次获取，直到过滤完毕后为20件才会停止，不建议设置太大
      * 可设置环境变量：JD_TRY_MAXLENGTH
      * */
-    maxLength: process.env.JD_TRY_MAXLENGTH || 50
+    maxLength: process.env.JD_TRY_MAXLENGTH || 40
 }
 
 !(async() => {
@@ -144,6 +144,16 @@ function requireConfig(){
         $.notify = $.isNode() ? require('./sendNotify') : { sendNotify: async() => { } }
         //获取 Cookies
         $.cookiesArr = []
+        $.cookienameArr = []
+        //jdCookieName
+        if ($.isNode()) {
+          const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
+          Object.keys(jdCookieName).forEach((item) => {
+            $.cookienameArr.push(jdCookieName[item])
+          })
+        } else {
+          $.cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+        }
         if($.isNode()){
             //Node.js用户请在jdCookie.js处填写京东ck;
             const jdCookieNode = require('./jdCookie.js');
@@ -158,15 +168,6 @@ function requireConfig(){
             $.cookiesArr = [$.getdata('CookieJD'), $.getdata('CookieJD2'), ...jsonParse($.getdata('CookiesJD') || "[]").map(item => item.cookie)].filter(item => !!item);
         }
         console.log(`共${$.cookiesArr.length}个京东账号\n`)
-        //jdCookieName
-        if ($.isNode()) {
-          const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
-          Object.keys(jdCookieName).forEach((item) => {
-            $.cookienameArr.push(jdCookieName[item])
-          })
-        } else {
-          $.cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
-        }
         for (const key in args_xh) {
             if(typeof args_xh[key] == 'string') {
                 args_xh[key] = Number(args_xh[key])
@@ -444,9 +445,12 @@ function totalBean(){
                         if (data['retcode'] === 0) {
                           $.nickName = $.cookiename ? $.cookiename : (data['base'] && data['base'].nickname);
                           // console.log(`${$.nickName}`)
+                        if(data['retcode'] === 0){
+                            $.nickName = (data['base'] && data['base'].nickname) || $.UserName;
                         } else {
                           $.nickName = $.cookiename ? $.cookiename : $.UserName ;
                           // console.log(`else ${$.nickName}`)
+                            $.nickName = $.UserName
                         }
                     } else {
                         console.log(`京东服务器返回空数据`)
