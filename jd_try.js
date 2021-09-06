@@ -90,7 +90,7 @@ let args_xh = {
         for(let i = 0; i < $.cookiesArr.length; i++){
             if($.cookiesArr[i]){
                 $.cookie = $.cookiesArr[i];
-                $.cookiename = cookienameArr[i];
+                $.cookiename = $.cookienameArr[i];
                 $.UserName = decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1])
                 $.index = i + 1;
                 $.isLogin = true;
@@ -162,10 +162,10 @@ function requireConfig(){
         if ($.isNode()) {
           const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
           Object.keys(jdCookieName).forEach((item) => {
-            cookienameArr.push(jdCookieName[item])
+            $.cookienameArr.push(jdCookieName[item])
           })
         } else {
-          cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
+          $.cookienameArr = [$.getdata('CookieNameJD'), $.getdata('CookieNameJD2'), ...jsonParse($.getdata('CookieNameJD') || "[]").map(item => item.cookiename)].filter(item => !!item);
         }
         for (const key in args_xh) {
             if(typeof args_xh[key] == 'string') {
