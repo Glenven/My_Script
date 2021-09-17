@@ -4,7 +4,7 @@
  */
 //此处填写京东账号wskey。
 let WskeyJDs = [
-''
+'wskey=AAJhHgvwAEBXGqV5kEpV13DDD8P4UM4vWpNosrsm9EFg57l-n_gBBosVLJPi-5PJirTV7ukPZEe137PE8sJT7v2ayVK4wXA6;pin=youhanrong91yvvuj;'
 ]
 // 判断环境变量里面是否有京东ck
 if (process.env.JD_WSKEY) {
