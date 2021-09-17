@@ -23,6 +23,7 @@ if ($.isNode()) {
   wskeysArr = [$.getdata('WskeyJD'), $.getdata('WskeyJD2'), ...jsonParse($.getdata('WskeyJD') || "[]").map(item => item.cookie)].filter(item => !!item);
 }
 !(async () => {
+    console.log(wskeysArr)
     if (!wskeysArr[0]) {
         $.msg($.name, '【提示】请先获取京东账号一wskey\n 抓包获取');
         return;
