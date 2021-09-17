@@ -24,11 +24,11 @@ if ($.isNode()) {
 }
 !(async () => {
     console.log(wskeysArr)
-    if (!wskeysArr[0]) {
+    if (!wskeysArr[1]) {
         $.msg($.name, '【提示】请先获取京东账号一wskey\n 抓包获取');
         return;
     }
-    for (let i = 0; i < wskeysArr.length; i++) {
+    for (let i = 1; i < wskeysArr.length; i++) {
         $.index = i + 1;
         $.pt_key = '';
         $.tokenKey = '';
