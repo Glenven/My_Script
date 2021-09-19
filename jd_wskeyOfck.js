@@ -39,15 +39,44 @@ if ($.isNode()) {
 })().catch((e) => {$.log('', `❌ ${$.name}, 失败! 原因: ${e}!`, '')}).finally(() => {$.done();});
 
 async function wskey_to_pt_key(){
+    await get_sign();
     await getToken();
     if ($.tokenKey){
        await appjmp();
     }
 }
 
+
+// def get_sign():
+//     url = 'https://hellodns.coding.net/p/sign/d/jsign/git/raw/master/sign'
+//     res = requests.get(url=url, verify=False, timeout=20)
+//     sign_list = json.loads(res.text)
+//     svv = sign_list['sv']
+//     stt = sign_list['st']
+//     suid = sign_list['uuid']
+//     jign = sign_list['sign']
+//     return svv, stt, suid, jign
+
+
+function get_sign() {
+    let options = {
+        "url": "https://hellodns.coding.net/p/sign/d/jsign/git/raw/master/sign",
+        "verify":false, 
+    }
+    return new Promise(resolve => {
+        $.get(options, async (err, resp, data) => {
+            sv = data.sv;
+            st = data.st;
+            uuid = data.uuid;
+            sign = data.sign;
+        })
+    })
+}
+
+
 function getToken() {
     let config = {
-        url: 'https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.1.2&build=89743&client=android&d_brand=&d_model=&osVersion=&screen=&partner=&oaid=&openudid=a27b83d3d1dba1cc&eid=&sdkVersion=30&lang=zh_CN&uuid=a27b83d3d1dba1cc&aid=a27b83d3d1dba1cc&area=19_1601_36953_50397&networkType=wifi&wifiBssid=&uts=&uemps=0-2&harmonyOs=0&st=1630413012009&sign=ca712dabc123eadd584ce93f63e00207&sv=121',
+        url: `https://api.m.jd.com/client.action?functionId=genToken&clientVersion=10.1.2&build=89743&client=android&d_brand=&d_model=&osVersion=&screen=&partner=&oaid=&openudid=a27b83d3d1dba1cc&eid=&sdkVersion=30&lang=zh_CN&uuid=${$.uuid}&area=19_1601_36953_50397&networkType=wifi&wifiBssid=&uts=&uemps=0-2&harmonyOs=0&st=${$.st}&sign=${$.sign}&sv=${$.sv}`,
         body: 'body=%7B%22to%22%3A%22https%253a%252f%252fplogin.m.jd.com%252fjd-mlogin%252fstatic%252fhtml%252fappjmp_blank.html%22%7D&',
         headers: {
 			'Host': 'api.m.jd.com',
