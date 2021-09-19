@@ -65,10 +65,12 @@ function get_sign() {
     }
     return new Promise(resolve => {
         $.get(options, async (err, resp, data) => {
-            sv = data.sv;
-            st = data.st;
-            uuid = data.uuid;
-            sign = data.sign;
+            $.sv = data.sv;
+            $.st = data.st;
+            $.uuid = data.uuid;
+            $.sign = data.sign;
+            console.log(`$.sign`,$.sign)
+
         })
     })
 }
