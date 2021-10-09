@@ -207,7 +207,7 @@ function TotalBean() {
             if (data['retcode'] === '0' && data.data && data.data['assetInfo']) {
               $.beanCount = data.data && data.data['assetInfo']['beanNum'];
             } else {
-              $.errorMsg = `数据异常`;
+              $.errorMsg = `数据异常了`;
             }
           } else {
             $.log('京东服务器返回空数据');
