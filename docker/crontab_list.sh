@@ -19,6 +19,9 @@
 20 */12 * * * node /scripts/js_baotu.js >> /scripts/logs/js_baotu.log 2>&1
 
 ##############短期活动##############
+# 东东世界
+0 1,9 * * * node /scripts/jd_ddworld.js >> /scripts/logs/jd_ddworld.log 2>&1
+
 # 东东世界兑换
 0 0 * * * node /scripts/jd_dddh.js >> /scripts/logs/jd_dddh.log 2>&1
 
