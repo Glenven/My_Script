@@ -146,8 +146,6 @@
 30-50/5 12,23 * * * node /scripts/jd_live.js >> /scripts/logs/jd_live.log 2>&1 
 # 送豆得豆
 45 6 * * * node /scripts/jd_sddd.js >> /scripts/logs/jd_sddd.log 2>&1
-# 天天优惠大乐透
-0 0 * * * node /scripts/jd_daydlt.js >> /scripts/logs/jd_daydlt.log 2>&1
 # 金榜创造营，最高瓜分7亿京豆！
 0 8 * * * node /scripts/jd_jbczy.js >> /scripts/logs/jd_jbczy.log 2>&1
 # 店铺签到
@@ -192,8 +190,6 @@
 25 * * * * node /scripts/jd_dreamFactory.js >> /scripts/logs/jd_dreamFactory.log 2>&1
 # 京喜工厂开团
 5,10,20 */6 * * * node /scripts/jd_dreamFactory_tuan.js >> /scripts/logs/jd_dreamFactory_tuan.log 2>&1
-# 京喜工厂自动收取道具
-50 * * * * node /scripts/jx_factory_component.js >> /scripts/logs/jx_factory_component.log 2>&1
 # 京喜领红包
 2 0,6,18,23 * * * node /scripts/jx_lhb.js >> /scripts/logs/jx_lhb.log 2>&1
 # 京喜财富岛
@@ -202,8 +198,6 @@
 
 
 ##############京东金融##############
-# 天天提鹅
-18 * * * * node /scripts/jd_daily_egg.js >> /scripts/logs/jd_daily_egg.log 2>&1
 # 金融养猪
 12 * * * * node /scripts/jd_pigPet.js >> /scripts/logs/jd_pigPet.log 2>&1
 # 点点券
