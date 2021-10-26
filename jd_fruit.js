@@ -64,9 +64,9 @@ const urlSchema = `openjd://virtual?params=%7B%20%22category%22:%20%22jump%22,%2
         allMessage += `京东账号${$.index}：${$.nickName}\n请重新登录获取cookie\n\n`;
         continue
       }
-      message = '';
-      subTitle = '';
-      option = {};
+      // message = '';
+      // subTitle = '';
+      // option = {};
       await shareCodesFormat();
       await jdFruit();
     }
