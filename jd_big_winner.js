@@ -25,7 +25,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const jdCookieName = $.isNode() ? require('./jdCookieName.js') : '';
 //IOS等用户直接用NobyDa的jd cookie
-let cookiesArr = [], cookie = '', message = '', cookienameArr = [], cookiename = '', linkId = 'DA4SkG7NXupA9sksI00L0g', fflLinkId = 'YhCkrVusBVa_O2K-7xE6hA';
+let cookiesArr = [], cookie = '', message = '', cookienameArr = [], cookiename = '', linkId = 'PFbUR7wtwUcQ860Sn8WRfw', fflLinkId = 'YhCkrVusBVa_O2K-7xE6hA';
 let redEnvelopeId = '315490742bf04977857cfe768ae9625b41441624425312129';
 let inviter = 'AEIIwA6L3k8ePzU3fXDzg8sPlLyAUpJKplSENnlQTGA';
 //兼容elecV2P
