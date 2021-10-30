@@ -94,11 +94,10 @@ let args_xh = {
                 $.UserName = decodeURIComponent($.cookie.match(/pt_pin=(.+?);/) && $.cookie.match(/pt_pin=(.+?);/)[1])
                 $.index = i + 1;
                 $.isLogin = true;
-                $.nickName = '';
+                $.nickName = cookiename ? cookiename : $.UserName ;
                 await totalBean();
                 console.log(`\n开始【京东账号${$.index}】${$.nickName || $.UserName}\n`);
                 if(!$.isLogin){
-                    $.nickName = $.cookiename ? $.cookiename : $.UserName ;
                     $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/bean/signIndex.action`, {
                         "open-url": "https://bean.m.jd.com/bean/signIndex.action"
                     });
