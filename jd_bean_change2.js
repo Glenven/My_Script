@@ -129,7 +129,7 @@ if ($.isNode()) {
 	for (i = 0; i < cookiesArr.length; i++) {
 		if (cookiesArr[i]) {
 			cookie = cookiesArr[i];
-			$.pt_pin = (cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
+			$.pt_pin = (cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);			
 			$.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
 			$.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
 			$.index = i + 1;
@@ -140,7 +140,7 @@ if ($.isNode()) {
 			$.todayOutcomeBean = 0;
 			$.errorMsg = '';
 			$.isLogin = true;
-			$.nickName = '';
+			$.nickName = cookiename ? cookiename : $.UserName ;
 			$.levelName = '';
 			$.message = '';
 			$.balance = 0;
