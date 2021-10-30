@@ -12,6 +12,9 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``) : ``;
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
+
+let cookienameArr = [], cookiename = '';
+
 let allMessage = '';
 let allMessage2 = '';
 let allReceiveMessage = '';
@@ -129,6 +132,7 @@ if ($.isNode()) {
 	for (i = 0; i < cookiesArr.length; i++) {
 		if (cookiesArr[i]) {
 			cookie = cookiesArr[i];
+			cookiename = cookienameArr[i];
 			$.pt_pin = (cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);			
 			$.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1]);
 			$.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS;
