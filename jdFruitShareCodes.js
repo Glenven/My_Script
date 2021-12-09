@@ -7,17 +7,12 @@
 // 同一个京东账号的好友互助码用@符号隔开,不同京东账号之间用&符号或者换行隔开,下面给一个示例
 // 如: 京东账号1的shareCode1@京东账号1的shareCode2&京东账号2的shareCode1@京东账号2的shareCode2
 let FruitShareCodes = [
-  '4b189e58300546beb2fe376811aa4946@0ade530a4f054a4a9a7be8be633828b0@788496acbcc44a1e92159980f06f43aa@95d899b82e134fa0ac2acbf7bf7e8764',//账号一的好友shareCode,不同好友中间用@符号隔开
-  '4b189e58300546beb2fe376811aa4946@0ade530a4f054a4a9a7be8be633828b0@788496acbcc44a1e92159980f06f43aa@95d899b82e134fa0ac2acbf7bf7e8764',//账号二的好友shareCode，不同好友中间用@符号隔开
-]
-
-// 从日志获取互助码
-// const logShareCodes = require('./utils/jdShareCodes');
-// if (logShareCodes.FRUITSHARECODES.length > 0 && !process.env.FRUITSHARECODES) {
-//   process.env.FRUITSHARECODES = logShareCodes.FRUITSHARECODES.join('&');
-// }
-
-// 判断github action里面是否有东东农场互助码
+   //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
+  '4b189e58300546beb2fe376811aa4946@0ade530a4f054a4a9a7be8be633828b0@788496acbcc44a1e92159980f06f43aa@95d899b82e134fa0ac2acbf7bf7e8764',
+  //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
+  '4b189e58300546beb2fe376811aa4946@0ade530a4f054a4a9a7be8be633828b0@788496acbcc44a1e92159980f06f43aa@95d899b82e134fa0ac2acbf7bf7e8764',
+ ]
+// 判断github action里面是否有水果互助码
 if (process.env.FRUITSHARECODES) {
   if (process.env.FRUITSHARECODES.indexOf('&') > -1) {
     console.log(`您的东东农场互助码选择的是用&隔开\n`)
@@ -28,8 +23,8 @@ if (process.env.FRUITSHARECODES) {
   } else {
     FruitShareCodes = process.env.FRUITSHARECODES.split();
   }
-} else {
-  console.log(`由于您环境变量(FRUITSHARECODES)里面未提供助力码，故此处运行将会给脚本内置的码进行助力，请知晓！`)
+} else if (process.env.JD_COOKIE) {
+  console.log(`您secret里面未提供助力码，优先进行自己账号内互助，然后再给脚本内置的码进行助力，请知晓！`)
 }
 for (let i = 0; i < FruitShareCodes.length; i++) {
   const index = (i + 1 === 1) ? '' : (i + 1);
