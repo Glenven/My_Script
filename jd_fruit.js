@@ -1457,9 +1457,10 @@ function TotalBean() {
               $.isLogin = false; //cookie过期
               return
             }
-            if (data['retcode'] === "0" && data.data && data.data.hasOwnProperty("userInfo")) {
+            if (data['retcode'] ===  "0" && data.data && data.data.hasOwnProperty("userInfo")) {
               $.nickName = cookiename ? cookiename : data.data.userInfo.baseInfo.nickname;
               // console.log(`${$.nickName}`)
+            } 
           } else {
             console.log(`京东服务器返回空数据`)
           }
