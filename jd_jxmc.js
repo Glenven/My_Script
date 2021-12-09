@@ -484,7 +484,7 @@ async function buyCabbage(homePageInfo){
             }
             await $.wait(2000);
         }else{
-            console.log(`现有白菜${materialNumber},大于400颗,不进行购买`);
+            console.log(`现有白菜${materialNumber},大于200颗,不进行购买`);
         }
     }
 }
