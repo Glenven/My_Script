@@ -458,6 +458,7 @@ async function doHelp() {
       continue
     }
     await helpShare(plantUuid);
+    if ($.helpResult && $.helpResult.code === '0' && $.helpResult.hasOwnProperty("errorCode")) continue;
     // hasOwnProperty 方法
     // 该方法会返回一个布尔值,指示对象自身属性中是否具有指定的属性(也就是,是否有指定的键)。
     // var obj = {name:'jack'};
