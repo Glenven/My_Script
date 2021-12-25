@@ -91,7 +91,7 @@ async function jdCash() {
   $.exchangeBeanNum = 0;
   cash_exchange = $.isNode() ? (process.env.CASH_EXCHANGE ? process.env.CASH_EXCHANGE : `${cash_exchange}`) : ($.getdata('cash_exchange') ? $.getdata('cash_exchange') : `${cash_exchange}`);
   if (cash_exchange === 'true') {
-    if(Number($.signMoney) >= 2){
+    if(Number($.signMoney) >= 30){
       console.log(`\n\n开始花费2元红包兑换200京豆，一周可换五次`)
       for (let item of ["-1", "0", "1", "2", "3"]) {
         $.canLoop = true;
