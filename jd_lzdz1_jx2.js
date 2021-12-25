@@ -33,10 +33,10 @@ if (process.env.NO_RUSH && process.env.NO_RUSH != "") {
         return;
     }
     
-    authorCodeList = await getAuthorCodeList('https://gitee.com/fatelight/code/raw/master/lzdz1_jx.json')
+    authorCodeList = ['c66c8283d83a4a0a90844cf13d4c22ff',]
     if($.getAuthorCodeListerr === false){
         authorCodeList = [
-            '2a950a42a8d146a38efb24654a7c1390',
+            'c66c8283d83a4a0a90844cf13d4c22ff',
         ]
     }
 
