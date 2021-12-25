@@ -282,6 +282,39 @@ function helpFriend(helpInfo) {
     })
   })
 }
+
+async function appdoTask(type,taskInfo) {
+  let functionId = 'cash_doTask'
+  let body = escape(JSON.stringify({"type":type,"taskInfo":taskInfo}))
+  let uuid = randomString(16)
+  let sign = await getSign(functionId, decodeURIComponent(body), uuid)
+  let url = `${JD_API_HOST}?functionId=${functionId}&build=167774&client=apple&clientVersion=10.1.0&uuid=${uuid}&${sign}`
+  return new Promise((resolve) => {
+    $.post(apptaskUrl(url, body), (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          if (safeGet(data)) {
+            data = JSON.parse(data);
+            if(data.code === 0) {
+              console.log(`任务完成成功`)
+              // console.log(data.data.result.taskInfos)
+            } else {
+              console.log(JSON.stringify(data))
+            }
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
 function doTask(type,taskInfo) {
   return new Promise((resolve) => {
     $.get(taskUrl("cash_doTask",{"type":type,"taskInfo":taskInfo}), (err, resp, data) => {
