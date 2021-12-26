@@ -52,7 +52,7 @@ let ReturnMessageTitle="";
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let intPerSent = 3;
+let intPerSent = 50;
 let i = 0;
 let DisableCash = "false";
 let llShowMonth = false;
@@ -489,41 +489,41 @@ async function showMsg() {
 		ReturnMessageTitle = `【账号${IndexAll}🆔】${$.nickName || $.UserName}\n`;
 	}
 
-	if ($.levelName || $.JingXiang){
-		ReturnMessage += `【账号信息】`;
-		if ($.levelName) {
-			if ($.levelName.length > 2)
-				$.levelName = $.levelName.substring(0, 2);
+	// if ($.levelName || $.JingXiang){
+	// 	ReturnMessage += `【账号信息】`;
+	// 	if ($.levelName) {
+	// 		if ($.levelName.length > 2)
+	// 			$.levelName = $.levelName.substring(0, 2);
 
-			if ($.levelName == "注册")
-				$.levelName = `😊普通`;
+	// 		if ($.levelName == "注册")
+	// 			$.levelName = `😊普通`;
 
-			if ($.levelName == "钻石")
-				$.levelName = `💎钻石`;
+	// 		if ($.levelName == "钻石")
+	// 			$.levelName = `💎钻石`;
 
-			if ($.levelName == "金牌")
-				$.levelName = `🥇金牌`;
+	// 		if ($.levelName == "金牌")
+	// 			$.levelName = `🥇金牌`;
 
-			if ($.levelName == "银牌")
-				$.levelName = `🥈银牌`;
+	// 		if ($.levelName == "银牌")
+	// 			$.levelName = `🥈银牌`;
 
-			if ($.levelName == "铜牌")
-				$.levelName = `🥉铜牌`;
+	// 		if ($.levelName == "铜牌")
+	// 			$.levelName = `🥉铜牌`;
 
-			if ($.isPlusVip == 1)
-				ReturnMessage += `${$.levelName}Plus`;
-			else
-				ReturnMessage += `${$.levelName}会员`;
-		}
+	// 		if ($.isPlusVip == 1)
+	// 			ReturnMessage += `${$.levelName}Plus`;
+	// 		else
+	// 			ReturnMessage += `${$.levelName}会员`;
+	// 	}
 
-		if ($.JingXiang){
-			if ($.levelName) {
-				ReturnMessage +=",";
-			}
-			ReturnMessage += `${$.JingXiang}`;
-		}
-		ReturnMessage +=`\n`;
-	}
+	// 	if ($.JingXiang){
+	// 		if ($.levelName) {
+	// 			ReturnMessage +=",";
+	// 		}
+	// 		ReturnMessage += `${$.JingXiang}`;
+	// 	}
+	// 	ReturnMessage +=`\n`;
+	// }
 	if (llShowMonth) {
 		ReturnMessageMonth = ReturnMessage;
 		ReturnMessageMonth += `\n【上月收入】：${$.allincomeBean}京豆 🐶\n`;
@@ -823,7 +823,7 @@ async function showMsg() {
 		if(strAllNotify)
 			ReturnMessage=strAllNotify+`\n`+ReturnMessage;
 		
-		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n\n本通知 By ccwav Mod',strsummary);
+		await notify.sendNotifybyWxPucher(strTitle, `${ReturnMessage}`, `${$.UserName}`,'\n',strsummary);
 	}
 
 	//$.msg($.name, '', ReturnMessage , {"open-url": "https://bean.m.jd.com/beanDetail/index.action?resourceValue=bean"});
