@@ -90,10 +90,10 @@ let inviteCode='';
     await shareCodesFormat()
     let shareCodes;
     if (helpPool) {
-      shareCodes = [...new Set([...inviteCodes, ...$.readShareCode])]
+      shareCodes = [...new Set([...$.readShareCode,...inviteCodes])]
     } else {
       if (i === 0) {
-        shareCodes = [...new Set([...inviteCodes, ...$.readShareCode])]
+        shareCodes = [...new Set([...$.readShareCode,...inviteCodes])]
       } else {
         shareCodes = [...$.newShareCodes]
       }
