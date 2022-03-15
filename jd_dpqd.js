@@ -9,6 +9,8 @@ DPQDTK: token1&token2
 let token = [
   '8C0A55B0556E15CBAFDFA53010A9664B',//中美史克京东自营官方旗舰店
   'DA6CC41BBD4A56C07CFD7B8A14E944D9',//永彩个护旗舰店
+  '5447793F2785D2AEEFEB07E2F0A5AED5',
+  '0F4029790C08304EBEF04D35BB6230E0',
 ]
 if (process.env.DPQDTK) {
   if (process.env.DPQDTK.includes('\n')) {
