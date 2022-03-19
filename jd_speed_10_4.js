@@ -4,7 +4,7 @@
 ============Quantumultx===============
 [task_local]
 #极速版抢卷
-58 59 7,10,13,15,19 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_10_4.js, tag=极速版抢卷, enabled=true
+58 59 10,13 * * * https://raw.githubusercontent.com/KingRan/KR/main/jd_10_4.js, tag=极速版抢卷, enabled=true
 ================Loon==============
 [Script]
 cron "58 59 7,10,13,15,19 * * *" script-path=https://raw.githubusercontent.com/KingRan/KR/main/jd_10_4.js,tag=极速版抢卷
